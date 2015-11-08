@@ -60,7 +60,7 @@ Plugin 'einars/js-beautify'
 
 "以后使用，暂时备忘
 "Plugin 'SirVer/ultisnips'
-"Plugin 'tomasr/molokai'
+Plugin 'tomasr/molokai'
 
 "Plugin 'easymotion/vim-easymotion'
 
@@ -91,9 +91,9 @@ filetype plugin indent on    " required
 
 set nocompatible " 关闭 vi 兼容模式 
 syntax on " 自动语法高亮 
-colorscheme darkblue " 设定配色方案 
-"let g:molokai_original = 1
-""colorscheme jellybeans " 设定配色方案 
+"colorscheme darkblue " 设定配色方案 
+let g:molokai_original = 1
+colorscheme molokai " 设定配色方案 
 set number " 显示行号 
 set cursorline " 突出显示当前行 
 set ruler " 打开状态栏标尺 
@@ -138,12 +138,11 @@ set helplang=cn
 if has("gui_running")
 	set guioptions-=T  
 	set t_Co=256  
-	colorscheme laphp  
 endif
 "
 "
 " return OS type, eg: windows, or linux, mac, et.st.. 
-function! MySys() 
+function! CurSys() 
     if has("win16") || has("win32") || has("win64") || has("win95") 
         return "windows" 
     elseif has("unix") 
@@ -152,9 +151,9 @@ function! MySys()
 endfunction 
 "
 " " 用户目录变量$VIMFILES 
-" if MySys() == "windows" 
+" if CurSys() == "windows" 
 " let $VIMFILES = $VIM.'/vimfiles' 
-" elseif MySys() == "linux" 
+" elseif CurSys() == "linux" 
 " let $VIMFILES = $HOME.'/.vim' 
 " endif 
 "
@@ -317,9 +316,9 @@ au FileType python map <buffer> <leader>D ?def
 " plugin - taglist.vim 查看函数列表，需要ctags程序 
 " F4 打开隐藏taglist窗口 
 "----------------------------------------------------------------- 
-" if MySys() == "windows" " 设定windows系统中ctags程序的位置 
+" if CurSys() == "windows" " 设定windows系统中ctags程序的位置 
 " let Tlist_Ctags_Cmd = '"'.$VIMRUNTIME.'/ctags.exe"' 
-" elseif MySys() == "linux" " 设定windows系统中ctags程序的位置 
+" elseif CurSys() == "linux" " 设定windows系统中ctags程序的位置 
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
 " endif 
 
