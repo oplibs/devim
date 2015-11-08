@@ -347,7 +347,9 @@ let Tlist_Compact_Format = 1
 " "----------------------------------------------------------------- 
 "
 "
-" "----------------------------------------------------------------- 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"NERDTree配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录 
 " " :ERDtree 打开NERD_tree :NERDtreeClose 关闭NERD_tree 
 " " o 打开关闭文件或者目录 t 在标签页中打开 
@@ -358,9 +360,32 @@ let Tlist_Compact_Format = 1
 " " r 递归刷新当前目录 R 递归刷新当前根目录 
 " "----------------------------------------------------------------- 
 " F3 NERDTree 切换 
-map <Command+n> :NERDTreeToggle<CR> 
-imap <F3> <ESC>:NERDTreeToggle<CR> 
-"
+"map <Command+n> :NERDTreeToggle<CR> 
+map <C-n> :NERDTreeToggle<CR>
+"imap <F3> <ESC>:NERDTreeToggle<CR> 
+map <C-d> :NERDTreeFind<CR>
+"let NERDChristmasTree=1
+let NERDTreeChDirMode=2 "选中root即设置为当前目录
+let NERDTreeHighlightCursorline=0
+let NERDTreeShowBookmarks=1 "显示书签
+let NERDTreeMinimalUI=1 "不显示帮助面板
+let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
+let NERDTreeShowHidden=0 "显示隐藏文件
+let NERDTreeQuitOnOpen=0 "打开文件时关闭树
+" let NERDTreeShowLineNumbers=1 
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+function! NERDTree_Start()  
+    exec 'NERDTree'  
+endfunction
+
+function! NERDTree_IsValid()  
+    return 1  
+endfunction
+"}}}
+
+
 "
 "----------------------------------------------------------------- 
 " plugin - NERD_commenter.vim 注释代码用的， 
@@ -435,32 +460,6 @@ let NERDCompactSexyComs=1 " 多行注释时样子更好看
 " "----------------------------------------------------------------- 
 " " plugin – a.vim 
 " "-----------------------------------------------------------------
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"NERDTree配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-n> :NERDTreeToggle<CR>
-map <C-F1> :NERDTreeFind<CR>
-"let NERDChristmasTree=1
-let NERDTreeChDirMode=2 "选中root即设置为当前目录
-let NERDTreeHighlightCursorline=0
-let NERDTreeShowBookmarks=1 "显示书签
-let NERDTreeMinimalUI=1 "不显示帮助面板
-let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
-let NERDTreeShowHidden=0 "显示隐藏文件
-let NERDTreeQuitOnOpen=0 "打开文件时关闭树
-" let NERDTreeShowLineNumbers=1 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-
-function! NERDTree_Start()  
-    exec 'NERDTree'  
-endfunction
-
-function! NERDTree_IsValid()  
-    return 1  
-endfunction
-"}}}
 
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
