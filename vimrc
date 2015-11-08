@@ -56,7 +56,7 @@ Plugin 'einars/js-beautify'
 "Plugin 'xolox/vim-notes'
 
 "Plugin 'TaskList.vim'
-"Plugin 'itchyny/calendar.vim'
+Plugin 'itchyny/calendar.vim'
 
 "以后使用，暂时备忘
 "Plugin 'SirVer/ultisnips'
@@ -187,7 +187,8 @@ else
 endif 
 "
 " " Buffers操作快捷方式! 
-nnoremap <c-b> :bnext<CR> 
+nnoremap ,bn :bnext<CR> 
+nnoremap ,bb :bprevious<CR> 
 " nnoremap <C-S-RETURN> :bprevious<CR> 
 "
 " " Tab操作快捷方式! 
