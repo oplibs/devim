@@ -36,7 +36,8 @@ Plugin 'powerline/powerline'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 
-Plugin 'taglist.vim'
+"Plugin 'taglist.vim'
+Plugin 'majutsushi/tagbar'
 
 Plugin 'ervandew/supertab'
 
@@ -317,29 +318,28 @@ au FileType python map <buffer> <leader>D ?def
 " "----------------------------------------------------------------- 
 "
 "
-"----------------------------------------------------------------- 
-" plugin - taglist.vim 查看函数列表，需要ctags程序 
-" F4 打开隐藏taglist窗口 
-"----------------------------------------------------------------- 
-" if CurSys() == "windows" " 设定windows系统中ctags程序的位置 
-" let Tlist_Ctags_Cmd = '"'.$VIMRUNTIME.'/ctags.exe"' 
-" elseif CurSys() == "linux" " 设定windows系统中ctags程序的位置 
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
-" endif 
-
-nnoremap <c-l> :TlistToggle<CR> 
-let Tlist_Show_One_File = 1 " 不同时显示多个文件的tag，只显示当前文件的 
-let Tlist_Exit_OnlyWindow = 1 " 如果taglist窗口是最后一个窗口，则退出vim 
-let Tlist_Use_Right_Window = 1 " 在右侧窗口中显示taglist窗口 
-let Tlist_File_Fold_Auto_Close=1 " 自动折叠当前非编辑文件的方法列表 
-let Tlist_Auto_Open = 0 
-let Tlist_Auto_Update = 1 
-let Tlist_Hightlight_Tag_On_BufEnter = 1 
-let Tlist_Enable_Fold_Column = 0 
-let Tlist_Process_File_Always = 1 
-let Tlist_Display_Prototype = 0 
-let Tlist_Compact_Format = 1 
-
+" "----------------------------------------------------------------- 
+" " plugin - taglist.vim 查看函数列表，需要ctags程序 
+" " F4 打开隐藏taglist窗口 
+" "----------------------------------------------------------------- 
+" " if CurSys() == "windows" " 设定windows系统中ctags程序的位置 
+" " let Tlist_Ctags_Cmd = '"'.$VIMRUNTIME.'/ctags.exe"' 
+" " elseif CurSys() == "linux" " 设定windows系统中ctags程序的位置 
+" let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
+" " endif 
+" nnoremap <c-l> :TlistToggle<CR> 
+" let Tlist_Show_One_File = 1 " 不同时显示多个文件的tag，只显示当前文件的 
+" let Tlist_Exit_OnlyWindow = 1 " 如果taglist窗口是最后一个窗口，则退出vim 
+" let Tlist_Use_Right_Window = 1 " 在右侧窗口中显示taglist窗口 
+" let Tlist_File_Fold_Auto_Close=1 " 自动折叠当前非编辑文件的方法列表 
+" let Tlist_Auto_Open = 0 
+" let Tlist_Auto_Update = 1 
+" let Tlist_Hightlight_Tag_On_BufEnter = 1 
+" let Tlist_Enable_Fold_Column = 0 
+" let Tlist_Process_File_Always = 1 
+" let Tlist_Display_Prototype = 0 
+" let Tlist_Compact_Format = 1 
+" "----------------------------------------------------------------- 
 
 "----------------------------------------------------------------- 
 " " plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。 
@@ -351,6 +351,15 @@ let Tlist_Compact_Format = 1
 " " \/ 所有MarkWords的下一个 \? 所有MarkWords的上一个 
 " "----------------------------------------------------------------- 
 "
+
+" "----------------------------------------------------------------- 
+" " plugin - tagbar.vim 查看函数列表
+" "----------------------------------------------------------------- 
+nmap <c-l> :TagbarToggle<CR>
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+let g:tagbar_width=30
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+" "----------------------------------------------------------------- 
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree配置{{{
