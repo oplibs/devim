@@ -120,7 +120,8 @@ set helplang=cn
 " " set showmatch " 插入括号时，短暂地跳转到匹配的对应括号 
 " " set matchtime=2 " 短暂跳转到匹配括号的时间 
 " set magic " 设置魔术 
-" set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存 
+"set noautowrite
+set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存 
 " set guioptions-=T " 隐藏工具栏 
 " set guioptions-=m " 隐藏菜单栏 
 " set smartindent " 开启新行时使用智能自动缩进 
@@ -196,6 +197,7 @@ else
 endif 
 "
 " " Buffers操作快捷方式! 
+" 因为上文设置了set hidden，所以可以不保存切换buffer
 nnoremap ,m :bnext<CR> 
 nnoremap ,. :bprevious<CR> 
 " nnoremap <C-S-RETURN> :bprevious<CR> 
