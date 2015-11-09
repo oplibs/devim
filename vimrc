@@ -380,7 +380,7 @@ autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
 "map <Command+n> :NERDTreeToggle<CR> 
 map <C-n> :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR> 
-map <C-d> :NERDTreeFind<CR>
+map <C-i> :NERDTreeFind<CR>
 "let NERDChristmasTree=1
 let NERDTreeChDirMode=2 "选中root即设置为当前目录
 let NERDTreeHighlightCursorline=0
