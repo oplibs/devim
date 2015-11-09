@@ -32,6 +32,9 @@ Plugin 'scrooloose/nerdtree' "加入nerdtree
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
 
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+
 Plugin 'powerline/powerline'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
