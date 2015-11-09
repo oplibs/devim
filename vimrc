@@ -125,7 +125,7 @@ set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改�
 " set guioptions-=T " 隐藏工具栏 
 " set guioptions-=m " 隐藏菜单栏 
 " set smartindent " 开启新行时使用智能自动缩进 
-" set backspace=indent,eol,start 
+set backspace=indent,eol,start 
 " " 不设定在插入状态无法用退格键和 Delete 键删除回车符 
 " set cmdheight=1 " 设定命令行的行数为 1 
 " set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏) 
