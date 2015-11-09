@@ -64,6 +64,7 @@ Plugin 'itchyny/calendar.vim'
 
 "以后使用，暂时备忘
 "Plugin 'SirVer/ultisnips'
+
 Plugin 'tomasr/molokai'
 "Plugin 'altercation/vim-colors-solarized'
 
@@ -96,12 +97,6 @@ filetype plugin indent on    " required
 
 set nocompatible " 关闭 vi 兼容模式 
 syntax on " 自动语法高亮 
-"colorscheme darkblue " 设定配色方案 
-"let g:molokai_original = 1
-colorscheme molokai " 设定配色方案 
-"set background=dark
-"set background=light
-"colorscheme solarized
 set number " 显示行号 
 set cursorline " 突出显示当前行 
 set ruler " 打开状态栏标尺 
@@ -143,9 +138,15 @@ set helplang=cn
 " " set foldclose=all " 设置为自动关闭折叠 
 " " nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> 
 " " 用空格键来开关折叠 
+set t_Co=256  
 if has("gui_running")
 	set guioptions-=T  
-	set t_Co=256  
+    let g:molokai_original = 1
+    colorscheme molokai " 设定配色方案 
+else
+    "set background=dark
+    "set background=light
+    colorscheme darkblue
 endif
 "
 "
