@@ -187,7 +187,7 @@ else
 endif 
 "
 " " Buffers操作快捷方式! 
-nnoremap ,n :bnext<CR> 
+nnoremap ,m :bnext<CR> 
 nnoremap ,. :bprevious<CR> 
 " nnoremap <C-S-RETURN> :bprevious<CR> 
 "
