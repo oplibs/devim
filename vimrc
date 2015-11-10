@@ -216,13 +216,13 @@ nnoremap ,. :bprevious<CR>
 " " map te :tabedit 
 " " map tc :tabclose<cr> 
 "
-" "窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动 
-" "光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的 
-" "时候会变得非常方便. 
-" nnoremap <C-h> <C-w>h 
-" nnoremap <C-j> <C-w>j 
-" nnoremap <C-k> <C-w>k 
-" nnoremap <C-l> <C-w>l 
+"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动 
+"光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的 
+"时候会变得非常方便. 
+nnoremap <C-h> <C-w>h 
+nnoremap <C-j> <C-w>j 
+nnoremap <C-k> <C-w>k 
+nnoremap <C-l> <C-w>l 
 "
 " "一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用） 
 " nnoremap <leader>1 :set filetype=xhtml<CR> 
@@ -336,7 +336,7 @@ au FileType python map <buffer> <leader>D ?def
 " " elseif CurSys() == "linux" " 设定windows系统中ctags程序的位置 
 " let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
 " " endif 
-" nnoremap <c-l> :TlistToggle<CR> 
+" nnoremap <c-,> :TlistToggle<CR> 
 " let Tlist_Show_One_File = 1 " 不同时显示多个文件的tag，只显示当前文件的 
 " let Tlist_Exit_OnlyWindow = 1 " 如果taglist窗口是最后一个窗口，则退出vim 
 " let Tlist_Use_Right_Window = 1 " 在右侧窗口中显示taglist窗口 
@@ -364,7 +364,7 @@ au FileType python map <buffer> <leader>D ?def
 " "----------------------------------------------------------------- 
 " " plugin - tagbar.vim 查看函数列表
 " "----------------------------------------------------------------- 
-nmap <c-l> :TagbarToggle<CR>
+nmap <c-,> :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=30
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
