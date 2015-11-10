@@ -39,12 +39,15 @@ Plugin 'powerline/powerline'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 
+Plugin 'bufkill.vim'
+
 "Plugin 'taglist.vim'
 Plugin 'majutsushi/tagbar'
 
 Plugin 'ervandew/supertab'
 
 Plugin 'scrooloose/syntastic'
+" Plugin 'mattn/emmet-vim'
 Plugin 'evanmiller/nginx-vim-syntax'
 
 Plugin 'gregsexton/MatchTag'  
