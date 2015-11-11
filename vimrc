@@ -50,7 +50,8 @@ Plugin 'scrooloose/syntastic'
 " Plugin 'mattn/emmet-vim'
 Plugin 'evanmiller/nginx-vim-syntax'
 
-Plugin 'gregsexton/MatchTag'  
+"Plugin 'gregsexton/MatchTag'
+Plugin 'matchit.zip'
 Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'Chiel92/vim-autoformat'
@@ -78,7 +79,7 @@ Bundle 'winmanager'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
