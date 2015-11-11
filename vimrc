@@ -112,7 +112,7 @@ set autochdir " 自动切换当前目录为当前文件所在的目录
 set helplang=cn
 " filetype plugin indent on " 开启插件 
 " set backupcopy=yes " 设置备份时的行为为覆盖 
-" set ignorecase smartcase "
+set ignorecase smartcase "
 " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感 
 " set nowrapscan " 禁止在搜索到文件两端时重新搜索 
 " set incsearch " 输入搜索内容时就显示搜索结果 
@@ -135,13 +135,15 @@ set backspace=indent,eol,start
 " set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\
 " %c:%l/%L%)\ 
 " " 设置在状态行显示的信息 
-" set foldenable " 开始折叠 
-" set foldmethod=syntax " 设置语法折叠 
+set foldenable " 开始折叠 
+"set foldmethod=syntax " 设置语法折叠 
+set foldmethod=indent " 设置语法折叠 
 " set foldcolumn=0 " 设置折叠区域的宽度 
+"set foldclose=all " 设置为自动关闭折叠 
 " setlocal foldlevel=1 " 设置折叠层数为 
-" " set foldclose=all " 设置为自动关闭折叠 
-" " nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> 
-" " 用空格键来开关折叠 
+set foldlevel=100 " 设置折叠层数为100,基本上等价于打开文件的时，缺省不折叠 
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" 用空格键来开关折叠 
 set t_Co=256  
 if has("gui_running")
 	set guioptions-=T  
