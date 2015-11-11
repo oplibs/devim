@@ -289,17 +289,17 @@ au FileType javascript inoremap <buffer> $f //--- PH ---------------------------
 """"""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
 """"""""""""""""""""""""""""""
-"map <c-f> :call JsBeautify()<cr>
+"map ff :call JsBeautify()<cr>
 " or
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer> ff :call JsBeautify()<cr>
 " for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> ff :call HtmlBeautify()<cr>
 " for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
 " Beatutify the selected section
-autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer> ff :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> ff :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> ff :call RangeCSSBeautify()<cr>
 "}}}
 "
 """"""""""""""""""""""""""""""
@@ -612,7 +612,7 @@ let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 "nnoremap ,pcf :call PhpCsFixerFixFile()<CR>
-au FileType php nnoremap <c-f> :call PhpCsFixerFixFile()<CR>
+au FileType php nnoremap ff :call PhpCsFixerFixFile()<CR>
 au FileType php nnoremap ,pcd :call PhpCsFixerFixDirectory()<CR>
 "}}}
 
@@ -626,5 +626,5 @@ let g:formatters_c    = ['vogon']
 let g:formatters_cc   = ['vogon']
 let g:formatters_java = ['vogon']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
-au FileType c,cpp,cc nnoremap <c-f> :Autoformat<CR>
+au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 "}}}
