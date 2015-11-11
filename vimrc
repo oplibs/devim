@@ -141,11 +141,9 @@ set backspace=indent,eol,start
 " 代码折叠的设置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldenable " 开始折叠 
-"set foldmethod=syntax " 设置语法折叠 
-set foldmethod=indent " 设置语法折叠 
+set foldmethod=indent " 缺省用缩进折叠 
 " set foldcolumn=0 " 设置折叠区域的宽度 
 "set foldclose=all " 设置为自动关闭折叠 
-" setlocal foldlevel=1 " 设置折叠层数为 
 set foldlevel=100 " 设置折叠层数为100,基本上等价于打开文件的时，缺省不折叠 
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 用空格键来开关折叠 
@@ -287,7 +285,7 @@ autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
 """"""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
-"au FileType javascript call JavaScriptFold()
+au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
 
@@ -297,16 +295,16 @@ au FileType javascript imap <c-a> alert();<esc>hi
 au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 
-"function! JavaScriptFold()
-"    setl foldmethod=syntax
-"    setl foldlevelstart=1
-"    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-"
-"    function! FoldText()
-"    return substitute(getline(v:foldstart), '{.*', '{...}', '')
-"    endfunction
-"    setl foldtext=FoldText()
-"endfunction
+function! JavaScriptFold()
+    setl foldmethod=syntax
+    setl foldlevelstart=100
+    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    function! FoldText()
+    return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
 "
 """"""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
@@ -416,7 +414,7 @@ let NERDTreeShowBookmarks=1 "显示书签
 let NERDTreeMinimalUI=1 "不显示帮助面板
 let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
 let NERDTreeShowHidden=0 "显示隐藏文件
-let NERDTreeQuitOnOpen=0 "打开文件时关闭树
+let NERDTreeQuitOnOpen=1 "打开文件时关闭树
 " let NERDTreeShowLineNumbers=1 
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
