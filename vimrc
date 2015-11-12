@@ -28,6 +28,9 @@ Plugin 'L9'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/vimshell.vim'
+
 Plugin 'scrooloose/nerdtree' "加入nerdtree
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
