@@ -55,7 +55,7 @@ Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin 'gregsexton/MatchTag'
 Plugin 'matchit.zip'
-Plugin 'kien/rainbow_parentheses.vim'
+"Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'stephpy/vim-php-cs-fixer'
@@ -118,7 +118,7 @@ set helplang=cn
 " set backupcopy=yes " 设置备份时的行为为覆盖 
 set ignorecase smartcase "
 " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感 
-set nowrapscan " 禁止在搜索到文件两端时重新搜索 
+set wrapscan " 禁止在搜索到文件两端时重新搜索 
 " set incsearch " 输入搜索内容时就显示搜索结果 
 set hlsearch " 搜索时高亮显示被找到的文本 
 " set noerrorbells " 关闭错误信息响铃 
@@ -608,10 +608,10 @@ let g:syntastic_css_checkers = ['csshint']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "RainbowParentheeses.vim 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
 "}}}
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
