@@ -115,9 +115,9 @@ set helplang=cn
 " set backupcopy=yes " 设置备份时的行为为覆盖 
 set ignorecase smartcase "
 " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感 
-" set nowrapscan " 禁止在搜索到文件两端时重新搜索 
+set nowrapscan " 禁止在搜索到文件两端时重新搜索 
 " set incsearch " 输入搜索内容时就显示搜索结果 
-" set hlsearch " 搜索时高亮显示被找到的文本 
+set hlsearch " 搜索时高亮显示被找到的文本 
 " set noerrorbells " 关闭错误信息响铃 
 " set novisualbell " 关闭使用可视响铃代替呼叫 
 " set t_vb= " 置空错误铃声的终端代码 
@@ -224,7 +224,6 @@ endif
 " 因为上文设置了set hidden，所以可以不保存切换buffer
 nnoremap ,m :bnext<CR> 
 nnoremap ,. :bprevious<CR> 
-" nnoremap <C-S-RETURN> :bprevious<CR> 
 "
 " " Tab操作快捷方式! 
 " nnoremap <C-TAB> :tabnext<CR> 
@@ -273,6 +272,10 @@ nnoremap <C-l> <C-w>l
 " " 选中状态下 Ctrl+c 复制 
 " vmap <C-c> "+y 
 "
+
+""""""""""""""""""""""""""""""
+" => JavaScript section
+"""""""""""""""""""""""""""""""
 " 打开javascript折叠 
 let b:javascript_fold=1 
 " 打开javascript对dom、html和css的支持 
@@ -282,10 +285,6 @@ autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
 autocmd filetype css set dictionary=$VIMFILES/dict/css.dict 
 autocmd filetype php set dictionary=$VIMFILES/dict/php.dict 
 
-
-""""""""""""""""""""""""""""""
-" => JavaScript section
-"""""""""""""""""""""""""""""""
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
@@ -408,7 +407,7 @@ autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
 map <C-n> :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR> 
 map <C-i> :NERDTreeFind<CR>
-"let NERDChristmasTree=1
+let NERDChristmasTree=1
 let NERDTreeChDirMode=2 "选中root即设置为当前目录
 let NERDTreeHighlightCursorline=0
 let NERDTreeShowBookmarks=1 "显示书签
