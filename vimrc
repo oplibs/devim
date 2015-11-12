@@ -384,10 +384,10 @@ au FileType python map <buffer> <leader>D ?def
 " "----------------------------------------------------------------- 
 " " plugin - tagbar.vim 查看函数列表
 " "----------------------------------------------------------------- 
-nmap <c-,> :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=30
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+nnoremap ,t :TagbarToggle<CR>
 " "----------------------------------------------------------------- 
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
