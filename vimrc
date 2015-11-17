@@ -323,6 +323,8 @@ autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
 autocmd FileType javascript vnoremap <buffer> ff :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> ff :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> ff :call RangeCSSBeautify()<cr>
+"格式化json文件
+autocmd filetype json noremap <buffer> ff <Esc>:%!python -m json.tool<CR>
 "}}}
 "
 """"""""""""""""""""""""""""""
