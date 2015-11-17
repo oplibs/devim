@@ -63,6 +63,11 @@ Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 
+"Plugin for markdown
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'spf13/vim-preview'
+
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
 
@@ -280,6 +285,17 @@ nnoremap <C-l> <C-w>l
 " => JavaScript section
 """""""""""""""""""""""""""""""
 " 打开javascript折叠 
+function! JavaScriptFold()
+    setl foldmethod=syntax
+    setl foldlevelstart=100
+    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    function! FoldText()
+    return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
+"
 let b:javascript_fold=1 
 " 打开javascript对dom、html和css的支持 
 let javascript_enable_domhtmlcss=1 
@@ -297,18 +313,6 @@ au FileType javascript imap <c-a> alert();<esc>hi
 
 au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
-
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=100
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-    return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
-"
 """"""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
 """"""""""""""""""""""""""""""
@@ -653,3 +657,11 @@ let g:formatters_java = ['vogon']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
 au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 "}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vim-ag.vim 配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
+"let g:ag_working_path_mode="r"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
