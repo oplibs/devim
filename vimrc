@@ -63,6 +63,11 @@ Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 
+"Plugin for markdown
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'spf13/vim-preview'
+
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
 
@@ -280,6 +285,17 @@ nnoremap <C-l> <C-w>l
 " => JavaScript section
 """""""""""""""""""""""""""""""
 " 打开javascript折叠 
+function! JavaScriptFold()
+    setl foldmethod=syntax
+    setl foldlevelstart=100
+    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    function! FoldText()
+    return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
+"
 let b:javascript_fold=1 
 " 打开javascript对dom、html和css的支持 
 let javascript_enable_domhtmlcss=1 
@@ -297,18 +313,6 @@ au FileType javascript imap <c-a> alert();<esc>hi
 
 au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
-
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=100
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-    return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
-"
 """"""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
 """"""""""""""""""""""""""""""
@@ -323,6 +327,8 @@ autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
 autocmd FileType javascript vnoremap <buffer> ff :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> ff :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> ff :call RangeCSSBeautify()<cr>
+"格式化json文件
+autocmd filetype json noremap <buffer> ff <Esc>:%!python -m json.tool<CR>
 "}}}
 "
 """"""""""""""""""""""""""""""
@@ -655,19 +661,26 @@ au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "emmet.vim 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:user_emmet_settings = {
-            \ 'php' : {
-            \ 'extends' : 'html',
-            \ 'filters' : 'c',
-            \ },
-            \ 'xml' : {
-            \ 'extends' : 'html',
-            \ },
-            \ 'haml' : {
-            \ 'extends' : 'html',
-            \ },
-            \}
+" let g:user_emmet_settings = {
+            " \ 'php' : {
+            " \ 'extends' : 'html',
+            " \ 'filters' : 'c',
+            " \ },
+            " \ 'xml' : {
+            " \ 'extends' : 'html',
+            " \ },
+            " \ 'haml' : {
+            " \ 'extends' : 'html',
+            " \ },
+            " \}
 "let g:user_emmet_expandabbr_key = '<Tab>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}emmet.vim 配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vim-ag.vim 配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
+"let g:ag_working_path_mode="r"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
