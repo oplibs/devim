@@ -22,7 +22,6 @@ Plugin 'tpope/vim-fugitive'
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Plugin 'a.vim'
 " Git plugin not hosted on GitHub
 Plugin 'L9'
 " Avoid a name conflict with L9
@@ -33,37 +32,51 @@ Plugin 'Shougo/vimshell.vim'
 
 Plugin 'scrooloose/nerdtree' "加入nerdtree
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'kien/ctrlp.vim'
 
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
+"UI Plugins
 "Plugin 'powerline/powerline'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 
+Plugin 'kien/ctrlp.vim'
+
 Plugin 'bufkill.vim'
 Plugin 'BufOnly.vim'
 
+"Plugin 'easymotion/vim-easymotion'
+
+" For common language
 "Plugin 'taglist.vim'
 Plugin 'majutsushi/tagbar'
+
 
 Plugin 'ervandew/supertab'
 
 Plugin 'scrooloose/syntastic'
 Plugin 'mattn/emmet-vim'
-Plugin 'evanmiller/nginx-vim-syntax'
+
+"Plugin for developing of C and CPP
+Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
+
+Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin 'gregsexton/MatchTag'
 Plugin 'matchit.zip'
 "Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'stephpy/vim-php-cs-fixer'
 
+Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
+Plugin 'ap/vim-css-color'
+
+"Plugin task
+Plugin 'rizzatti/dash.vim'
 
 "Plugin for markdown
 "Plugin 'godlygeek/tabular'
@@ -80,13 +93,9 @@ Plugin 'kannokanno/previm'
 "Plugin 'TaskList.vim'
 Plugin 'itchyny/calendar.vim'
 
-Plugin 'rizzatti/dash.vim'
-
 Plugin 'tomasr/molokai'
 "Plugin 'altercation/vim-colors-solarized'
-Plugin 'ap/vim-css-color'
 
-"Plugin 'easymotion/vim-easymotion'
 
 Bundle 'winmanager'
 " All of your Plugins must be added before the following line
@@ -125,23 +134,23 @@ set nobackup " 覆盖文件时不备份
 set expandtab
 "set autochdir " 自动切换当前目录为当前文件所在的目录 
 set helplang=cn
-" filetype plugin indent on " 开启插件 
+filetype plugin indent on " 开启插件 
 " set backupcopy=yes " 设置备份时的行为为覆盖 
 set ignorecase smartcase "
 " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感 
 set wrapscan " 禁止在搜索到文件两端时重新搜索 
-" set incsearch " 输入搜索内容时就显示搜索结果 
+set incsearch " 输入搜索内容时就显示搜索结果 
 set hlsearch " 搜索时高亮显示被找到的文本 
-" set noerrorbells " 关闭错误信息响铃 
+set noerrorbells " 关闭错误信息响铃 
 " set novisualbell " 关闭使用可视响铃代替呼叫 
 " set t_vb= " 置空错误铃声的终端代码 
-" " set showmatch " 插入括号时，短暂地跳转到匹配的对应括号 
-" " set matchtime=2 " 短暂跳转到匹配括号的时间 
+" set showmatch " 插入括号时，短暂地跳转到匹配的对应括号 
+" set matchtime=2 " 短暂跳转到匹配括号的时间 
 " set magic " 设置魔术 
 "set noautowrite
 set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存 
-" set guioptions-=T " 隐藏工具栏 
-" set guioptions-=m " 隐藏菜单栏 
+set guioptions-=T " 隐藏工具栏 
+set guioptions-=m " 隐藏菜单栏 
 " set smartindent " 开启新行时使用智能自动缩进 
 set backspace=indent,eol,start 
 " " 不设定在插入状态无法用退格键和 Delete 键删除回车符 
@@ -157,7 +166,7 @@ set backspace=indent,eol,start
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldenable " 开始折叠 
 set foldmethod=indent " 缺省用缩进折叠 
-" set foldcolumn=0 " 设置折叠区域的宽度 
+"set foldcolumn=0 " 设置折叠区域的宽度 
 "set foldclose=all " 设置为自动关闭折叠 
 set foldlevel=100 " 设置折叠层数为100,基本上等价于打开文件的时，缺省不折叠 
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -280,12 +289,12 @@ nnoremap <C-l> <C-w>l
 " let html_use_css=1 
 "
 " " Python 文件的一般设置，比如不要 tab 等 
-" autocmd FileType python set tabstop=4 shiftwidth=4 expandtab 
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab 
 " autocmd FileType python map <F12> :!python %<CR> 
 "
-" " 选中状态下 Ctrl+c 复制 
-" vmap <C-c> "+y 
-"
+" 选中状态下 Ctrl+c 复制 
+vmap <C-c> "+y 
+
 
 """"""""""""""""""""""""""""""
 " => JavaScript section
