@@ -28,8 +28,8 @@ Plugin 'L9'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
 
 Plugin 'scrooloose/nerdtree' "加入nerdtree
 Plugin 'scrooloose/nerdcommenter'
@@ -79,13 +79,11 @@ Plugin 'kannokanno/previm'
 "Plugin 'TaskList.vim'
 Plugin 'itchyny/calendar.vim'
 
-"以后使用，暂时备忘
-"Plugin 'SirVer/ultisnips'
-
 Plugin 'rizzatti/dash.vim'
 
 Plugin 'tomasr/molokai'
 "Plugin 'altercation/vim-colors-solarized'
+Plugin 'ap/vim-css-color'
 
 "Plugin 'easymotion/vim-easymotion'
 
@@ -124,7 +122,7 @@ set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
 set tabstop=4 " 设定 tab 长度为 4 
 set nobackup " 覆盖文件时不备份 
 set expandtab
-set autochdir " 自动切换当前目录为当前文件所在的目录 
+"set autochdir " 自动切换当前目录为当前文件所在的目录 
 set helplang=cn
 " filetype plugin indent on " 开启插件 
 " set backupcopy=yes " 设置备份时的行为为覆盖 
