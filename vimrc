@@ -38,11 +38,12 @@ Plugin 'kien/ctrlp.vim'
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
-Plugin 'powerline/powerline'
+"Plugin 'powerline/powerline'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 
 Plugin 'bufkill.vim'
+Plugin 'BufOnly.vim'
 
 "Plugin 'taglist.vim'
 Plugin 'majutsushi/tagbar'
@@ -67,6 +68,10 @@ Plugin 'einars/js-beautify'
 "Plugin 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
 "Plugin 'spf13/vim-preview'
+Plugin 'kannokanno/previm'
+"Plugin 'iamcco/markdown-preview.vim'
+
+"Plugin 'tyru/open-browser.vim'
 
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
@@ -76,6 +81,8 @@ Plugin 'itchyny/calendar.vim'
 
 "以后使用，暂时备忘
 "Plugin 'SirVer/ultisnips'
+
+Plugin 'rizzatti/dash.vim'
 
 Plugin 'tomasr/molokai'
 "Plugin 'altercation/vim-colors-solarized'
@@ -517,7 +524,7 @@ let NERDCompactSexyComs=1 " 多行注释时样子更好看
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "powerline 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2
+"set laststatus=2
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -547,8 +554,8 @@ let g:SuperTabRetainCompletionType=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "syntastic 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:syntastic_error_symbol='>>'
-"let g:syntastic_warning_symbol='>'
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
 "let g:syntastic_check_on_open=1
 "let g:syntastic_check_on_wq=0
 "let g:syntastic_enable_highlighting=1
@@ -665,3 +672,50 @@ au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"previm (preview markdown in browser){{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:previm_open_cmd = 'open -a Chrome --allow-file-access-from-files'
+let g:previm_open_cmd = 'open -a Safari'
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "'iamcco/markdown-preview.vim'{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:mkdp_path_to_chrome = "google-chrome"
+" " 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
+" let g:mkdp_auto_start = 0
+" " 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在
+" " 打开
+" " markdown 文件的时候打开一次
+" let g:mkdp_auto_open = 0
+" " 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经
+" " 打开，否则自动打开预
+" " 览窗口
+" let g:mkdp_auto_close = 1
+" " 在切换 buffer 的时候自动关闭预览窗口，设
+" " 置为 0 则在切换 buffer 的时候不
+" " 自动关闭预览窗口
+" let g:mkdp_refresh_slow = 0
+" " 设置为 1 则只有在保存文件，
+" " 或退出插入模式的时候更新预览
+" " ，默认为 0，实时
+" " 更新预览
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-airline{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
