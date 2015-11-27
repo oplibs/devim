@@ -43,7 +43,7 @@ Plugin 'bling/vim-bufferline'
 
 Plugin 'kien/ctrlp.vim'
 
-Plugin 'bufkill.vim'
+" Plugin 'bufkill.vim'
 Plugin 'BufOnly.vim'
 
 "Plugin 'easymotion/vim-easymotion'
@@ -96,8 +96,8 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'tomasr/molokai'
 "Plugin 'altercation/vim-colors-solarized'
 
-
-Bundle 'winmanager'
+"Bundle 'winmanager'
+"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -538,12 +538,13 @@ let NERDCompactSexyComs=1 " 多行注释时样子更好看
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Winmanager 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:winManagerWindowLayout="NERDTree|TagList"
-"let g:NERDTree_title="[NERDTree]"
-"
-"nmap <C-m> :WMToggle<CR>
-"}}}
+" let g:winManagerWindowLayout="NERDTree|TagList"
+" let g:NERDTree_title="[NERDTree]"
 
+" nmap <C-m> :WMToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctrlp 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
