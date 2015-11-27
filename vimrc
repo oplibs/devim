@@ -51,7 +51,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 
 Plugin 'scrooloose/syntastic'
-" Plugin 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin 'gregsexton/MatchTag'
@@ -662,6 +662,25 @@ let g:formatters_java = ['vogon']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
 au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 "}}}
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"emmet.vim 配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:user_emmet_settings = {
+            " \ 'php' : {
+            " \ 'extends' : 'html',
+            " \ 'filters' : 'c',
+            " \ },
+            " \ 'xml' : {
+            " \ 'extends' : 'html',
+            " \ },
+            " \ 'haml' : {
+            " \ 'extends' : 'html',
+            " \ },
+            " \}
+"let g:user_emmet_expandabbr_key = '<Tab>'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}emmet.vim 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-ag.vim 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
