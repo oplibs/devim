@@ -10,10 +10,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'wincent/Command-T'
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -27,33 +23,43 @@ Plugin 'L9'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+
+" Shell utils
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 
-Plugin 'scrooloose/nerdtree' "加入nerdtree
+" 加入nerdcommenter
 Plugin 'scrooloose/nerdcommenter'
+" File finder
+Plugin 'kien/ctrlp.vim'
 
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
-"UI Plugins
-"Plugin 'powerline/powerline'
-Plugin 'bling/vim-airline'
-Plugin 'bling/vim-bufferline'
-
-Plugin 'kien/ctrlp.vim'
-
 " Plugin 'bufkill.vim'
 Plugin 'BufOnly.vim'
 
-"Plugin 'easymotion/vim-easymotion'
+" 加入nerdtree
+Plugin 'scrooloose/nerdtree'
 
 " For common language
 "Plugin 'taglist.vim'
 Plugin 'majutsushi/tagbar'
 
+"Plugin 'powerline/powerline'
+Plugin 'bling/vim-airline'
+Plugin 'bling/vim-bufferline'
 
+"Plugin 'easymotion/vim-easymotion'
 Plugin 'ervandew/supertab'
+
+"Plugin 'gregsexton/MatchTag'
+Plugin 'matchit.zip'
+"Plugin 'kien/rainbow_parentheses.vim'
 
 Plugin 'scrooloose/syntastic'
 Plugin 'mattn/emmet-vim'
@@ -62,12 +68,6 @@ Plugin 'mattn/emmet-vim'
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
 
-Plugin 'evanmiller/nginx-vim-syntax'
-
-"Plugin 'gregsexton/MatchTag'
-Plugin 'matchit.zip'
-"Plugin 'kien/rainbow_parentheses.vim'
-
 Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'stephpy/vim-php-cs-fixer'
@@ -75,21 +75,23 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
 Plugin 'ap/vim-css-color'
 
-"Plugin task
-Plugin 'rizzatti/dash.vim'
+Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin for markdown
 "Plugin 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
 "Plugin 'spf13/vim-preview'
-Plugin 'kannokanno/previm'
 "Plugin 'iamcco/markdown-preview.vim'
 
-"Plugin 'tyru/open-browser.vim'
+" Plugin 'tyru/open-browser.vim'
 
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
 
+" dash for help
+Plugin 'rizzatti/dash.vim'
+
+"Plugin task
 "Plugin 'TaskList.vim'
 Plugin 'itchyny/calendar.vim'
 
@@ -146,12 +148,12 @@ set noerrorbells " 关闭错误信息响铃
 " set t_vb= " 置空错误铃声的终端代码 
 " set showmatch " 插入括号时，短暂地跳转到匹配的对应括号 
 " set matchtime=2 " 短暂跳转到匹配括号的时间 
-" set magic " 设置魔术 
+set magic " 设置魔术 
 "set noautowrite
 set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存 
 set guioptions-=T " 隐藏工具栏 
 set guioptions-=m " 隐藏菜单栏 
-" set smartindent " 开启新行时使用智能自动缩进 
+set smartindent " 开启新行时使用智能自动缩进 
 set backspace=indent,eol,start 
 " " 不设定在插入状态无法用退格键和 Delete 键删除回车符 
 " set cmdheight=1 " 设定命令行的行数为 1 
@@ -198,6 +200,8 @@ endif
 function! CurSys() 
     if has("win16") || has("win32") || has("win64") || has("win95") 
         return "windows" 
+    elseif has('mac')
+        return "osx" 
     elseif has("unix") 
         return "linux" 
     endif 
@@ -295,6 +299,9 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 " 选中状态下 Ctrl+c 复制 
 vmap <C-c> "+y 
 
+
+"autocmd!
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
 """"""""""""""""""""""""""""""
 " => JavaScript section
@@ -565,14 +572,6 @@ let g:SuperTabRetainCompletionType=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
-"let g:syntastic_check_on_open=1
-"let g:syntastic_check_on_wq=0
-"let g:syntastic_enable_highlighting=1
-"let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
-"let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-"let g:syntastic_html_checkers=['tidy', 'jshint']
-"" 修改高亮的背景色, 适应主题
-"highlight SyntasticErrorSign guifg=white guibg=black
 "
 "" to see error location list
 "let g:syntastic_always_populate_loc_list = 0
@@ -594,14 +593,21 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+"" 修改高亮的背景色, 适应主题
+"highlight SyntasticErrorSign guifg=white guibg=black
+"let g:syntastic_enable_highlighting=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_php_checkers = ['php']
+"let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
 let g:syntastic_python_checkers = ['pylint']
+"let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_html_checkers=['tidy', 'jshint']
+let g:syntastic_html_checkers=['jshint']
 let g:syntastic_css_checkers = ['csshint']
 "}}}
 "
@@ -700,41 +706,27 @@ au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"previm (preview markdown in browser){{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:previm_open_cmd = 'open -a Chrome --allow-file-access-from-files'
-let g:previm_open_cmd = 'open -a Safari'
-augroup PrevimSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "'iamcco/markdown-preview.vim'{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:mkdp_path_to_chrome = "google-chrome"
-" " 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
-" let g:mkdp_auto_start = 0
-" " 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在
-" " 打开
-" " markdown 文件的时候打开一次
-" let g:mkdp_auto_open = 0
-" " 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经
-" " 打开，否则自动打开预
-" " 览窗口
-" let g:mkdp_auto_close = 1
-" " 在切换 buffer 的时候自动关闭预览窗口，设
-" " 置为 0 则在切换 buffer 的时候不
-" " 自动关闭预览窗口
-" let g:mkdp_refresh_slow = 0
-" " 设置为 1 则只有在保存文件，
-" " 或退出插入模式的时候更新预览
-" " ，默认为 0，实时
-" " 更新预览
+"let g:mkdp_path_to_chrome = "google-chrome"
+"" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
+"let g:mkdp_auto_start = 1
+"" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在
+"" 打开markdown 文件的时候打开一次
+"let g:mkdp_auto_open = 1
+"" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经
+"" 打开，否则自动打开预
+"" 览窗口
+"let g:mkdp_auto_close = 1
+"" 在切换 buffer 的时候自动关闭预览窗口，设
+"" 置为 0 则在切换 buffer 的时候不
+"" 自动关闭预览窗口
+"let g:mkdp_refresh_slow = 0
+"" 设置为 1 则只有在保存文件，
+"" 或退出插入模式的时候更新预览
+"" ，默认为 0，实时
+"" 更新预览
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -771,3 +763,7 @@ nnoremap  ,fi :call CscopeFind('i', expand('<cword>'))<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if CurSys() == "osx" 
+    nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+endif 
