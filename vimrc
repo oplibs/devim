@@ -42,6 +42,7 @@ Plugin 'kien/ctrlp.vim'
 
 " Plugin 'bufkill.vim'
 Plugin 'BufOnly.vim'
+Plugin 'grep.vim'
 
 " 加入nerdtree
 Plugin 'scrooloose/nerdtree'
@@ -73,6 +74,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'einars/js-beautify'
+
 Plugin 'ap/vim-css-color'
 
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -286,7 +288,6 @@ nnoremap <C-l> <C-w>l
 " " map <C-x>n <ESC>:cn<CR> 
 " " map <C-x>p <ESC>:cp<CR> 
 " " map <C-x>c <ESC>:cc<CR> 
-"
 "
 " " 让 Tohtml 产生有 CSS 语法的 html 
 " " syntax/2html.vim，可以用:runtime! syntax/2html.vim 
@@ -595,7 +596,7 @@ set statusline+=%*
 
 "" 修改高亮的背景色, 适应主题
 "highlight SyntasticErrorSign guifg=white guibg=black
-"let g:syntastic_enable_highlighting=1
+let g:syntastic_enable_highlighting=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
