@@ -313,6 +313,9 @@ vmap <C-c> "+y
 "autocmd!
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 
+"Set the tpl file as html file for better development.
+autocmd BufNewFile,BufRead *.{tpl} set filetype=html
+
 """"""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
