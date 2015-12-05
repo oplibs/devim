@@ -309,6 +309,15 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 " 选中状态下 Ctrl+c 复制 
 vmap <C-c> "+y 
 
+""""""""""""""""""""""""""""""
+" vim-bufferline{{{
+"""""""""""""""""""""""""""""""
+let g:bufferline_echo = 1
+let g:bufferline_active_buffer_left = '['
+let g:bufferline_active_buffer_right = ']'
+""""""""""""""""""""""""""""""
+" }}}
+"""""""""""""""""""""""""""""""
 
 "autocmd!
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
