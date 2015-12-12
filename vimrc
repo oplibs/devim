@@ -259,8 +259,8 @@ endif
 "
 " " Buffers操作快捷方式! 
 " 因为上文设置了set hidden，所以可以不保存切换buffer
-nnoremap ,m :bnext<CR> 
-nnoremap ,. :bprevious<CR> 
+nnoremap ,. :bnext<CR> 
+nnoremap ,m :bprevious<CR> 
 nnoremap ,b :b#<CR> 
 "
 " " Tab操作快捷方式! 
