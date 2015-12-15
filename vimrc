@@ -65,6 +65,8 @@ Plugin 'matchit.zip'
 Plugin 'scrooloose/syntastic'
 Plugin 'mattn/emmet-vim'
 
+Plugin 'mxw/vim-jsx'
+
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
@@ -73,7 +75,7 @@ Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
+" Plugin 'einars/js-beautify'
 
 Plugin 'ap/vim-css-color'
 
@@ -362,17 +364,19 @@ au FileType javascript inoremap <buffer> $f //--- PH ---------------------------
 """"""""""""""""""""""""""""""
 "map ff :call JsBeautify()<cr>
 " or
-autocmd FileType javascript noremap <buffer> ff :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer> af :call JsBeautify()<cr>
+" autocmd FileType jsx noremap <buffer> ff :call JsBeautify()<cr>
+" autocmd FileType json noremap <buffer> af :call JsBeautify()<cr>
 " for html
-autocmd FileType html noremap <buffer> ff :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> af :call HtmlBeautify()<cr>
 " for css or scss
-autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> af :call CSSBeautify()<cr>
 " Beatutify the selected section
-autocmd FileType javascript vnoremap <buffer> ff :call RangeJsBeautify()<cr>
-autocmd FileType html vnoremap <buffer> ff :call RangeHtmlBeautify()<cr>
-autocmd FileType css vnoremap <buffer> ff :call RangeCSSBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer> af :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> af :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> af :call RangeCSSBeautify()<cr>
 "格式化json文件
-autocmd filetype json noremap <buffer> ff <Esc>:%!python -m json.tool<CR>
+autocmd filetype json noremap <buffer> af <Esc>:%!python -m json.tool<CR>
 "}}}
 "
 """"""""""""""""""""""""""""""
@@ -626,11 +630,12 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_php_checkers = ['php']
 "let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_html_checkers=['tidy', 'jshint']
-let g:syntastic_html_checkers=['jshint']
-let g:syntastic_css_checkers = ['csshint']
+let g:syntastic_html_checkers=['eshint']
+let g:syntastic_css_checkers = ['eshint']
 "}}}
 "
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -698,6 +703,10 @@ let g:formatters_cpp  = ['vogon']
 let g:formatters_c    = ['vogon']
 let g:formatters_cc   = ['vogon']
 let g:formatters_java = ['vogon']
+"The following three lines do not work!!!!!!
+" let g:formatdef_eslint = '"eslint -o"'
+" let g:formatters_javascript = ['eslint']
+" let g:formatters_jsx = ['eslint']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
 au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 "}}}
