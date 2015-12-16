@@ -631,11 +631,12 @@ let g:syntastic_php_checkers = ['php']
 "let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_jsx_checkers = ['eslint']
 "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 "let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_html_checkers=['tidy', 'jshint']
-let g:syntastic_html_checkers=['eshint']
-let g:syntastic_css_checkers = ['eshint']
+let g:syntastic_html_checkers=['eslint']
+let g:syntastic_css_checkers = ['elhint']
 "}}}
 "
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
