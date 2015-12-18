@@ -443,7 +443,7 @@ au FileType python map <buffer> <leader>D ?def
 " "----------------------------------------------------------------- 
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=40
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx call tagbar#autoopen()
 nnoremap ,t :TagbarToggle<CR>
 " "----------------------------------------------------------------- 
 "
@@ -600,19 +600,27 @@ let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
 "
 "" to see error location list
-"let g:syntastic_always_populate_loc_list = 0
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_loc_list_height = 5
-"function! ToggleErrors()
-"    let old_last_winnr = winnr('$')
-"    lclose
-"    if old_last_winnr == winnr('$')
-"        " Nothing was closed, open syntastic error location
-"        panel
-"        Errors
-"    endif
-"endfunction
-"nnoremap <Leader>s :call ToggleErrors()<cr>
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error location panel
+        Errors
+    endif
+endfunction
+" function! ToggleErrors()
+    " let old_last_winnr = winnr('$')
+    " lclose
+    " if old_last_winnr == winnr('$')
+        " " Nothing was closed, open syntastic error location
+        " panel
+        " Errors
+    " endif
+" endfunction
+nnoremap <Leader>s :call ToggleErrors()<cr>
 " nnoremap <Leader>sn :lnext<cr>
 " nnoremap <Leader>sp :lprevious<cr>
 set statusline+=%#warningmsg#
@@ -620,12 +628,13 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 "" 修改高亮的背景色, 适应主题
-"highlight SyntasticErrorSign guifg=white guibg=black
+highlight SyntasticErrorSign guifg=white guibg=black
 let g:syntastic_enable_highlighting=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting=1
 
 let g:syntastic_php_checkers = ['php']
 "let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
@@ -636,7 +645,8 @@ let g:syntastic_jsx_checkers = ['eslint']
 "let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_html_checkers=['tidy', 'jshint']
 let g:syntastic_html_checkers=['eslint']
-let g:syntastic_css_checkers = ['elhint']
+let g:syntastic_css_checkers = ['eslint']
+
 "}}}
 "
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
