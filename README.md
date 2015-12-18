@@ -1,23 +1,33 @@
 # devim
 
 
-## Javascript
-
 ### Common vim plugins needed:
 
-* NERDTree
+Common tools:
 
-* BufOnly
+    * NERDTree
+    * BufOnly
+    * grep
+    * ctrlp
+    * vim-airline
+    * vim-bufferline
 
-* grep
+Shell tools:
 
-* ctrlp
+    * vimproc.vim
+    * vimshell.vim
 
+### Development
+
+#### Common vim plugins needed:
+
+* vim-fugitive : Plugin is used as git tools in git.
 * TagBar
-
 * Matchit
-
 * nerdcommenter
+* Syntastic
+* vim-autoformat
+* dash
 
 #### Javascript 
 
@@ -25,13 +35,7 @@
 
 * vim-jsbeautify
 
-* Syntastic
-
-* vimproc.vim
-
-* vimshell.vim
-
-##### Supporting utilities
+##### Supporting utility plugin:
 
 #### react
 
@@ -43,9 +47,17 @@
 
 #### Plugins needed:
 
+#### HTML
+
+* vim-php-cs-fixer
+* vim-css-color
+
+#### C/C++
+
+    * a.vim
+    * cscope.vim
+
 1. Install plugin:
-
-
 
 Oplibs development env config.
 abd newword
@@ -57,39 +69,41 @@ graph TD;
     C-->E;
 ```
 
-Plugin 'tpope/vim-fugitive'
+**Markdown Extra** has a special syntax for tables:
+
+Item     | Value
+-------- | ---
+Computer | $1600
+Phone    | $12
+Pipe     | $1
+
+You can specify column alignment with one or two colons:
+
+| Item     | Value | Qty   |
+| :------- | ----: | :---: |
+| Computer | $1600 |  5    |
+| Phone    | $12   |  12   |
+| Pipe     | $1    |  234  |
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+$S=\pi r^2$
+
 
 " Shell utils
-
-" 加入nerdcommenter
-Plugin 'scrooloose/nerdcommenter'
 
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
 "Plugin 'powerline/powerline'
-Plugin 'bling/vim-airline'
-Plugin 'bling/vim-bufferline'
 
 "Plugin 'easymotion/vim-easymotion'
 Plugin 'ervandew/supertab'
 
-Plugin 'scrooloose/syntastic'
 Plugin 'mattn/emmet-vim'
 
-Plugin 'mxw/vim-jsx'
-
 "Plugin for developing of C and CPP
-Plugin 'a.vim'
-Plugin 'brookhong/cscope.vim'
 
-Plugin 'Chiel92/vim-autoformat'
-
-Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'einars/js-beautify'
-
-Plugin 'ap/vim-css-color'
 
 Plugin 'evanmiller/nginx-vim-syntax'
 
@@ -104,13 +118,8 @@ Plugin 'evanmiller/nginx-vim-syntax'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
 
-" dash for help
-Plugin 'rizzatti/dash.vim'
-
 "Plugin task
 Plugin 'itchyny/calendar.vim'
 
 Plugin 'tomasr/molokai'
 "Plugin 'altercation/vim-colors-solarized'
-
-
