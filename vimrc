@@ -106,9 +106,6 @@ Plugin 'tomasr/molokai'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -133,14 +130,16 @@ syntax on " 自动语法高亮
 set number " 显示行号 
 set cursorline " 突出显示当前行 
 set ruler " 打开状态栏标尺 
-set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4 
-set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格 
-set tabstop=4 " 设定 tab 长度为 4 
-set nobackup " 覆盖文件时不备份 
+set shiftwidth=2 " 设定 << 和 >> 命令移动时的宽度为 4 
+set softtabstop=2 " 使得按退格键时可以一次删掉 4 个空格 
+set tabstop=2 " 设定 tab 长度为 4 
 set expandtab
+set nobackup " 覆盖文件时不备份 
 "set autochdir " 自动切换当前目录为当前文件所在的目录 
 set helplang=cn
 filetype plugin indent on " 开启插件 
+" To ignore plugin indent changes, instead use:
+filetype plugin on
 " set backupcopy=yes " 设置备份时的行为为覆盖 
 set ignorecase smartcase "
 " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感 
@@ -304,22 +303,8 @@ nnoremap <C-l> <C-w>l
 " " syntax/2html.vim，可以用:runtime! syntax/2html.vim 
 " let html_use_css=1 
 "
-" " Python 文件的一般设置，比如不要 tab 等 
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab 
-" autocmd FileType python map <F12> :!python %<CR> 
-"
 " 选中状态下 Ctrl+c 复制 
 vmap <C-c> "+y 
-
-""""""""""""""""""""""""""""""
-" vim-bufferline{{{
-"""""""""""""""""""""""""""""""
-let g:bufferline_echo = 1
-let g:bufferline_active_buffer_left = '['
-let g:bufferline_active_buffer_right = ']'
-""""""""""""""""""""""""""""""
-" }}}
-"""""""""""""""""""""""""""""""
 
 "autocmd!
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
@@ -379,6 +364,11 @@ autocmd FileType css vnoremap <buffer> af :call RangeCSSBeautify()<cr>
 autocmd filetype json noremap <buffer> af <Esc>:%!python -m json.tool<CR>
 "}}}
 "
+"
+" " javascript 文件的一般设置，比如不要 tab 等 
+autocmd FileType javascript set tabstop=2 shiftwidth=2 expandtab 
+"
+"
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
@@ -397,12 +387,24 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
+" Python 文件的一般设置，比如不要 tab 等 
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab 
+
 " "----------------------------------------------------------------- 
 " " plugin - bufexplorer.vim Buffers切换 
 " " \be 全屏方式查看全部打开的文件列表 
 " " \bv 左右方式查看 \bs 上下方式查看 
 " "----------------------------------------------------------------- 
 "
+""""""""""""""""""""""""""""""
+" vim-bufferline{{{
+"""""""""""""""""""""""""""""""
+let g:bufferline_echo = 1
+let g:bufferline_active_buffer_left = '['
+let g:bufferline_active_buffer_right = ']'
+""""""""""""""""""""""""""""""
+" }}}
+"""""""""""""""""""""""""""""""
 "
 " "----------------------------------------------------------------- 
 " " plugin - taglist.vim 查看函数列表，需要ctags程序 
@@ -443,7 +445,7 @@ au FileType python map <buffer> <leader>D ?def
 " "----------------------------------------------------------------- 
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=40
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx call tagbar#autoopen()
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js call tagbar#autoopen()
 nnoremap ,t :TagbarToggle<CR>
 " "----------------------------------------------------------------- 
 "
@@ -640,7 +642,6 @@ let g:syntastic_php_checkers = ['php']
 "let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_jsx_checkers = ['eslint']
 "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 "let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_html_checkers=['tidy', 'jshint']
@@ -717,7 +718,6 @@ let g:formatters_java = ['vogon']
 "The following three lines do not work!!!!!!
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
-" let g:formatters_jsx = ['eslint']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
 au FileType c,cpp,cc nnoremap ff :Autoformat<CR>
 "}}}
