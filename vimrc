@@ -10,44 +10,38 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Keep Plugin commands between vundle#begin/end.
 " plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'wincent/Command-T'
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'wincent/Command-T'
 
 " Git plugin not hosted on GitHub
 Plugin 'L9'
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+"Plugin 'easymotion/vim-easymotion'
 
 " Shell utils
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 
-" 加入nerdcommenter
-Plugin 'scrooloose/nerdcommenter'
-" File finder
+" ""File finder
 Plugin 'kien/ctrlp.vim'
+
+" ""grep finder
+Plugin 'grep.vim'
 
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
-" Plugin 'bufkill.vim'
 Plugin 'BufOnly.vim'
-Plugin 'grep.vim'
-
-" 加入nerdtree
 Plugin 'scrooloose/nerdtree'
 
-" For common language
 "Plugin 'taglist.vim'
 Plugin 'majutsushi/tagbar'
 
@@ -55,12 +49,17 @@ Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
 
-"Plugin 'easymotion/vim-easymotion'
+" For common language
 Plugin 'ervandew/supertab'
 
-"Plugin 'gregsexton/MatchTag'
+" ""代码快捷注释插件nerdcommenter
+Plugin 'scrooloose/nerdcommenter'
+
 Plugin 'matchit.zip'
 "Plugin 'kien/rainbow_parentheses.vim'
+
+" dash for help
+Plugin 'rizzatti/dash.vim'
 
 Plugin 'scrooloose/syntastic'
 Plugin 'Chiel92/vim-autoformat'
@@ -70,16 +69,14 @@ Plugin 'mattn/emmet-vim'
 Plugin 'jelera/vim-JavaScript-syntax'
 Plugin 'mxw/vim-jsx'
 
-"Plugin for developing of C and CPP
-Plugin 'a.vim'
-Plugin 'brookhong/cscope.vim'
-
-
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'einars/js-beautify'
-
 Plugin 'ap/vim-css-color'
+
+"Plugin for developing of C and CPP
+Plugin 'a.vim'
+Plugin 'brookhong/cscope.vim'
 
 Plugin 'evanmiller/nginx-vim-syntax'
 
@@ -93,9 +90,6 @@ Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
-
-" dash for help
-Plugin 'rizzatti/dash.vim'
 
 "Plugin task
 "Plugin 'TaskList.vim'
@@ -171,31 +165,31 @@ set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 " " 设置在状态行显示的信息 
 "
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 代码折叠的设置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" source folding setting{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set foldenable " 开始折叠 
 set foldmethod=indent " 缺省用缩进折叠 
 "set foldcolumn=0 " 设置折叠区域的宽度 
 "set foldclose=all " 设置为自动关闭折叠 
 set foldlevel=100 " 设置折叠层数为100,基本上等价于打开文件的时，缺省不折叠 
+" use space to (un)fold the source fragment 
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" 用空格键来开关折叠 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}代码折叠的设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}source folding setting
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Mac only for clipboard{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set clipboard=unnamed
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 配色方案设置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256  
 if has("gui_running")
 	set guioptions-=T  
@@ -206,13 +200,13 @@ else
     "set background=light
     colorscheme darkblue
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}配色方案设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " return OS type, eg: windows, or linux, mac, et.st..{{{ 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! CurSys() 
     if has("win16") || has("win32") || has("win64") || has("win95") 
         return "windows" 
@@ -263,9 +257,9 @@ else
     echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte" 
 endif 
 "
-""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Buffers操作快捷方式{{{
-""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ,. :bnext<CR> 
 nnoremap ,m :bprevious<CR> 
 nnoremap ,b :b#<CR> 
@@ -277,6 +271,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j 
 nnoremap <C-k> <C-w>k 
 nnoremap <C-l> <C-w>l 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " " Tab操作快捷方式! 
 " nnoremap <C-TAB> :tabnext<CR> 
@@ -712,9 +709,9 @@ let g:formatters_java = ['vogon']
 au FileType c,cpp,cc nnoremap ,af :Autoformat<CR>
 "}}}
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "emmet.vim 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:user_emmet_settings = {
             " \ 'php' : {
             " \ 'extends' : 'html',
