@@ -65,6 +65,7 @@ Plugin 'matchit.zip'
 Plugin 'scrooloose/syntastic'
 Plugin 'mattn/emmet-vim'
 
+Plugin 'jelera/vim-JavaScript-syntax'
 Plugin 'mxw/vim-jsx'
 
 "Plugin for developing of C and CPP
@@ -335,7 +336,7 @@ autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
 autocmd filetype css set dictionary=$VIMFILES/dict/css.dict 
 autocmd filetype php set dictionary=$VIMFILES/dict/php.dict 
 
-au FileType javascript call JavaScriptFold()
+" au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent
 
@@ -349,19 +350,19 @@ au FileType javascript inoremap <buffer> $f //--- PH ---------------------------
 """"""""""""""""""""""""""""""
 "map ff :call JsBeautify()<cr>
 " or
-autocmd FileType javascript noremap <buffer> af :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer> ,af :call JsBeautify()<cr>
 " autocmd FileType jsx noremap <buffer> ff :call JsBeautify()<cr>
-" autocmd FileType json noremap <buffer> af :call JsBeautify()<cr>
+" autocmd FileType json noremap <buffer> ,af :call JsBeautify()<cr>
 " for html
-autocmd FileType html noremap <buffer> af :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> ,af :call HtmlBeautify()<cr>
 " for css or scss
-autocmd FileType css noremap <buffer> af :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> ,af :call CSSBeautify()<cr>
 " Beatutify the selected section
-autocmd FileType javascript vnoremap <buffer> af :call RangeJsBeautify()<cr>
-autocmd FileType html vnoremap <buffer> af :call RangeHtmlBeautify()<cr>
-autocmd FileType css vnoremap <buffer> af :call RangeCSSBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer> ,af :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> ,af :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> ,af :call RangeCSSBeautify()<cr>
 "格式化json文件
-autocmd filetype json noremap <buffer> af <Esc>:%!python -m json.tool<CR>
+autocmd filetype json noremap <buffer> ,af <Esc>:%!python -m json.tool<CR>
 "}}}
 "
 "
