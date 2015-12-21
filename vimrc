@@ -1,5 +1,5 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" set nocompatible              " be iMproved, required
+" filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -565,13 +565,6 @@ let NERDCompactSexyComs=1 " 多行注释时样子更好看
 " " plugin – a.vim 
 " "-----------------------------------------------------------------
 
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"powerline 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set laststatus=2
-"}}}
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Winmanager 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -604,9 +597,8 @@ let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
 "
 "" to see error location list
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_loc_list_height = 5
+"let g:syntastic_always_populate_loc_list = 0
+"let g:syntastic_auto_loc_list = 0
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
     lclose
@@ -615,15 +607,7 @@ function! ToggleErrors()
         Errors
     endif
 endfunction
-" function! ToggleErrors()
-    " let old_last_winnr = winnr('$')
-    " lclose
-    " if old_last_winnr == winnr('$')
-        " " Nothing was closed, open syntastic error location
-        " panel
-        " Errors
-    " endif
-" endfunction
+
 nnoremap <Leader>s :call ToggleErrors()<cr>
 " nnoremap <Leader>sn :lnext<cr>
 " nnoremap <Leader>sp :lprevious<cr>
@@ -636,6 +620,7 @@ highlight SyntasticErrorSign guifg=white guibg=black
 let g:syntastic_enable_highlighting=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting=1
