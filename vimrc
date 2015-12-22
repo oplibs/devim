@@ -66,8 +66,8 @@ Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'mattn/emmet-vim'
 
+Plugin 'elzr/vim-json'
 Plugin 'jelera/vim-JavaScript-syntax'
-"Plugin 'mxw/vim-jsx'
 
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
@@ -176,6 +176,11 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
 "Set the tpl file as html file for better development.
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
+au! BufRead,BufNewFile *.json set filetype=json
+
+au BufNewFile,BufRead *.jinja set syntax=htmljinja
+au BufNewFile,BufRead *.mako set ft=mako
+
 
 set nocompatible " 关闭 vi 兼容模式 
 syntax on " 自动语法高亮 
@@ -336,6 +341,25 @@ nnoremap <C-l> <C-w>l
 " " 让 Tohtml 产生有 CSS 语法的 html 
 " " syntax/2html.vim，可以用:runtime! syntax/2html.vim 
 " let html_use_css=1 
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " json file setting{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup json_autocmd
+  autocmd!
+  autocmd FileType json set autoindent
+  autocmd FileType json set formatoptions=tcq2l
+  autocmd FileType json set textwidth=78 shiftwidth=2
+  autocmd FileType json set softtabstop=2 tabstop=8
+  autocmd FileType json set expandtab
+  autocmd FileType json set foldmethod=syntax
+augroup END
+" autoformat the json file.
+autocmd FileType json noremap <buffer> ,af :call JsBeautify()<cr>
+" autocmd filetype json noremap <buffer> ,af <Esc>:%!python -m json.tool<CR>
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """"""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
@@ -365,13 +389,10 @@ au FileType javascript imap <c-a> alert();<esc>hi
 
 au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
-""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
-""""""""""""""""""""""""""""""
-"map ff :call JsBeautify()<cr>
-" or
+" """""""""""""""""""""""""""""
 autocmd FileType javascript noremap <buffer> ,af :call JsBeautify()<cr>
-" autocmd FileType json noremap <buffer> ,af :call JsBeautify()<cr>
 " for html
 autocmd FileType html noremap <buffer> ,af :call HtmlBeautify()<cr>
 " for css or scss
@@ -380,18 +401,14 @@ autocmd FileType css noremap <buffer> ,af :call CSSBeautify()<cr>
 autocmd FileType javascript vnoremap <buffer> ,af :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> ,af :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> ,af :call RangeCSSBeautify()<cr>
-"格式化json文件
-autocmd filetype json noremap <buffer> ,af <Esc>:%!python -m json.tool<CR>
-"}}}
-"
+" """""""""""""""""""""""""""""
+" }}}
+" """""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
-
-au BufNewFile,BufRead *.jinja set syntax=htmljinja
-au BufNewFile,BufRead *.mako set ft=mako
 
 au FileType python inoremap <buffer> $r return
 au FileType python inoremap <buffer> $i import
@@ -403,7 +420,7 @@ au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
 " Python 文件的一般设置，比如不要 tab 等 
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab 
+" autocmd FileType python set tabstop=4 shiftwidth=4 expandtab 
 
 " "----------------------------------------------------------------- 
 " " plugin - bufexplorer.vim Buffers切换 
@@ -719,7 +736,8 @@ let g:formatters_java = ['vogon']
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
-au FileType c,cpp,cc nnoremap ,af :Autoformat<CR>
+au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
+"au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 "
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
