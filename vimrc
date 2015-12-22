@@ -1,6 +1,10 @@
-" set nocompatible              " be iMproved, required
-" filetype off                  " required
-
+"=========================================================================
+"
+" DesCRiption: devim for MacVim
+" Last Change: 2015年11月11日 15时13分 
+" Version: 0.03 
+" 
+"========================================================================= 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -81,10 +85,12 @@ Plugin 'brookhong/cscope.vim'
 Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin for markdown
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 "Plugin 'spf13/vim-preview'
 "Plugin 'iamcco/markdown-preview.vim'
+
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " Plugin 'tyru/open-browser.vim'
 
@@ -111,15 +117,6 @@ call vundle#end()            " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-"=========================================================================
-"
-" DesCRiption: devim for MacVim
- 
-" Last Change: 2015年11月11日 15时13分 
-" 
-" Version: 0.11 
-" 
-"========================================================================= 
 
 "
 " " 用户目录变量$VIMFILES 
@@ -756,13 +753,44 @@ au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}emmet.vim 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vim-ag.vim 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
-"let g:ag_working_path_mode="r"
+"tabular settings{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}
+"let mapleader=','
+" if exists(":Tabularize")
+  " nmap ,t= :Tabularize /=<CR>
+  " vmap ,t= :Tabularize /=<CR>
+  " nmap ,t: :Tabularize /:\zs<CR>
+  " vmap ,t: :Tabularize /:\zs<CR>
+  " vmap ,t| :Tabularize /|\zs<CR>
+  " vmap ,t| :Tabularize /|\zs<CR>
+" endif
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "'plasticboy/vim-markdown.vim{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_folding_style_pythonic=1
+let g:vim_markdown_no_default_key_mappings=1
+let g:vim_markdown_math=1
+let g:vim_markdown_frontmatter=1
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "'iamcco/markdown-preview.vim'{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -827,7 +855,6 @@ nnoremap  ,fi :call CscopeFind('i', expand('<cword>'))<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 if CurSys() == "osx" 
     nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 endif 
