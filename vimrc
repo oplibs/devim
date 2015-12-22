@@ -519,8 +519,8 @@ function! NERDTree_IsValid()
 endfunction
 "}}}
 
-
-"
+"----------------------------------------------------------------- 
+"NERDCommenter.vim 配置{{{
 "----------------------------------------------------------------- 
 " plugin - NERD_commenter.vim 注释代码用的， 
 " [count],cc 光标以下count行逐行添加注释(7,cc) 
@@ -531,7 +531,11 @@ endfunction
 "----------------------------------------------------------------- 
 let NERDSpaceDelims=1 " 让注释符与语句之间留一个空格 
 let NERDCompactSexyComs=1 " 多行注释时样子更好看 
-"
+nmap ,cc <leader>cc
+nmap ,cu <leader>cu
+"----------------------------------------------------------------- 
+"}}}
+"----------------------------------------------------------------- 
 "
 " "----------------------------------------------------------------- 
 " " plugin - DoxygenToolkit.vim 由注释生成文档，并且能够快速生成函数标准注释 
@@ -696,13 +700,6 @@ let g:syntastic_css_checkers = ['eslint']
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
 " au Syntax * RainbowParenthesesLoadBraces
-"}}}
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"NERDCommenter.vim 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap ,cc <leader>cc
-nmap ,cu <leader>cu
 "}}}
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
