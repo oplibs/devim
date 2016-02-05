@@ -508,7 +508,7 @@ nnoremap ,t :TagbarToggle<CR>
 " "----------------------------------------------------------------- 
 " F3 NERDTree 切换 
 "map <Command+n> :NERDTreeToggle<CR> 
-map <C-n> :NERDTreeToggle<CR>
+map <C-m> :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR> 
 map <C-i> :NERDTreeFind<CR>
 let NERDChristmasTree=1
@@ -631,7 +631,7 @@ let g:ctrlp_map = ',,'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SuperTab 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType = "<c-n>"
 "}}}
 "Easymotion 配置{{{
 "let g:EasyMotion_leader_key = 'f'
