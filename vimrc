@@ -78,6 +78,9 @@ Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'einars/js-beautify'
 Plugin 'ap/vim-css-color'
 
+" Python mode
+Plugin 'klen/python-mode'
+
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
@@ -418,7 +421,20 @@ au FileType python map <buffer> <leader>D ?def
 
 " Python 文件的一般设置，比如不要 tab 等 
 " autocmd FileType python set tabstop=4 shiftwidth=4 expandtab 
+"""""""""""""""""""""""""""""""
+"" => python mode{{{
+"""""""""""""""""""""""""""""""
+" Override go-to.definition key shortcut to Ctrl-]
+let g:pymode_rope_goto_definition_bind = "<C-]>"
 
+" Override run current python file key shortcut to Ctrl-Shift-e
+let g:pymode_run_bind = "<C-S-e>"
+
+" Override view python doc key shortcut to Ctrl-Shift-d
+let g:pymode_doc_bind = "<C-S-d>"
+"""""""""""""""""""""""""""""""
+""}}}python mode
+"""""""""""""""""""""""""""""""
 " "----------------------------------------------------------------- 
 " " plugin - bufexplorer.vim Buffers切换 
 " " \be 全屏方式查看全部打开的文件列表 
