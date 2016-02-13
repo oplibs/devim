@@ -749,7 +749,9 @@ let g:formatters_java = ['vogon']
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
-au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
+let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+let g:formatters_python = ['autopep8']
+au FileType c,cpp,cc,java,python nnoremap ,af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 "
