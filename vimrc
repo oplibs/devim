@@ -390,7 +390,7 @@ let javascript_enable_domhtmlcss=1
 au FileType javascript setl fen
 " au FileType javascript setl nocindent
 
-au FileType javascript imap <c-t> AJS.log();<esc>hi
+au FileType javascript imap <c-l> logger.log();<esc>hi
 au FileType javascript imap <c-a> alert();<esc>hi
 
 au FileType javascript inoremap <buffer> $r return
@@ -514,7 +514,7 @@ nnoremap ,t :TagbarToggle<CR>
 " "----------------------------------------------------------------- 
 " F3 NERDTree 切换 
 "map <Command+n> :NERDTreeToggle<CR> 
-map <C-m> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR> 
 map <C-i> :NERDTreeFind<CR>
 let NERDChristmasTree=1
