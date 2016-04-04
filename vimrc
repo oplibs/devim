@@ -34,10 +34,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 
-" ""File finder
+" File finder
 Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
 
-" ""grep finder
+" grep finder
 Plugin 'grep.vim'
 
 " Plugin 'SirVer/ultisnips'
@@ -105,7 +106,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'itchyny/calendar.vim'
 
 Plugin 'tomasr/molokai'
-"Plugin 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 "Bundle 'winmanager'
 "
@@ -140,16 +141,19 @@ call vundle#end()            " required
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 配色方案设置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256  
+set t_Co=256 
 if has("gui_running")
 	set guioptions-=T  
     let g:molokai_original = 1
     colorscheme molokai " 设定配色方案 
+    set background=dark
 else
-    "set background=dark
-    "set background=light
-    colorscheme darkblue
+    " When using iterm, solarized is ok.
+    syntax enable
+    set background=dark
+    colorscheme solarized
 endif
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}配色方案设置
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -212,6 +216,8 @@ set noerrorbells " 关闭错误信息响铃
 set magic 
 "set noautowrite
 set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存 
+" use ',' as the leader key
+let mapleader = ","
 
 set guioptions-=T " 隐藏工具栏 
 set guioptions-=m " 隐藏菜单栏 
