@@ -23,7 +23,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Plugin 'wincent/Command-T'
 
-" Git plugin not hosted on GitHub
 Plugin 'L9'
 
 " plugin on GitHub repo
@@ -34,11 +33,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 
+" common plugin to process text file save
 Plugin 'tpope/vim-sensible'
 
 " File finder
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-surround'
 
 " grep finder
 Plugin 'grep.vim'
@@ -46,41 +45,51 @@ Plugin 'grep.vim'
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 
+" Close other buffers quickly
 Plugin 'BufOnly.vim'
 Plugin 'scrooloose/nerdtree'
+"Bundle 'winmanager'
 
-"Plugin 'taglist.vim'
+" Plugin to display tag in source files;
 Plugin 'majutsushi/tagbar'
 
-"Plugin 'powerline/powerline'
+" Plugin to display status in line
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
+"Plugin 'powerline/powerline'
 
-" For common language
+" For common language hint
 Plugin 'ervandew/supertab'
 
-" 代码快捷注释插件nerdcommenter
+" Plugin to comment text quickly
 Plugin 'scrooloose/nerdcommenter'
 
+" Utils to handle xml like file, surrounding elements by tags.
+Plugin 'tpope/vim-surround'
+
+" Language alignment by element
+Plugin 'godlygeek/tabular'
+
+" Display the matching tag in source: tags, { [ (......
 Plugin 'matchit.zip'
 "Plugin 'kien/rainbow_parentheses.vim'
+
+" Syntax check for most languages.
+Plugin 'scrooloose/syntastic'
+" Autoformat tools
+Plugin 'Chiel92/vim-autoformat'
 
 " dash for help
 Plugin 'rizzatti/dash.vim'
 
-Plugin 'fatih/vim-go'
-
-Plugin 'scrooloose/syntastic'
-Plugin 'Chiel92/vim-autoformat'
-
 Plugin 'mattn/emmet-vim'
 
+Plugin 'fatih/vim-go'
 Plugin 'elzr/vim-json'
 Plugin 'jelera/vim-JavaScript-syntax'
 
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'einars/js-beautify'
 Plugin 'ap/vim-css-color'
 
 " Python mode
@@ -93,7 +102,6 @@ Plugin 'brookhong/cscope.vim'
 Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin for markdown
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'spf13/vim-preview'
 "Plugin 'iamcco/markdown-preview.vim'
@@ -105,14 +113,11 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
 
-"Plugin task
-"Plugin 'TaskList.vim'
 Plugin 'itchyny/calendar.vim'
 
+" Two color scheme for vim
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
-
-"Bundle 'winmanager'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -143,7 +148,7 @@ call vundle#end()            " required
 " endif
 "
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 配色方案设置{{{
+" color scheme setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 if has("gui_running")
@@ -159,7 +164,7 @@ else
 endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}配色方案设置
+" }}}color scheme setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -186,7 +191,6 @@ filetype plugin on
 
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
-"Set the tpl file as html file for better development.
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
 
@@ -751,6 +755,7 @@ let g:php_cs_fixer_verbose = 0                    " Return the output of command
 "nnoremap ,pcf :call PhpCsFixerFixFile()<CR>
 au FileType php nnoremap ,af :call PhpCsFixerFixFile()<CR>
 au FileType php nnoremap ,pcd :call PhpCsFixerFixDirectory()<CR>
+au FileType php imap <c-l> var_dump();<esc>hi
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
