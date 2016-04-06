@@ -131,6 +131,19 @@ call vundle#end()            " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" return OS type, eg: windows, or linux, mac, et.st..{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CurSys()
+    if has("win16") || has("win32") || has("win64") || has("win95")
+        return "windows"
+    elseif has('mac')
+        return "osx"
+    elseif has("unix")
+        return "linux"
+    endif
+endfunction
 "
 " " 用户目录变量$VIMFILES
 " if CurSys() == "windows"
@@ -166,19 +179,6 @@ endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}color scheme setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" return OS type, eg: windows, or linux, mac, et.st..{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CurSys()
-    if has("win16") || has("win32") || has("win64") || has("win95")
-        return "windows"
-    elseif has('mac')
-        return "osx"
-    elseif has("unix")
-        return "linux"
-    endif
-endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}return OS type, eg: windows, or linux, mac, et.st..
@@ -282,9 +282,11 @@ autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " source file syntax{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if CurSys()=='osx'
 autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
 autocmd filetype css set dictionary=$VIMFILES/dict/css.dict
 autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
+endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
