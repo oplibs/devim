@@ -512,7 +512,7 @@ let g:bufferline_active_buffer_right = ']'
 " "-----------------------------------------------------------------
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
-let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+" let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=40
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go call tagbar#autoopen()
 " nnoremap ,t :TagbarToggle<CR>
