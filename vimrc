@@ -109,7 +109,9 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " Plugin 'tyru/open-browser.vim'
-
+" Plugin 'TaskList.vim'
+" Plugin 'irrationalistic/vim-tasks'
+Plugin 'aaronbieber/vim-quicktask'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
 
@@ -721,18 +723,20 @@ map ,ss :call SyntasticToggleMode()<CR>
 " "g:tlWindowPosition
 " "指定任务列表窗口打开位置，默认是窗口上方打开，可用如下更改:
 " let g:tlWindowPosition = 1
-" "可选值:
-" "0 = Open on top
-" "1 = Open on the bottom
-" "
-" "g:tlTokenList
-" "任务列表搜索的标识符列表，默认是 'FIXME TODO XXX'. 搜索到得结果按照分组和出现顺序排列. 可以如下更改:
-" let g:tlTokenList = ['TODO', 'FIXME', 'HACK']
-" "
-" "g:tlRememberPosition
-" "如果设置为1，则任务插件下次打开时会恢复到上次关闭时的位置. 默认是找到离光标当前行最近的标示符，可以如下更改:
-" let g:tlRememberPosition = 1
-" "}}}"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " "可选值:
+" " "0 = Open on top
+" " "1 = Open on the bottom
+" " "
+" " "g:tlTokenList
+" " "任务列表搜索的标识符列表，默认是 'FIXME TODO XXX'. 搜索到得结果按照分组和出现顺序排列. 可以如下更改:
+" " let g:tlTokenList = ['TODO', 'FIXME', 'HACK']
+" " "
+" " "g:tlRememberPosition
+" " "如果设置为1，则任务插件下次打开时会恢复到上次关闭时的位置. 默认是找到离光标当前行最近的标示符，可以如下更改:
+" " let g:tlRememberPosition = 1
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "Tasklist.vim 配置}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "RainbowParentheeses.vim 配置{{{
