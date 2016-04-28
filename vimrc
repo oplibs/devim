@@ -443,6 +443,8 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
+au FileType python imap <c-l> # !/usr/bin/python<return># -*- coding: UTF-8 -*-
+" var_dump();<esc>hi
 " Python 文件的一般设置，比如不要 tab 等
 " autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""
@@ -751,7 +753,7 @@ map ,ss :call SyntasticToggleMode()<CR>
 "php-cs-fixer.vim 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" If php-cs-fixer is in $PATH, you don't need to define line below
-" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_path = "~/.vim/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
 let g:php_cs_fixer_level = "symfony"              " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
