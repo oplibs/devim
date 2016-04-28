@@ -324,7 +324,7 @@ endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ,. :bnext<CR>
 nnoremap ,m :bprevious<CR>
-nnoremap ,b :b#<CR>
+nnoremap ,<space> :b#<CR>
 "
 "窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
 "光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
