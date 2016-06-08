@@ -48,6 +48,8 @@ Plugin 'grep.vim'
 " Close other buffers quickly
 Plugin 'BufOnly.vim'
 Plugin 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'xuyuanp/nerdtree-git-plugin'
 "Bundle 'winmanager'
 
 " Plugin to display tag in source files;
@@ -547,7 +549,7 @@ let NERDTreeShowBookmarks=1 "显示书签
 let NERDTreeMinimalUI=1 "不显示帮助面板
 let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
 let NERDTreeShowHidden=0 "显示隐藏文件
-let NERDTreeQuitOnOpen=1 "打开文件时关闭树
+" let NERDTreeQuitOnOpen=1 "打开文件时关闭树
 " let NERDTreeShowLineNumbers=1
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
@@ -559,6 +561,32 @@ endfunction
 function! NERDTree_IsValid()
     return 1
 endfunction
+
+" NERDTree tabs配置
+" 显示行号
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+" 设置宽度
+let NERDTreeWinSize=31
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+" 忽略一下文件的显示
+let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+" 显示书签列表
+" let NERDTreeShowBookmarks=1
+
+" NERDTree git 配置信息如下
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 "}}}
 
 "-----------------------------------------------------------------
@@ -655,6 +683,10 @@ nmap ,cu <leader>cu
 "ctrlp 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = ',,'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
