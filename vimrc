@@ -198,9 +198,6 @@ autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
 
-" au BufNewFile,BufRead *.jinja set syntax=htmljinja
-" au BufNewFile,BufRead *.mako set ft=mako
-
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -670,21 +667,12 @@ nmap ,cu <leader>cu
 " "-----------------------------------------------------------------
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Winmanager 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:winManagerWindowLayout="NERDTree|TagList"
-" let g:NERDTree_title="[NERDTree]"
-
-" nmap <C-m> :WMToggle<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctrlp 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
 let g:ctrlp_map = ',,'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
 "}}}
@@ -813,9 +801,9 @@ let g:formatters_java = ['vogon']
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
-let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
-let g:formatters_python = ['autopep8']
-au FileType c,cpp,cc,java,python nnoremap ,af :Autoformat<CR>
+" let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+" let g:formatters_python = ['autopep8']
+au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 "
@@ -904,6 +892,7 @@ let g:vim_markdown_frontmatter=1
 " "grep{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let Grep_Skip_Files = '*.swp *~'
+let Grep_Skip_Dirs = 'node_modules dist .git vendor'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
