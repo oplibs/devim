@@ -50,7 +50,6 @@ Plugin 'BufOnly.vim'
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
-"Bundle 'winmanager'
 
 " Plugin to display tag in source files;
 Plugin 'majutsushi/tagbar'
@@ -58,10 +57,11 @@ Plugin 'majutsushi/tagbar'
 " Plugin to display status in line
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
-"Plugin 'powerline/powerline'
 
 " For common language hint
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
+Plugin 'valloric/youcompleteme'
+Plugin 'valloric/listtoggle'
 
 " Plugin to comment text quickly
 Plugin 'scrooloose/nerdcommenter'
@@ -88,7 +88,9 @@ Plugin 'mattn/emmet-vim'
 
 Plugin 'fatih/vim-go'
 Plugin 'elzr/vim-json'
-Plugin 'jelera/vim-JavaScript-syntax'
+" Plugin 'jelera/vim-JavaScript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'maksimr/vim-jsbeautify'
@@ -111,8 +113,6 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " Plugin 'tyru/open-browser.vim'
-" Plugin 'TaskList.vim'
-" Plugin 'irrationalistic/vim-tasks'
 Plugin 'aaronbieber/vim-quicktask'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-notes'
@@ -163,6 +163,13 @@ endfunction
 " if has("win32")
 " set guifont=Inconsolata:h12:cANSI
 " endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}return OS type, eg: windows, or linux, mac, et.st..
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if CurSys() == "osx"
+    nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+endif
+
 "
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " color scheme setting{{{
@@ -183,13 +190,6 @@ endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}color scheme setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}return OS type, eg: windows, or linux, mac, et.st..
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if CurSys() == "osx"
-    nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
-endif
 
 filetype plugin on
 
@@ -231,8 +231,6 @@ set noerrorbells " 关闭错误信息响铃
 set magic
 "set noautowrite
 set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
-" use ',' as the leader key
-let mapleader = ","
 
 set guioptions-=T " 隐藏工具栏
 set guioptions-=m " 隐藏菜单栏
@@ -241,6 +239,8 @@ set backspace=indent,eol,start
 " " setting the status line
 " set cmdheight=1 " 设定命令行的行数为 1
 set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
+" use ',' as the leader key
+let mapleader = ","
 " set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\
 " %c:%l/%L%)\
 
@@ -667,7 +667,7 @@ nmap ,cu <leader>cu
 " "-----------------------------------------------------------------
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"ctrlp 配置{{{
+"ctrlp 配置{{{  设置忽略目录和文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
 let g:ctrlp_map = ',,'
@@ -807,6 +807,21 @@ au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 "
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" youcompleteme配置{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} youcompleteme
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" listtoggle配置{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:lt_location_list_toggle_map = '<leader>k'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} listtoggle
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "emmet.vim 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
