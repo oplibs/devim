@@ -29,6 +29,8 @@ Plugin 'L9'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'easymotion/vim-easymotion'
 
+Plugin 'terryma/vim-multiple-cursors'
+
 " Shell utils
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
@@ -184,7 +186,8 @@ else
     " When using iterm, solarized is ok.
     syntax enable
     set background=dark
-    colorscheme solarized
+    colorscheme molokai " 设定配色方案
+    " colorscheme solarized
 endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -536,9 +539,9 @@ nmap <C-t> :TagbarToggle<CR>
 " "-----------------------------------------------------------------
 " F3 NERDTree 切换
 "map <Command+n> :NERDTreeToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
+map <S-n> :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR>
-map <C-i> :NERDTreeFind<CR>
+map <S-i> :NERDTreeFind<CR>
 let NERDChristmasTree=1
 let NERDTreeChDirMode=2 "选中root即设置为当前目录
 let NERDTreeHighlightCursorline=0
@@ -665,6 +668,18 @@ nmap ,cu <leader>cu
 " "-----------------------------------------------------------------
 " " plugin – a.vim
 " "-----------------------------------------------------------------
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" multi-cursor配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Default mapping for vim-multi-cursor
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctrlp 配置{{{  设置忽略目录和文件
