@@ -15,21 +15,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
-" plugin from http://vim-scripts.org/vim/scripts.html
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Plugin 'wincent/Command-T'
 
 Plugin 'L9'
 
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 "Plugin 'easymotion/vim-easymotion'
-
-Plugin 'terryma/vim-multiple-cursors'
 
 " Shell utils
 Plugin 'Shougo/vimproc.vim'
@@ -44,11 +38,13 @@ Plugin 'kien/ctrlp.vim'
 " grep finder
 Plugin 'grep.vim'
 
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-
 " Close other buffers quickly
 Plugin 'BufOnly.vim'
+
+Plugin 'terryma/vim-multiple-cursors'
+
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
@@ -59,11 +55,6 @@ Plugin 'majutsushi/tagbar'
 " Plugin to display status in line
 Plugin 'bling/vim-airline'
 Plugin 'bling/vim-bufferline'
-
-" For common language hint
-" Plugin 'ervandew/supertab'
-Plugin 'valloric/youcompleteme'
-Plugin 'valloric/listtoggle'
 
 " Plugin to comment text quickly
 Plugin 'scrooloose/nerdcommenter'
@@ -76,30 +67,32 @@ Plugin 'godlygeek/tabular'
 
 " Display the matching tag in source: tags, { [ (......
 Plugin 'matchit.zip'
-"Plugin 'kien/rainbow_parentheses.vim'
 
 " Syntax check for most languages.
 Plugin 'scrooloose/syntastic'
 " Autoformat tools
 Plugin 'Chiel92/vim-autoformat'
 
-" dash for help
-Plugin 'rizzatti/dash.vim'
+" For common language hint
+Plugin 'valloric/youcompleteme'
+Plugin 'valloric/listtoggle'
 
 Plugin 'mattn/emmet-vim'
-
 Plugin 'fatih/vim-go'
 Plugin 'elzr/vim-json'
 " Plugin 'jelera/vim-JavaScript-syntax'
 Plugin 'pangloss/vim-javascript'
+Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
 
 Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'maksimr/vim-jsbeautify'
 Plugin 'ap/vim-css-color'
 
 " Python mode
 Plugin 'klen/python-mode'
+
+" dash for help
+Plugin 'rizzatti/dash.vim'
 
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
@@ -109,10 +102,8 @@ Plugin 'evanmiller/nginx-vim-syntax'
 
 "Plugin for markdown
 Plugin 'plasticboy/vim-markdown'
-"Plugin 'spf13/vim-preview'
-"Plugin 'iamcco/markdown-preview.vim'
-
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
+
 
 " Plugin 'tyru/open-browser.vim'
 Plugin 'aaronbieber/vim-quicktask'
@@ -186,8 +177,8 @@ else
     " When using iterm, solarized is ok.
     syntax enable
     set background=dark
-    colorscheme molokai " 设定配色方案
-    " colorscheme solarized
+    " colorscheme molokai " 设定配色方案
+    colorscheme solarized
 endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
