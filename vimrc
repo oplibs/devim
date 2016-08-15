@@ -683,11 +683,6 @@ let g:ctrlp_custom_ignore = {
     \ }
 "}}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"SuperTab 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:SuperTabDefaultCompletionType = "<c-n>"
-"}}}
 "Easymotion 配置{{{
 "let g:EasyMotion_leader_key = 'f'
 "}}}"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -766,15 +761,6 @@ map ,ss :call SyntasticToggleMode()<CR>
 " "Tasklist.vim 配置}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"RainbowParentheeses.vim 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
-"}}}
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "php-cs-fixer.vim 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
