@@ -44,7 +44,12 @@ Plugin 'BufOnly.vim'
 Plugin 'terryma/vim-multiple-cursors'
 
 " Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+Plugin 'honza/vim-snippets'
+
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
@@ -401,11 +406,11 @@ let javascript_enable_domhtmlcss=1
 au FileType javascript setl fen
 " au FileType javascript setl nocindent
 
-au FileType javascript imap <c-l> logger.log();<esc>hi
-au FileType javascript imap <c-a> alert();<esc>hi
+" au FileType javascript imap <c-l> logger.log();<esc>hi
+" au FileType javascript imap <c-a> alert();<esc>hi
 
-au FileType javascript inoremap <buffer> $r return
-au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
+" au FileType javascript inoremap <buffer> $r return
+" au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 " """""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
 " """""""""""""""""""""""""""""
@@ -436,7 +441,7 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
-au FileType python imap <c-l> # !/usr/bin/python<return># -*- coding: UTF-8 -*-
+" au FileType python imap <c-l> # !/usr/bin/python<return># -*- coding: UTF-8 -*-
 " var_dump();<esc>hi
 " Python 文件的一般设置，比如不要 tab 等
 " autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
@@ -815,7 +820,7 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 ""let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>', '<TAB>']
+let g:ycm_key_list_select_completion = ['<Down>', '<CR>']
 "let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
@@ -839,6 +844,35 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} youcompleteme
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " UltiSnips {{{
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " better key bindings for UltiSnipsExpandTrigger
+" " let g:UltiSnipsExpandTrigger = "<tab>"
+" " let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+" let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'
+" let g:UltiSnipsSnippetDirectories=['UltiSnips', '~/.vim/bundle/vim-snippets/snippets/']
+" let g:UltiSnipsExpandTrigger="<S-j>"
+" let g:UltiSnipsJumpForwardTrigger = "<S-j>"
+" let g:UltiSnipsJumpBackwardTrigger = "<S-k>"
+" let g:UltiSnipsEditSplit = 'horizontal'
+
+" autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
+" autocmd FileType php UltiSnipsAddFiletypes yii
+" " let g:UltiSnipsEnableSnipMate = 0
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}} UltiSnips
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " snipmate{{{
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:snipMate={}
+let g:snipMate.scope_aliases={}
+let g:snipMate.scope_aliases['php']='php,html,js,css,yii,yii-chtml'
+let g:snipMate.scope_aliases['js']='js,css,javascript.node,javascript.es6,javascript.jquery'
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}} snipmate
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " listtoggle配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
