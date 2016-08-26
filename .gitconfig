@@ -20,3 +20,5 @@
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 [http]
 	sslverify = false
+[color]
+	ui = auto
