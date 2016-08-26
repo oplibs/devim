@@ -1,0 +1,22 @@
+[push]
+	default = simple
+[user]
+	name = XXX
+	email = XXX@123.com
+[core]
+    editor = /usr/bin/vim
+
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    pl = pull
+    ps = push
+    dt = difftool
+    l = log --stat
+    cp = cherry-pick
+    ca = commit -a
+    b = branch
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+[http]
+	sslverify = false
