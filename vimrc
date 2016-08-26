@@ -90,6 +90,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
 
+Plugin 'derekwyatt/vim-scala'
+
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'ap/vim-css-color'
 
