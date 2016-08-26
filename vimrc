@@ -185,7 +185,7 @@ else
     syntax enable
     set background=dark
     " colorscheme molokai " 设定配色方案
-    colorscheme solarized
+    " colorscheme solarized
 endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
