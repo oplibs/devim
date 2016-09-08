@@ -541,7 +541,7 @@ nmap <C-t> :TagbarToggle<CR>
 "map <Command+n> :NERDTreeToggle<CR>
 map <S-n> :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR>
-map <S-i> :NERDTreeFind<CR>
+map <C-i> :NERDTreeFind<CR>
 let NERDChristmasTree=1
 let NERDTreeChDirMode=2 "选中root即设置为当前目录
 let NERDTreeHighlightCursorline=0
@@ -737,7 +737,7 @@ let g:syntastic_enable_highlighting=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 5
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting=1
 
@@ -751,6 +751,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_html_checkers=['eslint']
 let g:syntastic_css_checkers = ['eslint']
 
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes':   [],'passive_filetypes': [] }
 map ,sc :call SyntasticCheck()<CR>
 map ,ss :call SyntasticToggleMode()<CR>
 
