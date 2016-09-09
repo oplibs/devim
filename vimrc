@@ -2,7 +2,7 @@
 "
 " DesCRiption: devim for MacVim
 " Last Change: 2015年11月11日 15时13分
-" Version: 0.03
+" Version: 0.04
 "
 "=========================================================================
 " set the runtime path to include Vundle and initialize
@@ -120,8 +120,9 @@ Plugin 'aaronbieber/vim-quicktask'
 Plugin 'itchyny/calendar.vim'
 
 " Two color scheme for vim
-Plugin 'tomasr/molokai'
+" Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
+" Plugin 'morhetz/gruvbox'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -170,19 +171,21 @@ if CurSys() == "osx"
     nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 endif
 
-"
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " color scheme setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
-colorscheme molokai " 设定配色方案
-set background=dark
+" colorscheme molokai " 设定配色方案
+" let g:molokai_original = 1
+syntax enable
+set background=light
+colorscheme solarized
+
 if has("gui_running")
 	set guioptions-=T
-    let g:molokai_original = 1
 else
-    " When using iterm, solarized is ok.
     syntax enable
+    " When using iterm, solarized is ok.
     " colorscheme solarized
 endif
 
@@ -631,26 +634,6 @@ nmap ,cu <leader>cu
 "
 "
 " "-----------------------------------------------------------------
-" " plugin - NeoComplCache.vim 自动补全插件
-" "-----------------------------------------------------------------
-" let g:AutoComplPop_NotEnableAtStartup = 1
-" let g:NeoComplCache_EnableAtStartup = 1
-" let g:NeoComplCache_SmartCase = 1
-" let g:NeoComplCache_TagsAutoUpdate = 1
-" let g:NeoComplCache_EnableInfo = 1
-" let g:NeoComplCache_EnableCamelCaseCompletion = 1
-" let g:NeoComplCache_MinSyntaxLength = 3
-" let g:NeoComplCache_EnableSkipCompletion = 1
-" let g:NeoComplCache_SkipInputTime = '0.5'
-" let g:NeoComplCache_SnippetsDir = $VIMFILES.'/snippets'
-" " <TAB> completion.
-" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" " snippets expand key
-" imap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
-" smap <silent> <C-e> <Plug>(neocomplcache_snippets_expand)
-"
-"
-" "-----------------------------------------------------------------
 " " plugin - matchit.vim 对%命令进行扩展使得能在嵌套标签和语句之间跳转
 " " % 正向匹配 g% 反向匹配
 " " [% 定位块首 ]% 定位块尾
@@ -682,7 +665,7 @@ let g:multi_cursor_quit_key='<Esc>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctrlp 配置{{{  设置忽略目录和文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
+" \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
 let g:ctrlp_map = ',,'
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
@@ -709,7 +692,6 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
-"
 "" to see error location list
 "let g:syntastic_always_populate_loc_list = 0
 "let g:syntastic_auto_loc_list = 0
@@ -744,7 +726,6 @@ let g:syntastic_php_checkers = ['php']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-"let g:syntastic_javascript_checkers = ['jshint']
 "let g:syntastic_html_checkers=['tidy', 'jshint']
 let g:syntastic_html_checkers=['eslint']
 let g:syntastic_css_checkers = ['eslint']
