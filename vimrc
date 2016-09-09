@@ -92,7 +92,6 @@ Plugin 'mxw/vim-jsx'
 
 Plugin 'derekwyatt/vim-scala'
 
-" Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'ap/vim-css-color'
 
 " Python mode
@@ -120,9 +119,8 @@ Plugin 'aaronbieber/vim-quicktask'
 Plugin 'itchyny/calendar.vim'
 
 " Two color scheme for vim
-" Plugin 'tomasr/molokai'
+Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
-" Plugin 'morhetz/gruvbox'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -175,11 +173,11 @@ endif
 " color scheme setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
-" colorscheme molokai " 设定配色方案
 " let g:molokai_original = 1
 syntax enable
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme molokai " 设定配色方案
+" colorscheme solarized
 
 if has("gui_running")
 	set guioptions-=T
@@ -712,7 +710,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 "" 修改高亮的背景色, 适应主题
-highlight SyntasticErrorSign guifg=white guibg=black
+highlight SyntasticErrorSign guifg=white guibg=yellow
 let g:syntastic_enable_highlighting=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -736,49 +734,6 @@ map ,ss :call SyntasticToggleMode()<CR>
 
 "}}}
 "
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "Tasklist.vim 配置{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:tlTokenList = ["FIXME", "TODO", "HACK", "NOTE", "WARN", "MODIFY"]
-" " 绑定快捷键，默认是 <Leader>t
-" nnoremap    ,td             :TaskList<CR>
-" "g:tlWindowPosition
-" "指定任务列表窗口打开位置，默认是窗口上方打开，可用如下更改:
-" let g:tlWindowPosition = 1
-" " "可选值:
-" " "0 = Open on top
-" " "1 = Open on the bottom
-" " "
-" " "g:tlTokenList
-" " "任务列表搜索的标识符列表，默认是 'FIXME TODO XXX'. 搜索到得结果按照分组和出现顺序排列. 可以如下更改:
-" " let g:tlTokenList = ['TODO', 'FIXME', 'HACK']
-" " "
-" " "g:tlRememberPosition
-" " "如果设置为1，则任务插件下次打开时会恢复到上次关闭时的位置. 默认是找到离光标当前行最近的标示符，可以如下更改:
-" " let g:tlRememberPosition = 1
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "Tasklist.vim 配置}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "php-cs-fixer.vim 配置{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "" If php-cs-fixer is in $PATH, you don't need to define line below
-" let g:php_cs_fixer_path = "~/.vim/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
-" let g:php_cs_fixer_level = "symfony"              " which level ?
-" let g:php_cs_fixer_config = "default"             " configuration
-" let g:php_cs_fixer_php_path = "php"               " Path to PHP
-" "If you want to define specific fixers:
-" "let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
-" "let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-" let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-" let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
-" "nnoremap ,pcf :call PhpCsFixerFixFile()<CR>
-" au FileType php nnoremap ,af :call PhpCsFixerFixFile()<CR>
-" au FileType php nnoremap ,pcd :call PhpCsFixerFixDirectory()<CR>
-" au FileType php imap <c-l> var_dump();<esc>hi
-" "}}}
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-autoformat.vim 配置{{{
 "这里使用astyle格式化c,cpp,cc,java,需要用homebrew安装astyle
@@ -788,7 +743,7 @@ let g:formatters_cpp  = ['vogon']
 let g:formatters_c    = ['vogon']
 let g:formatters_cc   = ['vogon']
 let g:formatters_java = ['vogon']
-"The following three lines do not work!!!!!!
+" The following three lines do not work!!!!!!
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
@@ -803,12 +758,11 @@ au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
-
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 ""let g:ycm_key_list_select_completion=['<c-n>']
@@ -822,8 +776,8 @@ let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗
 let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
 nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
-"nnoremap <leader>lo :lopen<CR> "open locationlist
-""nnoremap <leader>lc :lclose<CR>   "close locationlist
+" nnoremap <leader>lo :lopen<CR> "open locationlist
+" nnoremap <leader>lc :lclose<CR>   "close locationlist
 inoremap <leader><leader> <C-x><C-o>
 "在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
@@ -895,15 +849,16 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "tabular settings{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let mapleader=','
-" if exists(":Tabularize")
-  " nmap ,t= :Tabularize /=<CR>
-  " vmap ,t= :Tabularize /=<CR>
-  " nmap ,t: :Tabularize /:\zs<CR>
-  " vmap ,t: :Tabularize /:\zs<CR>
-  " vmap ,t| :Tabularize /|\zs<CR>
-  " vmap ,t| :Tabularize /|\zs<CR>
-" endif
+let mapleader=','
+if exists(":Tabularize")
+  nmap ,t= :Tabularize /=<CR>
+  vmap ,t= :Tabularize /=<CR>
+  nmap ,t: :Tabularize /:\zs<CR>
+  vmap ,t: :Tabularize /:\zs<CR>
+  vmap ,t| :Tabularize /|\zs<CR>
+  vmap ,t| :Tabularize /|\zs<CR>
+endif
+
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 function! s:align()
@@ -917,7 +872,7 @@ function! s:align()
   endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}
+" }}}tabular settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "'plasticboy/vim-markdown.vim{{{
@@ -929,30 +884,6 @@ let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "'iamcco/markdown-preview.vim'{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:mkdp_path_to_chrome = "google-chrome"
-"" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
-"let g:mkdp_auto_start = 1
-"" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在
-"" 打开markdown 文件的时候打开一次
-"let g:mkdp_auto_open = 1
-"" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经
-"" 打开，否则自动打开预
-"" 览窗口
-"let g:mkdp_auto_close = 1
-"" 在切换 buffer 的时候自动关闭预览窗口，设
-"" 置为 0 则在切换 buffer 的时候不
-"" 自动关闭预览窗口
-"let g:mkdp_refresh_slow = 0
-"" 设置为 1 则只有在保存文件，
-"" 或退出插入模式的时候更新预览
-"" ，默认为 0，实时
-"" 更新预览
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "grep{{{
