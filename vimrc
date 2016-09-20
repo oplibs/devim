@@ -1,9 +1,7 @@
 "=========================================================================
-"
 " DesCRiption: devim for MacVim
 " Last Change: 2015年11月11日 15时13分
 " Version: 0.04
-"
 "=========================================================================
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,7 +9,7 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+" Let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " Keep Plugin commands between vundle#begin/end.
@@ -21,27 +19,25 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'L9'
 
-" plugin on GitHub repo
+" Plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-"Plugin 'easymotion/vim-easymotion'
 
 " Shell utils
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
+Plugin 'christoomey/vim-run-interactive'
 
-" common plugin to process text file save
+" Common plugin to process text file save
 Plugin 'tpope/vim-sensible'
 
 " File finder
 Plugin 'kien/ctrlp.vim'
 
-" grep finder
+" Grep content finder
 Plugin 'grep.vim'
 
 " Close other buffers quickly
 Plugin 'BufOnly.vim'
-
-Plugin 'terryma/vim-multiple-cursors'
 
 " Plugin 'SirVer/ultisnips'
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -50,6 +46,9 @@ Plugin 'garbas/vim-snipmate'
 
 Plugin 'honza/vim-snippets'
 
+Plugin 'terryma/vim-multiple-cursors'
+
+" NerdTree series plugin
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
@@ -75,6 +74,7 @@ Plugin 'matchit.zip'
 
 " Syntax check for most languages.
 Plugin 'scrooloose/syntastic'
+
 " Autoformat tools
 Plugin 'Chiel92/vim-autoformat'
 
@@ -82,10 +82,10 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'valloric/youcompleteme'
 Plugin 'valloric/listtoggle'
 
+" Programming language plugins
 Plugin 'mattn/emmet-vim'
 Plugin 'fatih/vim-go'
 Plugin 'elzr/vim-json'
-" Plugin 'jelera/vim-JavaScript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
@@ -97,30 +97,28 @@ Plugin 'ap/vim-css-color'
 " Python mode
 Plugin 'klen/python-mode'
 
-" dash for help
+" Nginx grammar support
+Plugin 'evanmiller/nginx-vim-syntax'
+" Dash for help: This plugin is for mac software dash.
 Plugin 'rizzatti/dash.vim'
+
+" Two color scheme for vim
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
 
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
 
-Plugin 'evanmiller/nginx-vim-syntax'
-
 "Plugin for markdown
 Plugin 'plasticboy/vim-markdown'
+"Plugin for latex
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
-
-" Plugin 'tyru/open-browser.vim'
 Plugin 'aaronbieber/vim-quicktask'
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-notes'
 
 Plugin 'itchyny/calendar.vim'
 
-" Two color scheme for vim
-Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -132,7 +130,6 @@ call vundle#end()            " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -173,19 +170,25 @@ endif
 " color scheme setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
-" let g:molokai_original = 1
 syntax enable
 set background=dark
 colorscheme molokai " 设定配色方案
+" let g:molokai_original = 1
 " colorscheme solarized
 
 if has("gui_running")
 	set guioptions-=T
 else
     syntax enable
-    " When using iterm, solarized is ok.
-    " colorscheme solarized
 endif
+
+highlight NonText guibg=#060606
+highlight Folded  guibg=#0A0A0A guifg=#9090D0
+
+" Highlight current line and column
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}color scheme setting
@@ -239,10 +242,11 @@ set backspace=indent,eol,start
 " " setting the status line
 " set cmdheight=1 " 设定命令行的行数为 1
 set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
-" use ',' as the leader key
-let mapleader = ","
 " set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\
 " %c:%l/%L%)\
+
+" use ',' as the leader key
+let mapleader = ","
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 选中状态下 Ctrl+c 复制 {{{
@@ -271,7 +275,6 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}source folding setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
 set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
 set tabstop=4 " 设定 tab 长度为 4
@@ -405,13 +408,6 @@ let javascript_enable_domhtmlcss=1
 
 " au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
-" au FileType javascript setl nocindent
-
-" au FileType javascript imap <c-l> logger.log();<esc>hi
-" au FileType javascript imap <c-a> alert();<esc>hi
-
-" au FileType javascript inoremap <buffer> $r return
-" au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
 " """""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
 " """""""""""""""""""""""""""""
@@ -519,11 +515,18 @@ let g:bufferline_active_buffer_right = ']'
 " "-----------------------------------------------------------------
 " let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=40
+let g:tagbar_autofocus=0
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go call tagbar#autoopen()
 " nnoremap ,t :TagbarToggle<CR>
 nmap <C-t> :TagbarToggle<CR>
 " "-----------------------------------------------------------------
-"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vim-interactive-shell 配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>r :RunInInteractiveShell<space>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -607,24 +610,6 @@ nmap ,cu <leader>cu
 "-----------------------------------------------------------------
 "
 " "-----------------------------------------------------------------
-" " plugin - DoxygenToolkit.vim 由注释生成文档，并且能够快速生成函数标准注释
-" "-----------------------------------------------------------------
-" let g:DoxygenToolkit_authorName="Asins - asinsimple AT gmail DOT com"
-" let g:DoxygenToolkit_briefTag_funcName="yes"
-" map <leader>da :DoxAuthor<CR>
-" map <leader>df :Dox<CR>
-" map <leader>db :DoxBlock<CR>
-" map <leader>dc a /* */<LEFT><LEFT><LEFT>
-"
-"
-" "-----------------------------------------------------------------
-" " plugin – ZenCoding.vim 很酷的插件，HTML代码生成
-" " 插件最新版：http://github.com/mattn/zencoding-vim
-" " 常用命令可看：http://nootn.com/blog/Tool/23/
-" "-----------------------------------------------------------------
-"
-"
-" "-----------------------------------------------------------------
 " " plugin – checksyntax.vim JavaScript常见语法错误检查
 " " 默认快捷方式为 F5
 " "-----------------------------------------------------------------
@@ -669,6 +654,15 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
+
+if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag in CtrlP for listing files.
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+endif
 "}}}
 
 "Easymotion 配置{{{
@@ -827,6 +821,23 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} listtoggle
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "grep{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let Grep_Skip_Files = '*.swp *~'
+let Grep_Skip_Dirs = 'node_modules dist .git vendor'
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-airline{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "emmet.vim 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -849,7 +860,7 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "tabular settings{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader=','
+" let mapleader=','
 if exists(":Tabularize")
   nmap ,t= :Tabularize /=<CR>
   vmap ,t= :Tabularize /=<CR>
@@ -884,23 +895,6 @@ let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "grep{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Grep_Skip_Files = '*.swp *~'
-let Grep_Skip_Dirs = 'node_modules dist .git vendor'
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-airline{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "cscope{{{
