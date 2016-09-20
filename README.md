@@ -26,10 +26,11 @@ Shell tools:
 * Matchit
 * nerdcommenter
 * Syntastic
+javascript  npm install -g eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint
 * vim-autoformat
 * dash
 
-#### Javascript 
+#### Javascript
 
 ##### VIM Plugins
 
