@@ -35,9 +35,11 @@ Plugin 'kien/ctrlp.vim'
 
 " Grep content finder
 Plugin 'grep.vim'
+" Plugin 'dyng/ctrlsf.vim'
 
-" Close other buffers quickly
 Plugin 'BufOnly.vim'
+
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Plugin 'SirVer/ultisnips'
 Plugin 'MarcWeber/vim-addon-mw-utils'
