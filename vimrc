@@ -720,11 +720,15 @@ let g:syntastic_php_checkers = ['php']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-"let g:syntastic_html_checkers=['tidy', 'jshint']
 let g:syntastic_html_checkers=['eslint']
 let g:syntastic_css_checkers = ['eslint']
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes':   [],'passive_filetypes': [] }
+" From the vim-go document but not work for displaying list
+" let g:syntastic_go_checkers = ['golint', 'errcheck']
+" let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
+let g:syntastic_go_checkers = ['go']
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] ,'passive_filetypes': ['js'] }
 map ,sc :call SyntasticCheck()<CR>
 map ,ss :call SyntasticToggleMode()<CR>
 
@@ -932,8 +936,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
-let g:syntastic_go_checkers = ['golint', 'errcheck']
 
 " Open go doc in vertical window, horizontal, or tab
 " au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
