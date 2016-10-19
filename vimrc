@@ -64,7 +64,7 @@ Plugin 'bling/vim-bufferline'
 
 " Plugin to comment text quickly
 Plugin 'scrooloose/nerdcommenter'
-
+Plugin 'jiangmiao/auto-pairs'
 " Utils to handle xml like file, surrounding elements by tags.
 Plugin 'tpope/vim-surround'
 
@@ -440,6 +440,7 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
+au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 " au FileType python imap <c-l> # !/usr/bin/python<return># -*- coding: UTF-8 -*-
 " var_dump();<esc>hi
 " Python 文件的一般设置，比如不要 tab 等
@@ -758,7 +759,7 @@ au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+inoremap <expr> <space>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
 inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
