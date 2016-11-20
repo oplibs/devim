@@ -704,6 +704,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" if syntastic go error, please open the following line to check the syntastic output
+" let g:syntastic_debug=3
+
 "" 修改高亮的背景色, 适应主题
 highlight SyntasticErrorSign guifg=white guibg=yellow
 let g:syntastic_enable_highlighting=1
