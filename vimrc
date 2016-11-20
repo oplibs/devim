@@ -65,6 +65,7 @@ Plugin 'bling/vim-bufferline'
 " Plugin to comment text quickly
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jiangmiao/auto-pairs'
+" Plugin 'raimondi/delimitmate'
 " Utils to handle xml like file, surrounding elements by tags.
 Plugin 'tpope/vim-surround'
 
@@ -326,9 +327,9 @@ endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Buffers操作快捷方式{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap ,. :bnext<CR>
-nnoremap ,m :bprevious<CR>
-nnoremap ,<space> :b#<CR>
+nnoremap <leader>. :bnext<CR>
+nnoremap <leader>m :bprevious<CR>
+nnoremap <leader><space> :b#<CR>
 "
 "窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
 "光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
@@ -382,8 +383,8 @@ augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
 " autoformat the json file.
-autocmd FileType json noremap <buffer> ,af :call JsBeautify()<cr>
-" autocmd filetype json noremap <buffer> ,af <Esc>:%!python -m json.tool<CR>
+" autocmd FileType json noremap <buffer> <leader>af :call JsBeautify()<cr>
+autocmd filetype json noremap <buffer> <leader>af <Esc>:%!python -m json.tool<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -413,15 +414,15 @@ au FileType javascript setl fen
 " """""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
 " """""""""""""""""""""""""""""
-autocmd FileType javascript noremap <buffer> ,af :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer> <leader>af :call JsBeautify()<cr>
 " for html
-autocmd FileType html noremap <buffer> ,af :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> <leader>af :call HtmlBeautify()<cr>
 " for css or scss
-autocmd FileType css noremap <buffer> ,af :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> <leader>af :call CSSBeautify()<cr>
 " Beatutify the selected section
-autocmd FileType javascript vnoremap <buffer> ,af :call RangeJsBeautify()<cr>
-autocmd FileType html vnoremap <buffer> ,af :call RangeHtmlBeautify()<cr>
-autocmd FileType css vnoremap <buffer> ,af :call RangeCSSBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer> <leader>af :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <leader>af :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <leader>af :call RangeCSSBeautify()<cr>
 " """""""""""""""""""""""""""""
 " }}}
 " """""""""""""""""""""""""""""
@@ -441,8 +442,6 @@ au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
 au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
-" au FileType python imap <c-l> # !/usr/bin/python<return># -*- coding: UTF-8 -*-
-" var_dump();<esc>hi
 " Python 文件的一般设置，比如不要 tab 等
 " autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""
@@ -520,7 +519,6 @@ let g:bufferline_active_buffer_right = ']'
 let g:tagbar_width=40
 let g:tagbar_autofocus=0
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go call tagbar#autoopen()
-" nnoremap ,t :TagbarToggle<CR>
 nmap <C-t> :TagbarToggle<CR>
 " "-----------------------------------------------------------------
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -606,8 +604,8 @@ let g:NERDTreeIndicatorMapCustom = {
 "-----------------------------------------------------------------
 let NERDSpaceDelims=1 " 让注释符与语句之间留一个空格
 let NERDCompactSexyComs=1 " 多行注释时样子更好看
-nmap ,cc <leader>cc
-nmap ,cu <leader>cu
+" nmap <leader>cc <leader>cc
+" nmap <leader>cu <leader>cu
 "-----------------------------------------------------------------
 "}}}
 "-----------------------------------------------------------------
@@ -730,8 +728,8 @@ let g:syntastic_css_checkers = ['eslint']
 let g:syntastic_go_checkers = ['go']
 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] ,'passive_filetypes': ['js'] }
-map ,sc :call SyntasticCheck()<CR>
-map ,ss :call SyntasticToggleMode()<CR>
+map <leader>sc :call SyntasticCheck()<CR>
+map <leader>ss :call SyntasticToggleMode()<CR>
 
 "}}}
 "
@@ -754,12 +752,14 @@ au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 "
+let g:AutoPairsMapCR = 0
+imap <silent><CR> <CR><Plug>AutoPairsReturn
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " youcompleteme配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-inoremap <expr> <space>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
 inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
@@ -767,7 +767,7 @@ inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 ""let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>', '<CR>']
+let g:ycm_key_list_select_completion = ['<Down>', '<space>']
 "let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
@@ -869,12 +869,12 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let mapleader=','
 if exists(":Tabularize")
-  nmap ,t= :Tabularize /=<CR>
-  vmap ,t= :Tabularize /=<CR>
-  nmap ,t: :Tabularize /:\zs<CR>
-  vmap ,t: :Tabularize /:\zs<CR>
-  vmap ,t| :Tabularize /|\zs<CR>
-  vmap ,t| :Tabularize /|\zs<CR>
+  nmap <leader>t= :Tabularize /=<CR>
+  vmap <leader>t= :Tabularize /=<CR>
+  nmap <leader>t: :Tabularize /:\zs<CR>
+  vmap <leader>t: :Tabularize /:\zs<CR>
+  vmap <leader>t| :Tabularize /|\zs<CR>
+  vmap <leader>t| :Tabularize /|\zs<CR>
 endif
 
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -906,27 +906,29 @@ let g:vim_markdown_frontmatter=1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "cscope{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap ,fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap ,l :call ToggleLocationList()<CR>
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
 "s: Find this C symbol
-nnoremap  ,fs :call CscopeFind('s', expand('<cword>'))<CR>
+nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
 " g: Find this definition
-nnoremap  ,fg :call CscopeFind('g', expand('<cword>'))<CR>
+nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
 " d: Find functions called by this function
-nnoremap  ,fd :call CscopeFind('d', expand('<cword>'))<CR>
+nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
 " c: Find functions calling this function
-nnoremap  ,fc :call CscopeFind('c', expand('<cword>'))<CR>
+nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
 " t: Find this text string
-nnoremap  ,ft :call CscopeFind('t', expand('<cword>'))<CR>
+nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
 " e: Find this egrep pattern
-nnoremap  ,fe :call CscopeFind('e', expand('<cword>'))<CR>
+nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
 " f: Find this file
-nnoremap  ,ff :call CscopeFind('f', expand('<cword>'))<CR>
+nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
-nnoremap  ,fi :call CscopeFind('i', expand('<cword>'))<CR>
+nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au FileType scala nmap <leader>gr :exec '!scala' shellescape(@%, 1)<cr>
 
 " use goimports for formatting
 let g:go_fmt_command = "goimports"
