@@ -64,7 +64,7 @@ Plugin 'bling/vim-bufferline'
 
 " Plugin to comment text quickly
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
 " Plugin 'raimondi/delimitmate'
 " Utils to handle xml like file, surrounding elements by tags.
 Plugin 'tpope/vim-surround'
@@ -95,6 +95,7 @@ Plugin 'mxw/vim-jsx'
 
 Plugin 'derekwyatt/vim-scala'
 
+Plugin 'chase/vim-ansible-yaml'
 Plugin 'ap/vim-css-color'
 
 " Python mode
@@ -415,6 +416,7 @@ au FileType javascript setl fen
 " => vim-jsbeautify{{{
 " """""""""""""""""""""""""""""
 autocmd FileType javascript noremap <buffer> <leader>af :call JsBeautify()<cr>
+autocmd FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
 " for html
 autocmd FileType html noremap <buffer> <leader>af :call HtmlBeautify()<cr>
 " for css or scss
