@@ -417,7 +417,6 @@ au FileType javascript setl fen
 " => vim-jsbeautify{{{
 " """""""""""""""""""""""""""""
 autocmd FileType javascript noremap <buffer> <leader>af :call JsBeautify()<cr>
-autocmd FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
 " for html
 autocmd FileType html noremap <buffer> <leader>af :call HtmlBeautify()<cr>
 " for css or scss
@@ -426,6 +425,7 @@ autocmd FileType css noremap <buffer> <leader>af :call CSSBeautify()<cr>
 autocmd FileType javascript vnoremap <buffer> <leader>af :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <leader>af :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <leader>af :call RangeCSSBeautify()<cr>
+au FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
 " """""""""""""""""""""""""""""
 " }}}
 " """""""""""""""""""""""""""""
@@ -808,8 +808,8 @@ inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDo
 inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
-""let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>', '<space>']
+let g:ycm_key_list_select_completion=['<c-n>']
+" let g:ycm_key_list_select_completion = ['<Down>', '<space>']
 "let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
