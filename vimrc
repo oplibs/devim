@@ -76,7 +76,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'matchit.zip'
 
 " Syntax check for most languages.
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 
 " Autoformat tools
 Plugin 'Chiel92/vim-autoformat'
@@ -672,71 +673,107 @@ endif
 "let g:EasyMotion_leader_key = 'f'
 "}}}"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""syntastic 配置{{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" let g:syntastic_error_symbol='>>'
+"" let g:syntastic_warning_symbol='>'
+"
+"let g:syntastic_error_symbol = '❌'
+"let g:syntastic_style_error_symbol = '⁉️'
+"let g:syntastic_warning_symbol = '⚠️'
+"let g:syntastic_style_warning_symbol = '💩'
+"
+"highlight link SyntasticErrorSign SignColumn
+"highlight link SyntasticWarningSign SignColumn
+"highlight link SyntasticStyleErrorSign SignColumn
+"highlight link SyntasticStyleWarningSign SignColumn
+""" to see error location list
+""let g:syntastic_always_populate_loc_list = 0
+""let g:syntastic_auto_loc_list = 0
+"function! ToggleErrors()
+"    let old_last_winnr = winnr('$')
+"    lclose
+"    if old_last_winnr == winnr('$')
+"        " Nothing was closed, open syntastic error location panel
+"        Errors
+"    endif
+"endfunction
+"
+"nnoremap <Leader>s :call ToggleErrors()<cr>
+"" nnoremap <Leader>sn :lnext<cr>
+"" nnoremap <Leader>sp :lprevious<cr>
+"set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}%{ALEGetStatusLine()}
+"set statusline+=%*
+"
+"" if syntastic go error, please open the following line to check the syntastic output
+"" let g:syntastic_debug=3
+"
+""" 修改高亮的背景色, 适应主题
+"highlight SyntasticErrorSign guifg=white guibg=yellow
+"let g:syntastic_enable_highlighting=1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_loc_list_height = 5
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_enable_highlighting=1
+"
+"let g:syntastic_php_checkers = ['php']
+""let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+"let g:syntastic_python_checkers = ['pylint']
+"let g:syntastic_javascript_checkers = ['eslint']
+""let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+"let g:syntastic_html_checkers=['eslint']
+"let g:syntastic_css_checkers = ['eslint']
+"
+"" From the vim-go document but not work for displaying list
+"" let g:syntastic_go_checkers = ['golint', 'errcheck']
+"" let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
+"let g:syntastic_go_checkers = ['go']
+"
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] ,'passive_filetypes': ['js'] }
+"map <leader>sc :call SyntasticCheck()<CR>
+"map <leader>ss :call SyntasticToggleMode()<CR>
+"
+""}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"syntastic 配置{{{
+"ale 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:syntastic_error_symbol='>>'
-" let g:syntastic_warning_symbol='>'
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
+" Set this if you want to.
+" This can be useful if you are combining ALE with
+" some other plugin which sets quickfix errors, etc.
+let g:ale_keep_list_window_open = 1
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-"" to see error location list
-"let g:syntastic_always_populate_loc_list = 0
-"let g:syntastic_auto_loc_list = 0
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        " Nothing was closed, open syntastic error location panel
-        Errors
-    endif
-endfunction
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
 
-nnoremap <Leader>s :call ToggleErrors()<cr>
-" nnoremap <Leader>sn :lnext<cr>
-" nnoremap <Leader>sp :lprevious<cr>
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 
-" if syntastic go error, please open the following line to check the syntastic output
-" let g:syntastic_debug=3
-
-"" 修改高亮的背景色, 适应主题
-highlight SyntasticErrorSign guifg=white guibg=yellow
-let g:syntastic_enable_highlighting=1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_highlighting=1
-
-let g:syntastic_php_checkers = ['php']
-"let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-let g:syntastic_html_checkers=['eslint']
-let g:syntastic_css_checkers = ['eslint']
-
-" From the vim-go document but not work for displaying list
-" let g:syntastic_go_checkers = ['golint', 'errcheck']
-" let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
-let g:syntastic_go_checkers = ['go']
-
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] ,'passive_filetypes': ['js'] }
-map <leader>sc :call SyntasticCheck()<CR>
-map <leader>ss :call SyntasticToggleMode()<CR>
-
-"}}}
+let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+let g:ale_linter_aliases = {'jsx': 'css'}
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}ale
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-autoformat.vim 配置{{{
