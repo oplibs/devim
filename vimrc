@@ -557,16 +557,16 @@ let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
 let NERDTreeShowHidden=0 "显示隐藏文件
 let NERDTreeQuitOnOpen=1 "打开文件时关闭树
 " let NERDTreeShowLineNumbers=1
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
 
-function! NERDTree_Start()
-    exec 'NERDTree'
-endfunction
+" function! NERDTree_Start()
+    " exec 'NERDTree'
+" endfunction
 
-function! NERDTree_IsValid()
-    return 1
-endfunction
+" function! NERDTree_IsValid()
+    " return 1
+" endfunction
 
 " NERDTree tabs配置
 " 显示行号
@@ -612,13 +612,6 @@ let NERDCompactSexyComs=1 " 多行注释时样子更好看
 "-----------------------------------------------------------------
 "}}}
 "-----------------------------------------------------------------
-"
-" "-----------------------------------------------------------------
-" " plugin – checksyntax.vim JavaScript常见语法错误检查
-" " 默认快捷方式为 F5
-" "-----------------------------------------------------------------
-" let g:checksyntax_auto = 0 " 不自动检查
-"
 "
 " "-----------------------------------------------------------------
 " " plugin - matchit.vim 对%命令进行扩展使得能在嵌套标签和语句之间跳转
