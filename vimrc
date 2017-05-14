@@ -558,15 +558,14 @@ let NERDTreeShowHidden=0 "显示隐藏文件
 let NERDTreeQuitOnOpen=1 "打开文件时关闭树
 " let NERDTreeShowLineNumbers=1
 " autocmd VimEnter * NERDTree
-" autocmd VimEnter * wincmd p
 
 " function! NERDTree_Start()
     " exec 'NERDTree'
 " endfunction
 
-" function! NERDTree_IsValid()
-    " return 1
-" endfunction
+function! NERDTree_IsValid()
+    return 1
+endfunction
 
 " NERDTree tabs配置
 " 显示行号
@@ -697,7 +696,7 @@ endif
 "" nnoremap <Leader>sn :lnext<cr>
 "" nnoremap <Leader>sp :lprevious<cr>
 "set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}%{ALEGetStatusLine()}
+set statusline+=%{ALEGetStatusLine()}
 "set statusline+=%*
 "
 "" if syntastic go error, please open the following line to check the syntastic output

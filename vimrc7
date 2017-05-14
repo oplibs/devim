@@ -557,12 +557,12 @@ let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
 let NERDTreeShowHidden=0 "显示隐藏文件
 let NERDTreeQuitOnOpen=1 "打开文件时关闭树
 " let NERDTreeShowLineNumbers=1
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
-function! NERDTree_Start()
-    exec 'NERDTree'
-endfunction
+" function! NERDTree_Start()
+    " exec 'NERDTree'
+" endfunction
 
 function! NERDTree_IsValid()
     return 1
@@ -575,7 +575,7 @@ let NERDTreeAutoCenter=1
 " 设置宽度
 let NERDTreeWinSize=30
 " 在终端启动vim时，共享NERDTree
-let g:nerdtree_tabs_open_on_console_startup=0
+let g:nerdtree_tabs_open_on_console_startup=1
 " 忽略一下文件的显示
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 " 显示书签列表
