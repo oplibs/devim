@@ -119,7 +119,6 @@ Plugin 'altercation/vim-colors-solarized'
 
 "Plugin 'aaronbieber/vim-quicktask'
 
-Plugin 'vimwiki/vimwiki'
 Plugin 'itchyny/calendar.vim'
 
 " Dash for help: This plugin is for mac software dash.
@@ -797,17 +796,6 @@ au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
 "
 let g:AutoPairsMapCR = 0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwikilist 配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/projects/blockforce',
-    \    'path_html': '~/projects/blockforce/vimwiki_html',
-    \    'template_path': '~/projects/blockforce/template',
-    \    'template_default': "default.tpl"}]
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}vimwikilist
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " youcompleteme配置{{{
