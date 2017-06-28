@@ -206,6 +206,12 @@ autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
 
+au BufRead,BufNewFile *.js copen
+au BufRead,BufNewFile *.jsx copen
+au BufRead,BufNewFile *.py copen
+au BufRead,BufNewFile *.c copen
+au BufRead,BufNewFile *.cc copen
+
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
