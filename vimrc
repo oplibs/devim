@@ -522,7 +522,8 @@ let g:bufferline_active_buffer_right = ']'
 let g:tagbar_width=40
 let g:tagbar_autofocus=0
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go call tagbar#autoopen()
-nmap <C-t> :TagbarToggle<CR>
+" nmap <C-t> :TagbarToggle<CR>
+nmap <Leader>t :TagbarToggle<CR>
 " "-----------------------------------------------------------------
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-interactive-shell 配置{{{
