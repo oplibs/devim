@@ -1,7 +1,7 @@
 "=========================================================================
 " DesCRiption: devim for MacVim
-" Last Change: 2015年11月11日 15时13分
-" Version: 0.04
+" Last Change: 2017年06月30日 15时13分
+" Version: 0.05
 "=========================================================================
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -35,6 +35,7 @@ Plugin 'kien/ctrlp.vim'
 
 " Grep content finder
 Plugin 'grep.vim'
+Plugin 'rking/ag.vim'
 " Plugin 'dyng/ctrlsf.vim'
 
 Plugin 'BufOnly.vim'
@@ -65,7 +66,6 @@ Plugin 'bling/vim-bufferline'
 Plugin 'scrooloose/nerdcommenter'
 " Plugin 'jiangmiao/auto-pairs'
 " Plugin 'raimondi/delimitmate'
-" Utils to handle xml like file, surrounding elements by tags.
 
 " Language alignment by element
 Plugin 'godlygeek/tabular'
@@ -103,7 +103,6 @@ Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'elzr/vim-json'
 Plugin 'chase/vim-ansible-yaml'
 
-
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
@@ -116,8 +115,6 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " Two color scheme for vim
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
-
-"Plugin 'aaronbieber/vim-quicktask'
 
 Plugin 'vimwiki/vimwiki'
 Plugin 'itchyny/calendar.vim'
@@ -135,7 +132,6 @@ call vundle#end()            " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " return OS type, eg: windows, or linux, mac, et.st..{{{
@@ -157,16 +153,11 @@ endfunction
 " let $VIMFILES = $HOME.'/.vim'
 " endif
 "
-" " 设定doc文档目录
-" let helptags=$VIMFILES.'/doc'
-"
 " " 设置字体 以及中文支持
 " if has("win32")
 " set guifont=Inconsolata:h12:cANSI
 " endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}return OS type, eg: windows, or linux, mac, et.st..
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 if CurSys() == "osx"
     nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
 endif
@@ -694,8 +685,8 @@ endif
 "endfunction
 "
 "nnoremap <Leader>s :call ToggleErrors()<cr>
-"" nnoremap <Leader>sn :lnext<cr>
-"" nnoremap <Leader>sp :lprevious<cr>
+nnoremap <Leader>sn :lnext<cr>
+nnoremap <Leader>sp :lprevious<cr>
 "set statusline+=%#warningmsg#
 set statusline+=%{ALEGetStatusLine()}
 "set statusline+=%*
@@ -745,11 +736,11 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 " Set this if you want to.
 " This can be useful if you are combining ALE with
 " some other plugin which sets quickfix errors, etc.
-let g:ale_keep_list_window_open = 1
+let g:ale_keep_list_window_open = 0
 
 " Write this in your vimrc file
 let g:ale_lint_on_text_changed = 'never'
@@ -1007,3 +998,11 @@ au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "latex{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType latex nmap <leader>gr :exec '!latex' shellescape(@%, 1)<cr>
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
