@@ -99,7 +99,7 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'klen/python-mode'
 
 " Nginx grammar support
-Plugin 'evanmiller/nginx-vim-syntax'
+" Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'elzr/vim-json'
 Plugin 'chase/vim-ansible-yaml'
 
