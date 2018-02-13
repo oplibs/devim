@@ -33,6 +33,7 @@ Plugin 'tpope/vim-sensible'
 " File finder
 Plugin 'kien/ctrlp.vim'
 
+Plugin 'easymotion/vim-easymotion'
 " Grep content finder
 Plugin 'grep.vim'
 Plugin 'rking/ag.vim'
@@ -110,7 +111,8 @@ Plugin 'brookhong/cscope.vim'
 "Plugin for markdown
 Plugin 'plasticboy/vim-markdown'
 "Plugin for latex
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
+" Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'vim-latex/vim-latex'
 
 " Two color scheme for vim
 Plugin 'tomasr/molokai'
@@ -655,6 +657,29 @@ endif
 
 "Easymotion 配置{{{
 "let g:EasyMotion_leader_key = 'f'
+"
+let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" " s{char}{char} to move to {char}{char}
+" nmap s <Plug>(easymotion-overwin-f2)
+"
+" " Move to line
+" map <Leader>L <Plug>(easymotion-bd-jk)
+" nmap <Leader>L <Plug>(easymotion-overwin-line)
+"
+" " Move to word
+" map  <Leader>w <Plug>(easymotion-bd-w)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
 "}}}"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -793,6 +818,7 @@ let g:vimwiki_list = [{'path': '~/projects/blockforce',
     \    'template_path': '~/projects/blockforce/template',
     \    'template_default': "default.tpl"}]
 let g:vimwiki_camel_case = 0
+nmap <Leader>ww <Plug>VimwikiIndex
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
