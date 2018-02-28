@@ -1,8 +1,8 @@
 [push]
 	default = simple
 [user]
-	name = XXX
-	email = XXX@123.com
+	name = oplibs
+	email = oplibs@gmail.com
 [core]
     editor = /usr/bin/vim
 
