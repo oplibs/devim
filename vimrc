@@ -639,7 +639,8 @@ let g:multi_cursor_quit_key='<Esc>'
 "ctrlp 配置{{{  设置忽略目录和文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
-let g:ctrlp_map = ',,'
+" let g:ctrlp_map = ',,'
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
