@@ -1,5 +1,13 @@
 # devim
 
+Requirements
+
+* ctags
+* cscope
+* cmake
+* astyle
+* autopep8
+* flake8
 
 ### Common vim plugins needed:
 

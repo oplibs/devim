@@ -97,7 +97,7 @@ Plugin 'fatih/vim-go'
 
 Plugin 'derekwyatt/vim-scala'
 " Python mode
-Plugin 'klen/python-mode'
+" Plugin 'klen/python-mode'
 
 " Nginx grammar support
 " Plugin 'evanmiller/nginx-vim-syntax'
@@ -198,6 +198,11 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
+
+" augroup FiletypeGroup
+    " autocmd!
+    " au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+" augroup END
 
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -441,22 +446,50 @@ au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 " Python 文件的一般设置，比如不要 tab 等
 " autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""
-"" => python mode{{{
+"" => python-mode{{{
 """""""""""""""""""""""""""""""
-" Override go-to.definition key shortcut to Ctrl-]
-let g:pymode_rope_goto_definition_bind = "<C-]>"
-" Override run current python file key shortcut to Ctrl-Shift-e
-let g:pymode_run_bind = "<C-S-e>"
-
-" Override view python doc key shortcut to Ctrl-Shift-d
-let g:pymode_doc_bind = "<C-S-d>"
-
-" fix hangon for [Pymode] Regenerate autoimport cache
-let g:pymode_rope_lookup_project = 0
-
-let g:pymode_rope_complete_on_dot = 0  " 防止和youcompleteme冲突
+" " Override go-to.definition key shortcut to Ctrl-]
+" let g:pymode_rope_goto_definition_bind = "<C-]>"
+" " Override run current python file key shortcut to Ctrl-Shift-e
+" let g:pymode_run_bind = "<C-S-e>"
+"
+" " Override view python doc key shortcut to Ctrl-Shift-d
+" let g:pymode_doc_bind = "<C-S-d>"
+"
+" " fix hangon for [Pymode] Regenerate autoimport cache
+" let g:pymode_rope_lookup_project = 0
+"
+" let g:pymode_rope_complete_on_dot = 0  " 防止和youcompleteme冲突
 """""""""""""""""""""""""""""""
 ""}}}python mode
+"""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""
+"" => python autopep8{{{
+"""""""""""""""""""""""""""""""
+" autocmd FileType python noremap <buffer> <leader>af :call Autopep8()<CR>
+" " let g:autopep8_ignore="E501,W293"
+" let g:autopep8_select="E501,W293"
+" let g:autopep8_pep8_passes=100
+" let g:autopep8_aggressive=1
+" let g:autopep8_indent_size=2
+" let g:autopep8_diff_type='vertical'
+"
+" set modifiable
+
+map <leader>gr :call RunPython()<CR>
+function RunPython()
+    let mp = &makeprg
+    let ef = &errorformat
+    let exeFile = expand("%:t")
+    setlocal makeprg=python\ -u
+    set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+    silent make %
+    copen
+    let &makeprg = mp
+    let &errorformat = ef
+endfunction
+"""""""""""""""""""""""""""""""
+"" }}} python autopep8
 """""""""""""""""""""""""""""""
 " "-----------------------------------------------------------------
 " " plugin - bufexplorer.vim Buffers切换
@@ -752,8 +785,9 @@ set statusline+=%{ALEGetStatusLine()}
 "ale 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = '!'
+" '❌' '⁉️''⚠️''💩'
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
@@ -771,13 +805,11 @@ let g:ale_keep_list_window_open = 0
 " Write this in your vimrc file
 let g:ale_lint_on_text_changed = 'never'
 
-augroup FiletypeGroup
-    autocmd!
-    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-augroup END
-
-let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8']}
 let g:ale_linter_aliases = {'jsx': 'css'}
+
+let b:ale_fixers = {'py':['autopep8']}
+let b:ale_warn_about_trailing_whitespace = 0
 " You can disable this option too
 " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 1
@@ -798,9 +830,9 @@ let g:formatters_java = ['vogon']
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
-" let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
-" let g:formatters_python = ['autopep8']
-au FileType c,cpp,cc,java nnoremap ,af :Autoformat<CR>
+let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+let g:formatters_python = ['autopep8']
+au FileType c,cpp,cc,java,python nnoremap <leader>af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 "
