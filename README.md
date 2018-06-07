@@ -1,7 +1,14 @@
 # devim
 
-Requirements
+## Pre-install
 
+* vim8
+* python
+* vundle (git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim)
+
+## Requirements
+
+* the_silver_searcher
 * ctags
 * cscope
 * cmake
@@ -33,8 +40,7 @@ Shell tools:
 * TagBar
 * Matchit
 * nerdcommenter
-* Syntastic
-javascript  npm install -g eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint
+* Syntastic  javascript  npm install -g eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint
 * vim-autoformat
 * dash
 
@@ -58,7 +64,6 @@ javascript  npm install -g eslint-config-airbnb eslint-plugin-import eslint-plug
 
 #### HTML
 
-* vim-php-cs-fixer
 * vim-css-color
 
 #### C/C++
@@ -93,42 +98,3 @@ You can specify column alignment with one or two colons:
 | Computer | $1600 |  5    |
 | Phone    | $12   |  12   |
 | Pipe     | $1    |  234  |
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
-$S=\pi r^2$
-
-
-" Shell utils
-
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-
-"Plugin 'powerline/powerline'
-
-"Plugin 'easymotion/vim-easymotion'
-Plugin 'ervandew/supertab'
-
-Plugin 'mattn/emmet-vim'
-
-"Plugin for developing of C and CPP
-
-
-Plugin 'evanmiller/nginx-vim-syntax'
-
-"Plugin for markdown
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
-"Plugin 'spf13/vim-preview'
-"Plugin 'iamcco/markdown-preview.vim'
-
-" Plugin 'tyru/open-browser.vim'
-
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-notes'
-
-"Plugin task
-Plugin 'itchyny/calendar.vim'
-
-Plugin 'tomasr/molokai'
-"Plugin 'altercation/vim-colors-solarized'

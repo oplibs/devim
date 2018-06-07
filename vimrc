@@ -96,8 +96,6 @@ Plugin 'ap/vim-css-color'
 Plugin 'fatih/vim-go'
 
 Plugin 'derekwyatt/vim-scala'
-" Python mode
-" Plugin 'klen/python-mode'
 
 " Nginx grammar support
 " Plugin 'evanmiller/nginx-vim-syntax'
@@ -110,19 +108,20 @@ Plugin 'brookhong/cscope.vim'
 
 "Plugin for markdown
 Plugin 'plasticboy/vim-markdown'
+
 "Plugin for latex
 " Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vim-latex/vim-latex'
 
 " Two color scheme for vim
 Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'vimwiki/vimwiki'
 Plugin 'itchyny/calendar.vim'
 
 " Dash for help: This plugin is for mac software dash.
-Plugin 'rizzatti/dash.vim'
+" Plugin 'rizzatti/dash.vim'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -743,12 +742,6 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 "    endif
 "endfunction
 "
-"nnoremap <Leader>s :call ToggleErrors()<cr>
-nnoremap <Leader>sn :lnext<cr>
-nnoremap <Leader>sp :lprevious<cr>
-"set statusline+=%#warningmsg#
-set statusline+=%{ALEGetStatusLine()}
-"set statusline+=%*
 "
 "" if syntastic go error, please open the following line to check the syntastic output
 "" let g:syntastic_debug=3
@@ -780,10 +773,15 @@ set statusline+=%{ALEGetStatusLine()}
 "map <leader>sc :call SyntasticCheck()<CR>
 "map <leader>ss :call SyntasticToggleMode()<CR>
 "
+"set statusline+=%*
 ""}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ale 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set statusline+=%#warningmsg#
+nnoremap <Leader>sn :lnext<cr>
+nnoremap <Leader>sp :lprevious<cr>
+set statusline+=%{ALEGetStatusLine()}
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
