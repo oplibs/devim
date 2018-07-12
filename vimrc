@@ -840,13 +840,9 @@ imap <silent><CR> <CR><Plug>AutoPairsReturn
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwikilist 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/projects/blockforce',
-    \    'path_html': '~/projects/blockforce/vimwiki_html',
-    \    'template_path': '~/projects/blockforce/template',
-    \    'template_default': "default.tpl"},
-    \ {'path': '~/projects/m2m',
-    \    'path_html': '~/projects/m2m/vimwiki_html',
-    \    'template_path': '~/projects/blockforce/template',
+let g:vimwiki_list = [{'path': '~/projects/work/treki',
+    \    'path_html': '~/projects/work/treki/vimwiki_html',
+    \    'template_path': '~/projects/work/treki/template',
     \    'template_default': "default.tpl"}]
 let g:vimwiki_camel_case = 0
 nmap <Leader>ww <Plug>VimwikiIndex
