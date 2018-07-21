@@ -843,12 +843,13 @@ imap <silent><CR> <CR><Plug>AutoPairsReturn
 let g:vimwiki_list = [{'path': '~/projects/work/treki',
     \    'path_html': '~/projects/work/treki/vimwiki_html',
     \    'template_path': '~/projects/work/treki/template',
-    \    'template_default': "default.tpl"}]
+    \    'template_default': "default.tpl",
+    \    "auto_export": 1}]
 let g:vimwiki_camel_case = 0
 nmap <Leader>ww <Plug>VimwikiIndex
 let g:vimwiki_folding='list'
-autocmd FileType wiki nmap <silent><buffer> <C-z> <Plug>VimwikiToggleListItem
-autocmd FileType wiki vmap <silent><buffer> <C-z> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki nmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
 " autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
