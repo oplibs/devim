@@ -846,6 +846,10 @@ let g:vimwiki_list = [{'path': '~/projects/work/treki',
     \    'template_default': "default.tpl"}]
 let g:vimwiki_camel_case = 0
 nmap <Leader>ww <Plug>VimwikiIndex
+let g:vimwiki_folding='list'
+autocmd FileType wiki nmap <silent><buffer> <C-z> <Plug>VimwikiToggleListItem
+autocmd FileType wiki vmap <silent><buffer> <C-z> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
