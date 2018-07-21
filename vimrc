@@ -840,15 +840,17 @@ imap <silent><CR> <CR><Plug>AutoPairsReturn
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwikilist 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>ww <Plug>VimwikiIndex
 let g:vimwiki_list = [{'path': '~/projects/work/treki',
     \    'path_html': '~/projects/work/treki/vimwiki_html',
     \    'template_path': '~/projects/work/treki/template',
     \    'template_default': "default.tpl",
     \    "auto_export": 1}]
 let g:vimwiki_camel_case = 0
-nmap <Leader>ww <Plug>VimwikiIndex
 let g:vimwiki_folding='list'
-" autocmd FileType wiki nmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
+map <leader>tt <Plug>VimwikiToggleListItem
+" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
 " autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
 " autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
