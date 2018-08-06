@@ -853,6 +853,7 @@ let g:vimwiki_list = [{'path': '~/projects/work/treki',
 let g:vimwiki_camel_case = 0
 let g:vimwiki_folding='list'
 map <leader>tt <Plug>VimwikiToggleListItem
+let g:vimwiki_use_calendar = 1
 " autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
 " autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
 " autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
@@ -860,7 +861,7 @@ map <leader>tt <Plug>VimwikiToggleListItem
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+map ca :Calendar<cr>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " youcompleteme配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
