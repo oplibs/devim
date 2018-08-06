@@ -844,8 +844,12 @@ nmap <Leader>ww <Plug>VimwikiIndex
 let g:vimwiki_list = [{'path': '~/projects/work/treki',
     \    'path_html': '~/projects/work/treki/vimwiki_html',
     \    'template_path': '~/projects/work/treki/template',
-    \    'template_default': "default.tpl",
-    \    "auto_export": 1}]
+    \    'template_default': "~/projects/work/treki/templates/default.tpl",
+    \    "auto_export": 1},{'path': '~/projects/work/artrek',
+            \    'path_html': '~/projects/work/artrek/vimwiki_html',
+            \    'template_path': '~/projects/work/artrek/template',
+            \    'template_default': "~/projects/work/artrek/templates/default.tpl",
+            \    "auto_export": 1}]
 let g:vimwiki_camel_case = 0
 let g:vimwiki_folding='list'
 map <leader>tt <Plug>VimwikiToggleListItem
