@@ -19,9 +19,6 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 Plugin 'L9'
 
-" Plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-
 " Shell utils
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
@@ -30,8 +27,8 @@ Plugin 'christoomey/vim-run-interactive'
 " Common plugin to process text file save
 Plugin 'tpope/vim-sensible'
 
-" File finder
-Plugin 'kien/ctrlp.vim'
+" Display the matching tag in source: tags, { [ (......
+Plugin 'matchit.zip'
 
 Plugin 'easymotion/vim-easymotion'
 " Grep content finder
@@ -51,6 +48,9 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
+" Plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+
 " NerdTree series plugin
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
@@ -58,6 +58,9 @@ Plugin 'xuyuanp/nerdtree-git-plugin'
 
 " Plugin to display tag in source files;
 Plugin 'majutsushi/tagbar'
+
+" File finder
+Plugin 'kien/ctrlp.vim'
 
 " Plugin to display status in line
 Plugin 'bling/vim-airline'
@@ -70,9 +73,6 @@ Plugin 'scrooloose/nerdcommenter'
 
 " Language alignment by element
 Plugin 'godlygeek/tabular'
-
-" Display the matching tag in source: tags, { [ (......
-Plugin 'matchit.zip'
 
 " Syntax check for most languages.
 " Plugin 'scrooloose/syntastic'
@@ -88,11 +88,13 @@ Plugin 'valloric/listtoggle'
 " Programming language plugins
 Plugin 'mattn/emmet-vim'
 
+" Frontend development
 Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'mxw/vim-jsx'
 Plugin 'ap/vim-css-color'
 
+" Backend development
 Plugin 'fatih/vim-go'
 
 Plugin 'derekwyatt/vim-scala'
@@ -164,7 +166,7 @@ if CurSys() == "osx"
 endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" color scheme setting{{{
+" color scheme & GUI setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 syntax enable
@@ -174,7 +176,7 @@ colorscheme molokai " 设定配色方案
 " colorscheme solarized
 
 if has("gui_running")
-	set guioptions-=T
+    set guioptions-=T
 else
     syntax enable
 endif
@@ -187,10 +189,15 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
+set guioptions-=T " 隐藏工具栏
+set guioptions-=m " 隐藏菜单栏
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}color scheme setting
+" }}}color scheme & GUI setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" file type setting{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin on
 
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
@@ -199,13 +206,16 @@ autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
 
 " augroup FiletypeGroup
-    " autocmd!
-    " au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+" autocmd!
+" au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 " augroup END
 
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} file type setting
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible " 关闭 vi 兼容模式
 syntax on " 自动语法高亮
 set number " 显示行号
@@ -237,8 +247,6 @@ set magic
 "set noautowrite
 set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 
-set guioptions-=T " 隐藏工具栏
-set guioptions-=m " 隐藏菜单栏
 set backspace=indent,eol,start
 " 不设定在插入状态无法用退格键和 Delete 键删除回车符
 " " setting the status line
@@ -282,46 +290,70 @@ set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
 set tabstop=4 " 设定 tab 长度为 4
 set expandtab
 filetype plugin indent on " 开启插件
-" " javascript file setting for javascript airbnb style guide
-autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
+" "-----------------------------------------------------------------
+" " plugin - tagbar.vim 查看函数列表
+" "-----------------------------------------------------------------
+" let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+let g:tagbar_width=40
+let g:tagbar_autofocus=0
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go call tagbar#autoopen()
+" nmap <C-t> :TagbarToggle<CR>
+nmap <Leader>t :TagbarToggle<CR>
+" "-----------------------------------------------------------------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vim-interactive-shell 配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>r :RunInInteractiveShell<space>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " source file syntax{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if CurSys()=='osx'
-autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
-autocmd filetype css set dictionary=$VIMFILES/dict/css.dict
-autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
+    autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
+    autocmd filetype css set dictionary=$VIMFILES/dict/css.dict
+    " autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
 endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}}
+" " }}} source file syntax
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 配置多语言环境{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("multi_byte")
-" UTF-8 编码
-set encoding=utf-8
-set termencoding=utf-8
-set formatoptions+=mM
-set fencs=utf-8,gbk
+    " UTF-8 编码
+    set encoding=utf-8
+    set termencoding=utf-8
+    set formatoptions+=mM
+    set fencs=utf-8,gbk
 
-if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
-    set ambiwidth=double
-endif
+    if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
+        set ambiwidth=double
+    endif
 
-if has("win32")
-    source $VIMRUNTIME/delmenu.vim
-    source $VIMRUNTIME/menu.vim
-    language messages zh_CN.utf-8
-endif
+    if has("win32")
+        source $VIMRUNTIME/delmenu.vim
+        source $VIMRUNTIME/menu.vim
+        language messages zh_CN.utf-8
+    endif
 else
     echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
 endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" vim-bufferline {{{
+"""""""""""""""""""""""""""""""
+let g:bufferline_echo = 1
+let g:bufferline_active_buffer_left = '['
+let g:bufferline_active_buffer_right = ']'
+""""""""""""""""""""""""""""""
+" }}} vim-bufferline
+"""""""""""""""""""""""""""""""
 "
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Buffers操作快捷方式{{{
@@ -373,13 +405,13 @@ nnoremap <C-l> <C-w>l
 " " json file setting{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup json_autocmd
-  autocmd!
-  autocmd FileType json set autoindent
-  autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=78 shiftwidth=2
-  autocmd FileType json set softtabstop=2 tabstop=8
-  autocmd FileType json set expandtab
-  autocmd FileType json set foldmethod=syntax
+    autocmd!
+    autocmd FileType json set autoindent
+    autocmd FileType json set formatoptions=tcq2l
+    autocmd FileType json set textwidth=78 shiftwidth=2
+    autocmd FileType json set softtabstop=2 tabstop=8
+    autocmd FileType json set expandtab
+    autocmd FileType json set foldmethod=syntax
 augroup END
 " autoformat the json file.
 " autocmd FileType json noremap <buffer> <leader>af :call JsBeautify()<cr>
@@ -389,8 +421,11 @@ autocmd filetype json noremap <buffer> <leader>af <Esc>:%!python -m json.tool<CR
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
-" => JavaScript section
+" JavaScript section {{{
 """""""""""""""""""""""""""""""
+" " javascript file setting for javascript airbnb style guide
+autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
 " open javascript folding
 function! JavaScriptFold()
     setl foldmethod=syntax
@@ -398,7 +433,7 @@ function! JavaScriptFold()
     syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 
     function! FoldText()
-    return substitute(getline(v:foldstart), '{.*', '{...}', '')
+        return substitute(getline(v:foldstart), '{.*', '{...}', '')
     endfunction
     setl foldtext=FoldText()
 endfunction
@@ -424,7 +459,7 @@ autocmd FileType html vnoremap <buffer> <leader>af :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <leader>af :call RangeCSSBeautify()<cr>
 au FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
 " """""""""""""""""""""""""""""
-" }}}
+" }}} JavaScript section
 " """""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""
 " => Python section
@@ -432,14 +467,15 @@ au FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
-au FileType python inoremap <buffer> $r return
-au FileType python inoremap <buffer> $i import
-au FileType python inoremap <buffer> $p print
-au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
-au FileType python map <buffer> <leader>1 /class
-au FileType python map <buffer> <leader>2 /def
-au FileType python map <buffer> <leader>C ?class
-au FileType python map <buffer> <leader>D ?def
+" temp commnent for checking
+" au FileType python inoremap <buffer> $r return
+" au FileType python inoremap <buffer> $i import
+" au FileType python inoremap <buffer> $p print
+" au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
+" au FileType python map <buffer> <leader>1 /class
+" au FileType python map <buffer> <leader>2 /def
+" au FileType python map <buffer> <leader>C ?class
+" au FileType python map <buffer> <leader>D ?def
 
 au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 " Python 文件的一般设置，比如不要 tab 等
@@ -496,15 +532,6 @@ endfunction
 " " \bv 左右方式查看 \bs 上下方式查看
 " "-----------------------------------------------------------------
 "
-""""""""""""""""""""""""""""""
-" vim-bufferline{{{
-"""""""""""""""""""""""""""""""
-let g:bufferline_echo = 1
-let g:bufferline_active_buffer_left = '['
-let g:bufferline_active_buffer_right = ']'
-""""""""""""""""""""""""""""""
-" }}}
-"""""""""""""""""""""""""""""""
 "
 " "-----------------------------------------------------------------
 " " plugin - taglist.vim 查看函数列表，需要ctags程序
@@ -539,24 +566,6 @@ let g:bufferline_active_buffer_right = ']'
 " " \/ 所有MarkWords的下一个 \? 所有MarkWords的上一个
 " "-----------------------------------------------------------------
 "
-
-" "-----------------------------------------------------------------
-" " plugin - tagbar.vim 查看函数列表
-" "-----------------------------------------------------------------
-" let g:tagbar_ctags_bin='/usr/local/bin/ctags'
-let g:tagbar_width=40
-let g:tagbar_autofocus=0
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go call tagbar#autoopen()
-" nmap <C-t> :TagbarToggle<CR>
-nmap <Leader>t :TagbarToggle<CR>
-" "-----------------------------------------------------------------
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vim-interactive-shell 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>r :RunInInteractiveShell<space>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -586,7 +595,7 @@ let NERDTreeQuitOnOpen=1 "打开文件时关闭树
 " autocmd VimEnter * NERDTree
 
 " function! NERDTree_Start()
-    " exec 'NERDTree'
+" exec 'NERDTree'
 " endfunction
 
 function! NERDTree_IsValid()
@@ -608,16 +617,16 @@ let NERDTreeShowBookmarks=1
 
 " NERDTree git 配置信息如下
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
+            \ "Modified"  : "✹",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ "Unknown"   : "?"
+            \ }
 "}}}
 
 "-----------------------------------------------------------------
@@ -644,13 +653,6 @@ let NERDCompactSexyComs=1 " 多行注释时样子更好看
 " " [% 定位块首 ]% 定位块尾
 " "-----------------------------------------------------------------
 "
-"
-" "-----------------------------------------------------------------
-" " plugin - vcscommand.vim 对%命令进行扩展使得能在嵌套标签和语句之间跳转
-" " SVN/git管理工具
-" "-----------------------------------------------------------------
-"
-"
 " "-----------------------------------------------------------------
 " " plugin – a.vim
 " "-----------------------------------------------------------------
@@ -674,9 +676,9 @@ let g:multi_cursor_quit_key='<Esc>'
 " let g:ctrlp_map = ',,'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-    \ }
+            \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
+            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+            \ }
 
 if executable('ag')
     " Use Ag over Grep
@@ -686,7 +688,9 @@ if executable('ag')
     " Ag is fast enough that CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 0
 endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Easymotion 配置{{{
 "let g:EasyMotion_leader_key = 'f'
@@ -824,6 +828,7 @@ let g:formatters_cpp  = ['vogon']
 let g:formatters_c    = ['vogon']
 let g:formatters_cc   = ['vogon']
 let g:formatters_java = ['vogon']
+let g:formatters_gofmt = ['vogon']
 " The following three lines do not work!!!!!!
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
@@ -831,6 +836,8 @@ let g:formatters_java = ['vogon']
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
 let g:formatters_python = ['autopep8']
 au FileType c,cpp,cc,java,python nnoremap <leader>af :Autoformat<CR>
+au BufWrite * :Autoformat
+noremap ,af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 "
@@ -842,10 +849,10 @@ imap <silent><CR> <CR><Plug>AutoPairsReturn
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>ww <Plug>VimwikiIndex
 let g:vimwiki_list = [{'path': '~/projects/work/treki',
-    \    'path_html': '~/projects/work/treki/vimwiki_html',
-    \    'template_path': '~/projects/work/treki/template',
-    \    'template_default': "~/projects/work/treki/templates/default.tpl",
-    \    "auto_export": 1},{'path': '~/projects/work/artrek',
+            \    'path_html': '~/projects/work/treki/vimwiki_html',
+            \    'template_path': '~/projects/work/treki/template',
+            \    'template_default': "~/projects/work/treki/templates/default.tpl",
+            \    "auto_export": 1},{'path': '~/projects/work/artrek',
             \    'path_html': '~/projects/work/artrek/vimwiki_html',
             \    'template_path': '~/projects/work/artrek/template',
             \    'template_default': "~/projects/work/artrek/templates/default.tpl",
@@ -957,17 +964,17 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "emmet.vim 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:user_emmet_settings = {
-            " \ 'php' : {
-            " \ 'extends' : 'html',
-            " \ 'filters' : 'c',
-            " \ },
-            " \ 'xml' : {
-            " \ 'extends' : 'html',
-            " \ },
-            " \ 'haml' : {
-            " \ 'extends' : 'html',
-            " \ },
-            " \}
+" \ 'php' : {
+" \ 'extends' : 'html',
+" \ 'filters' : 'c',
+" \ },
+" \ 'xml' : {
+" \ 'extends' : 'html',
+" \ },
+" \ 'haml' : {
+" \ 'extends' : 'html',
+" \ },
+" \}
 "let g:user_emmet_expandabbr_key = '<Tab>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}emmet.vim 配置
@@ -977,25 +984,25 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let mapleader=','
 if exists(":Tabularize")
-  nmap <leader>t= :Tabularize /=<CR>
-  vmap <leader>t= :Tabularize /=<CR>
-  nmap <leader>t: :Tabularize /:\zs<CR>
-  vmap <leader>t: :Tabularize /:\zs<CR>
-  vmap <leader>t| :Tabularize /|\zs<CR>
-  vmap <leader>t| :Tabularize /|\zs<CR>
+    nmap <leader>t= :Tabularize /=<CR>
+    vmap <leader>t= :Tabularize /=<CR>
+    nmap <leader>t: :Tabularize /:\zs<CR>
+    vmap <leader>t: :Tabularize /:\zs<CR>
+    vmap <leader>t| :Tabularize /|\zs<CR>
+    vmap <leader>t| :Tabularize /|\zs<CR>
 endif
 
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
+    let p = '^\s*|\s.*\s|\s*$'
+    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        Tabularize/|/l1
+        normal! 0
+        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}tabular settings

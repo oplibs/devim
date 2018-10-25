@@ -27,7 +27,7 @@ Common tools:
     * vim-airline
     * vim-bufferline
 
-Shell tools:
+    Shell tools:
 
     * vimproc.vim
     * vimshell.vim
@@ -41,7 +41,10 @@ Shell tools:
 * Matchit
 * nerdcommenter
 * Syntastic  javascript  npm install -g eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint
+* astyle:
+    * apt-get install python-autopep8  # For python
 * vim-autoformat
+    * brew install llvm  # C++ style
 * dash
 
 #### Javascript
@@ -71,30 +74,30 @@ Shell tools:
     * a.vim
     * cscope.vim
 
-1. Install plugin:
+    1. Install plugin:
 
-Oplibs development env config.
-abd newword
-```mermaid
-graph TD;
+    Oplibs development env config.
+    abd newword
+    ```mermaid
+    graph TD;
     A-->B;
     A-->C;
     B-->D;
     C-->E;
-```
+    ```
 
-**Markdown Extra** has a special syntax for tables:
+    **Markdown Extra** has a special syntax for tables:
 
-Item     | Value
--------- | ---
-Computer | $1600
-Phone    | $12
-Pipe     | $1
+    Item     | Value
+    -------- | ---
+    Computer | $1600
+    Phone    | $12
+    Pipe     | $1
 
-You can specify column alignment with one or two colons:
+    You can specify column alignment with one or two colons:
 
-| Item     | Value | Qty   |
-| :------- | ----: | :---: |
-| Computer | $1600 |  5    |
-| Phone    | $12   |  12   |
-| Pipe     | $1    |  234  |
+    | Item     | Value | Qty   |
+    | :------- | ----: | :---: |
+    | Computer | $1600 |  5    |
+    | Phone    | $12   |  12   |
+    | Pipe     | $1    |  234  |
