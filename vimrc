@@ -297,7 +297,7 @@ filetype plugin indent on " 开启插件
 " let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=40
 let g:tagbar_autofocus=0
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java call tagbar#autoopen()
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
 " nmap <C-t> :TagbarToggle<CR>
 nmap <Leader>t :TagbarToggle<CR>
 " "-----------------------------------------------------------------
