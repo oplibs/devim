@@ -38,6 +38,8 @@ Plugin 'rking/ag.vim'
 
 Plugin 'BufOnly.vim'
 
+" Plugin 'taglist.vim'
+
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-surround'
@@ -55,6 +57,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
+
 
 " Plugin to display tag in source files;
 Plugin 'majutsushi/tagbar'
@@ -300,7 +303,7 @@ filetype plugin indent on " 开启插件
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
 " let g:tagbar_ctags_bin='/usr/local/bin/ctags'
-let g:tagbar_width=40
+let g:tagbar_width=30
 let g:tagbar_autofocus=0
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
 " nmap <C-t> :TagbarToggle<CR>
@@ -916,7 +919,9 @@ let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 "
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} youcompleteme
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -952,7 +957,7 @@ let g:snipMate.scope_aliases['js']='js,css,javascript.node,javascript.es6,javasc
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " listtoggle配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:lt_location_list_toggle_map = '<leader>k'
+let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} listtoggle
@@ -1013,7 +1018,7 @@ endfunction
 " }}}tabular settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "'plasticboy/vim-markdown.vim{{{
+" "vim-markdown{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_folding_style_pythonic=1
@@ -1021,21 +1026,22 @@ let g:vim_markdown_no_default_key_mappings=1
 let g:vim_markdown_math=1
 let g:vim_markdown_frontmatter=1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}
+" }}} vim-markdown
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "cscope{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
+nnoremap <leader>sl :call ToggleLocationList()<CR>
+
 "s: Find this C symbol
 nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
 " g: Find this definition
-nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+nnoremap  <leader>fd :call CscopeFind('g', expand('<cword>'))<CR>
 " c: Find functions calling this function
 nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fg :call CscopeFind('d', expand('<cword>'))<CR>
 " t: Find this text string
 nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
 " e: Find this egrep pattern
@@ -1047,9 +1053,16 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-scala {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType scala nmap <leader>gr :exec '!scala' shellescape(@%, 1)<cr>
-
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}} vim-scala
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-go {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use goimports for formatting
 let g:go_fmt_command = "goimports"
 "
@@ -1075,7 +1088,9 @@ au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}} vim-go
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "latex{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
