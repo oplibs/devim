@@ -266,6 +266,7 @@ set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
 
 " use ',' as the leader key
 let mapleader = ","
+" let mapleader = "\<Space>"
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 选中状态下 Ctrl+c 复制 {{{
@@ -1009,10 +1010,15 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-"
-nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let g:ycm_semantic_triggers =  {
+"   \   'c' : ['->', '.'],
+"   \   'cpp,objcpp' : ['->', '.', '::'],
+"   \   'perl' : ['->'],
+"   \   'php' : ['->', '::'],
+"   \ }
+nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>yd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} youcompleteme
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
