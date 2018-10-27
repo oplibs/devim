@@ -114,8 +114,8 @@ Plugin 'joonty/vim-do'
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
-" Plugin 'vhdirk/vim-cmake'
-Plugin 'jalcine/cmake.vim'
+Plugin 'vhdirk/vim-cmake'
+" Plugin 'jalcine/cmake.vim'
 
 "Plugin for markdown
 Plugin 'plasticboy/vim-markdown'
