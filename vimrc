@@ -35,6 +35,8 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'grep.vim'
 Plugin 'rking/ag.vim'
 " Plugin 'dyng/ctrlsf.vim'
+"
+Plugin 'chrisbra/vim-diff-enhanced'
 
 Plugin 'BufOnly.vim'
 
@@ -57,7 +59,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
-
 
 " Plugin to display tag in source files;
 Plugin 'majutsushi/tagbar'
@@ -128,7 +129,7 @@ Plugin 'tomasr/molokai'
 " Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'vimwiki/vimwiki'
-Plugin 'itchyny/calendar.vim'
+" Plugin 'itchyny/calendar.vim'
 
 " Dash for help: This plugin is for mac software dash.
 " Plugin 'rizzatti/dash.vim'
@@ -857,10 +858,14 @@ au FileType c,cpp,cc,java,python nnoremap <leader>af :Autoformat<CR>
 noremap ,af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
-"
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AutoPair 配置{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:AutoPairsMapCR = 0
 imap <silent><CR> <CR><Plug>AutoPairsReturn
-
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} AutoPair
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwikilist 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -885,7 +890,13 @@ let g:vimwiki_use_calendar = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map ca :Calendar<cr>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Calendar {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map ca :Calendar<cr>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} Calendar
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " youcompleteme配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
