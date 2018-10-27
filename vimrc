@@ -64,6 +64,7 @@ Plugin 'kien/ctrlp.vim'
 
 " Plugin to display status in line
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bling/vim-bufferline'
 
 " Plugin to comment text quickly
@@ -91,7 +92,7 @@ Plugin 'mattn/emmet-vim'
 " Frontend development
 Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
-Plugin 'mxw/vim-jsx'
+" Plugin 'mxw/vim-jsx'
 Plugin 'ap/vim-css-color'
 
 " Backend development
@@ -102,11 +103,15 @@ Plugin 'derekwyatt/vim-scala'
 " Nginx grammar support
 " Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'elzr/vim-json'
-Plugin 'chase/vim-ansible-yaml'
+" Plugin 'chase/vim-ansible-yaml'
+
+Plugin 'joonty/vim-do'
 
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
+" Plugin 'vhdirk/vim-cmake'
+Plugin 'jalcine/cmake.vim'
 
 "Plugin for markdown
 Plugin 'plasticboy/vim-markdown'
@@ -354,7 +359,16 @@ let g:bufferline_active_buffer_right = ']'
 """"""""""""""""""""""""""""""
 " }}} vim-bufferline
 """""""""""""""""""""""""""""""
-"
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-airline{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Buffers操作快捷方式{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -836,7 +850,7 @@ let g:formatters_gofmt = ['vogon']
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
 let g:formatters_python = ['autopep8']
 au FileType c,cpp,cc,java,python nnoremap <leader>af :Autoformat<CR>
-au BufWrite * :Autoformat
+" au BufWrite * :Autoformat
 noremap ,af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
@@ -948,15 +962,6 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let Grep_Skip_Files = '*.swp *~'
 let Grep_Skip_Dirs = 'node_modules dist .git vendor'
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-airline{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1077,4 +1082,11 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType latex nmap <leader>gr :exec '!latex' shellescape(@%, 1)<cr>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-do{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:do_auto_show_process_window = 1
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}} vim-do
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
