@@ -305,8 +305,8 @@ filetype plugin indent on " 开启插件
 " "-----------------------------------------------------------------
 " let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=30
-let g:tagbar_autofocus=0
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
+let g:tagbar_autofocus=1
+" autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
 " nmap <C-t> :TagbarToggle<CR>
 nmap <Leader>t :TagbarToggle<CR>
 " "-----------------------------------------------------------------
@@ -487,19 +487,36 @@ au FileType python syn keyword pythonDecorator True None False self
 
 " temp commnent for checking
 " au FileType python inoremap <buffer> $r return
-" au FileType python inoremap <buffer> $i import
 " au FileType python inoremap <buffer> $p print
-" au FileType python inoremap <buffer> $f #--- PH ----------------------------------------------<esc>FP2xi
 " au FileType python map <buffer> <leader>1 /class
-" au FileType python map <buffer> <leader>2 /def
-" au FileType python map <buffer> <leader>C ?class
 " au FileType python map <buffer> <leader>D ?def
-
 au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
+
+" 一键运行
+"编译运行
+"" map <leader>gr :call CompileRunGcc()<CR>
+"" func! CompileRunGcc()
+""     exec "w"
+""     if &filetype == 'c'
+""         exec "!g++ % -o %<"
+""         exec "! %<"
+""     elseif &filetype == 'cpp'
+""         exec "!g++ % -o %<"
+""         exec "! %<"
+""     elseif &filetype == 'java'
+""         exec "!javac %"
+""         exec "!java %<"
+""     elseif &filetype == 'py'
+""         exec "!python"
+""     elseif &filetype == 'sh'
+""         :!%
+""     endif
+"" endfunc
+" }}}
 " Python 文件的一般设置，比如不要 tab 等
 " autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""
-"" => python-mode{{{
+"" python-mode {{{
 """""""""""""""""""""""""""""""
 " " Override go-to.definition key shortcut to Ctrl-]
 " let g:pymode_rope_goto_definition_bind = "<C-]>"
@@ -514,7 +531,7 @@ au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 "
 " let g:pymode_rope_complete_on_dot = 0  " 防止和youcompleteme冲突
 """""""""""""""""""""""""""""""
-""}}}python mode
+""}}} python-mode
 """""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""
 "" => python autopep8{{{
@@ -645,8 +662,9 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Clean"     : "✔︎",
             \ "Unknown"   : "?"
             \ }
-"}}}
-
+"-----------------------------------------------------------------
+"}}} NERDTree
+"-----------------------------------------------------------------
 "-----------------------------------------------------------------
 "NERDCommenter.vim 配置{{{
 "-----------------------------------------------------------------
@@ -659,8 +677,6 @@ let g:NERDTreeIndicatorMapCustom = {
 "-----------------------------------------------------------------
 let NERDSpaceDelims=1 " 让注释符与语句之间留一个空格
 let NERDCompactSexyComs=1 " 多行注释时样子更好看
-" nmap <leader>cc <leader>cc
-" nmap <leader>cu <leader>cu
 "-----------------------------------------------------------------
 "}}}
 "-----------------------------------------------------------------
@@ -712,7 +728,6 @@ endif
 
 "Easymotion 配置{{{
 "let g:EasyMotion_leader_key = 'f'
-"
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 map <Leader><leader>h <Plug>(easymotion-linebackward)
@@ -798,21 +813,37 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 "set statusline+=%*
 ""}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" loclist {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>sn :lnext<cr>
+nnoremap <Leader>sp :lprevious<cr>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} loclist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ale 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set statusline+=%#warningmsg#
-nnoremap <Leader>sn :lnext<cr>
-nnoremap <Leader>sp :lprevious<cr>
 set statusline+=%{ALEGetStatusLine()}
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+nmap <Leader>sc :ALEToggle<CR>
+nmap <Leader>sd :ALEDetail<CR>
+
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = 'X'
 let g:ale_sign_warning = '!'
 " '❌' '⁉️''⚠️''💩'
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_statusline_format = ['⨉ %d error(s)', '⚠ %d warning(s)', '⬥ ok']
+" let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
+
+let g:ale_set_highlights = 0
+
+let g:airline#extensions#ale#error_symbol = 1
+let g:airline#extensions#ale#warning_symbol = 1
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
@@ -820,23 +851,72 @@ let g:ale_open_list = 0
 " Set this if you want to.
 " This can be useful if you are combining ALE with
 " some other plugin which sets quickfix errors, etc.
-let g:ale_keep_list_window_open = 0
+let g:ale_keep_list_window_open = 1
 
 " Write this in your vimrc file
 let g:ale_lint_on_text_changed = 'never'
 
-let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8']}
-let g:ale_linter_aliases = {'jsx': 'css'}
+let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8'], 'c++':['clang'], 'c':['clang'], 'java':['javac']}
+" let g:ale_linter_aliases = {'jsx': 'css'}
 
-let b:ale_fixers = {'py':['autopep8']}
+" let b:ale_fixers = {'py':['autopep8']}
 let b:ale_warn_about_trailing_whitespace = 0
-" You can disable this option too
-" if you don't want linters to run on opening a file
+" " You can disable this option too
+" " if you don't want linters to run on opening a file
 let g:ale_lint_on_enter = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:ale_echo_cursor = 1
+" let g:ale_echo_msg_error_str = 'Error'
+" let g:ale_echo_msg_warning_str = 'Warning'
+" let g:ale_echo_msg_format = '%s'
+" let g:ale_enabled = 1
+" let g:ale_fix_on_save = 0
+" let g:ale_fixers = {}
+" let g:ale_keep_list_window_open = 1
+" let g:ale_lint_delay = 0
+" let g:ale_lint_on_enter = 1
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_linter_aliases = {}
+" let g:ale_linters = {}
+" let g:ale_open_list = 0
+" let g:ale_set_highlights = 1
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:ale_list_vertical = 1
+" let g:ale_set_signs = 1
+" let g:ale_sign_column_always = 0
+" let g:ale_sign_error = '>>'
+" let g:ale_sign_offset = 1000000
+" let g:ale_sign_warning = '--'
+" let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
+" let g:ale_warn_about_trailing_whitespace = 1
+
+" let g:ale_set_loclist=0
+" let g:ale_set_quickfix=0
+
+function! OpenALEResults()
+  let l:bfnum = bufnr('')
+  let l:items = ale#engine#GetLoclist(l:bfnum)
+  call setqflist([], 'r', {'items': l:items, 'title': 'ALE results'})
+  botright cwindow
+endfunction"
+
+function! RunALELint()
+  if empty(ale#engine#GetLoclist(bufnr('')))
+    let b:ale_enabled = 1
+    augroup ALEProgress
+      autocmd!
+      autocmd User ALELintPost call OpenALEResults() | au! ALEProgress
+    augroup end
+    call ale#Queue(0, 'lint_file')
+  else
+    call OpenALEResults()
+  endif
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}ale
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-autoformat.vim 配置{{{
 "这里使用astyle格式化c,cpp,cc,java,需要用homebrew安装astyle
@@ -853,9 +933,9 @@ let g:formatters_gofmt = ['vogon']
 "let g:formatdef_clangformat_objc = '"clang-format -style=file"'
 let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
 let g:formatters_python = ['autopep8']
-au FileType c,cpp,cc,java,python nnoremap <leader>af :Autoformat<CR>
+" au FileType c,cpp,cc,java,python nnoremap <leader>af :Autoformat<CR>
 " au BufWrite * :Autoformat
-noremap ,af :Autoformat<CR>
+noremap <leader>af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -976,7 +1056,7 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "grep{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Grep_Skip_Files = '*.swp *~'
+let Grep_Skip_Files = '*.swp *~ *.class *.jar'
 let Grep_Skip_Dirs = 'node_modules dist .git vendor'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
@@ -1065,13 +1145,6 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-scala {{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType scala nmap <leader>gr :exec '!scala' shellescape(@%, 1)<cr>
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-scala
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-go {{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use goimports for formatting
@@ -1108,6 +1181,13 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType latex nmap <leader>gr :exec '!latex' shellescape(@%, 1)<cr>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-scala {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType scala nmap <leader>gr :exec '!scala' shellescape(@%, 1)<cr>
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}} vim-scala
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-do{{{
