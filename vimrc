@@ -22,7 +22,7 @@ Plugin 'L9'
 " Shell utils
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
-Plugin 'christoomey/vim-run-interactive'
+" Plugin 'christoomey/vim-run-interactive'
 
 " Common plugin to process text file save
 Plugin 'tpope/vim-sensible'
@@ -41,6 +41,8 @@ Plugin 'chrisbra/vim-diff-enhanced'
 Plugin 'BufOnly.vim'
 
 " Plugin 'taglist.vim'
+
+Plugin 'skywind3000/asyncrun.vim'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-multiple-cursors'
@@ -314,10 +316,18 @@ nmap <Leader>t :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-interactive-shell 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>r :RunInInteractiveShell<space>
+" nnoremap <Leader>r :RunInInteractiveShell<space>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}
+"}}} tarbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "AsyncRun{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:asyncrun_open = 8
+nnoremap <Leader>as :AsyncRun<space>
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}AsyncRun
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " source file syntax{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
