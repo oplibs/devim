@@ -31,18 +31,20 @@ Plugin 'tpope/vim-sensible'
 Plugin 'matchit.zip'
 
 Plugin 'easymotion/vim-easymotion'
+
 " Grep content finder
 Plugin 'grep.vim'
 Plugin 'rking/ag.vim'
 " Plugin 'dyng/ctrlsf.vim'
+" File finder
+Plugin 'kien/ctrlp.vim'
 "
 Plugin 'chrisbra/vim-diff-enhanced'
 
 Plugin 'BufOnly.vim'
 
-" Plugin 'taglist.vim'
-
 Plugin 'skywind3000/asyncrun.vim'
+Plugin 'joonty/vim-do'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-multiple-cursors'
@@ -63,10 +65,8 @@ Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 
 " Plugin to display tag in source files;
+" Plugin 'taglist.vim'
 Plugin 'majutsushi/tagbar'
-
-" File finder
-Plugin 'kien/ctrlp.vim'
 
 " Plugin to display status in line
 Plugin 'bling/vim-airline'
@@ -95,33 +95,30 @@ Plugin 'valloric/listtoggle'
 " Programming language plugins
 Plugin 'mattn/emmet-vim'
 
-" Frontend development
-Plugin 'pangloss/vim-javascript'
-Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'mxw/vim-jsx'
-Plugin 'ap/vim-css-color'
-
-" Backend development
-Plugin 'fatih/vim-go'
-
-Plugin 'derekwyatt/vim-scala'
-
-" Nginx grammar support
-" Plugin 'evanmiller/nginx-vim-syntax'
-Plugin 'elzr/vim-json'
-" Plugin 'chase/vim-ansible-yaml'
-
-Plugin 'joonty/vim-do'
-
 "Plugin for developing of C and CPP
 Plugin 'a.vim'
 Plugin 'brookhong/cscope.vim'
 Plugin 'vhdirk/vim-cmake'
 " Plugin 'jalcine/cmake.vim'
 
+" Backend development
+Plugin 'fatih/vim-go'
+
+Plugin 'derekwyatt/vim-scala'
+
+" Frontend development
+Plugin 'pangloss/vim-javascript'
+Plugin 'maksimr/vim-jsbeautify'
+" Plugin 'mxw/vim-jsx'
+Plugin 'ap/vim-css-color'
+
+" small language parser
+Plugin 'elzr/vim-json'
+" Plugin 'chase/vim-ansible-yaml'
+" Nginx grammar support
+" Plugin 'evanmiller/nginx-vim-syntax'
 "Plugin for markdown
 Plugin 'plasticboy/vim-markdown'
-
 "Plugin for latex
 " Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vim-latex/vim-latex'
