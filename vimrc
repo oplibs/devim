@@ -224,6 +224,12 @@ au! BufRead,BufNewFile *.json set filetype=json
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 
+" augroup quickfix
+    " autocmd!
+    " autocmd QuickFixCmdPost [^l]* cwindow
+    " autocmd QuickFixCmdPost l*    lwindow
+" augroup END
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} file type setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -736,7 +742,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+map <leader>ag :Ag<space>
 "Easymotion 配置{{{
 "let g:EasyMotion_leader_key = 'f'
 let g:EasyMotion_smartcase = 1
@@ -1065,7 +1071,7 @@ let g:snipMate.scope_aliases['js']='js,css,javascript.node,javascript.es6,javasc
 " listtoggle配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<leader>q'
+" let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} listtoggle
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
