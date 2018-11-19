@@ -1,5 +1,7 @@
 alias gh="cd ~/projects/github"
 alias wk="cd ~/projects/work"
+alias py2="cd ~/projects/venv/py2 && source bin/activate"
+alias py3="cd ~/projects/venv/py3 && source bin/activate"
 
 # export GOROOT=~/go
 export GOPATH=~/projects/go
