@@ -86,7 +86,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'Chiel92/vim-autoformat'
 
 " For common language hint
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 Plugin 'valloric/listtoggle'
 
 " Programming language plugins
@@ -99,7 +99,7 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'ap/vim-css-color'
 
 " Backend development
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 
 Plugin 'derekwyatt/vim-scala'
 
