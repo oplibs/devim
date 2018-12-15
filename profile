@@ -1,3 +1,4 @@
+alias lf='ls | sed "s:^:`pwd`/:" | sed "s/^/$HOSTNAME:/g"'
 alias gh="cd ~/projects/github"
 alias wk="cd ~/projects/work"
 alias py2="cd ~/projects/venv/py2 && source bin/activate"
