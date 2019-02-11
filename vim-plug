@@ -81,19 +81,22 @@ Plug 'godlygeek/tabular'
 " Syntax check for most languages.
 " Plug 'scrooloose/syntastic'
 if v:version > 800
-    Plug 'scrooloose/syntastic'
+  Plug 'w0rp/ale'
 else
-    Plug 'w0rp/ale'
+  Plug 'scrooloose/syntastic'
 endif
 
 " Autoformat tools
 Plug 'Chiel92/vim-autoformat'
 
 " For common language hint
-" Plug 'valloric/youcompleteme'
-Plug 'shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+if v:version > 800
+  Plug 'shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+else
+  Plug 'valloric/youcompleteme'
+endif
 
 Plug 'valloric/listtoggle'
 
@@ -108,7 +111,10 @@ Plug 'vhdirk/vim-cmake'
 " Plug 'jalcine/cmake.vim'
 
 " Backend development
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+if v:version > 704
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+endif
 
 " Frontend development
 Plug 'pangloss/vim-javascript'
@@ -154,6 +160,7 @@ call plug#end()
 "     echom "syn"
 "     echom v:version
 " endif
+"echom v:version
 
 function! CurSys()
     if has("win16") || has("win32") || has("win64") || has("win95")
@@ -455,7 +462,7 @@ augroup json_autocmd
 augroup END
 " autoformat the json file.
 " autocmd FileType json noremap <buffer> <leader>af :call JsBeautify()<cr>
-autocmd filetype json noremap <buffer> <leader>af <Esc>:%!python -m json.tool<CR>
+" autocmd filetype json noremap <buffer> <leader>af <Esc>:%!python -m json.tool<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1005,57 +1012,60 @@ let g:vimwiki_use_calendar = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" deoplete配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:deoplete#enable_at_startup = 1
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}deoplete配置
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" youcompleteme配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
-inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+if v:version > 800
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " deoplete配置{{{
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  let g:deoplete#enable_at_startup = 1
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " }}}deoplete配置
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+else
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " youcompleteme配置{{{
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
+  inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+  inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
+  inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
+  inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+  inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-let g:ycm_key_list_select_completion=['<c-n>']
-" let g:ycm_key_list_select_completion = ['<Down>', '<space>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
+  "youcompleteme  默认tab  s-tab 和自动补全冲突
+  let g:ycm_key_list_select_completion=['<c-n>']
+  " let g:ycm_key_list_select_completion = ['<Down>', '<space>']
+  "let g:ycm_key_list_previous_completion=['<c-p>']
+  let g:ycm_key_list_previous_completion = ['<Up>']
+  let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 
-let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
-let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
-nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
-" nnoremap <leader>lo :lopen<CR> "open locationlist
-" nnoremap <leader>lc :lclose<CR>   "close locationlist
-inoremap <leader><leader> <C-x><C-o>
-"在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-" let g:ycm_semantic_triggers =  {
-"   \   'c' : ['->', '.'],
-"   \   'cpp,objcpp' : ['->', '.', '::'],
-"   \   'perl' : ['->'],
-"   \   'php' : ['->', '::'],
-"   \ }
-nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>yd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} youcompleteme
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
+  let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
+  let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
+  let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
+  nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
+  " nnoremap <leader>lo :lopen<CR> "open locationlist
+  " nnoremap <leader>lc :lclose<CR>   "close locationlist
+  inoremap <leader><leader> <C-x><C-o>
+  "在注释输入中也能补全
+  let g:ycm_complete_in_comments = 1
+  "在字符串输入中也能补全
+  let g:ycm_complete_in_strings = 1
+  "注释和字符串中的文字也会被收入补全
+  let g:ycm_collect_identifiers_from_comments_and_strings = 0
+  " let g:ycm_semantic_triggers =  {
+  "   \   'c' : ['->', '.'],
+  "   \   'cpp,objcpp' : ['->', '.', '::'],
+  "   \   'perl' : ['->'],
+  "   \   'php' : ['->', '::'],
+  "   \ }
+  nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
+  nnoremap <leader>yd :YcmCompleter GoToDefinition<CR>
+  nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " }}} youcompleteme
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+endif
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " UltiSnips {{{
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1184,41 +1194,43 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-go {{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" use goimports for formatting
-let g:go_fmt_command = "goimports"
-"
-" " turn highlighting on
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+if v:version > 704
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "vim-go {{{
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " use goimports for formatting
+  let g:go_fmt_command = "goimports"
+  "
+  " " turn highlighting on
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
 
-" Open go doc in vertical window, horizontal, or tab
-" au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-" au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-" au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+  " Open go doc in vertical window, horizontal, or tab
+  " au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+  " au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+  " au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 
-au FileType go nmap <leader>gr <Plug>(go-run)
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-au FileType go nmap <leader>gc <Plug>(go-coverage)
+  au FileType go nmap <leader>gr <Plug>(go-run)
+  au FileType go nmap <leader>gb <Plug>(go-build)
+  au FileType go nmap <leader>gt <Plug>(go-test)
+  au FileType go nmap <leader>gc <Plug>(go-coverage)
 
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+  au FileType go nmap <Leader>ds <Plug>(go-def-split)
+  au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+  au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-go
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-do{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:do_auto_show_process_window = 1
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-do
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "}}} vim-go
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "vim-do{{{
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  let g:do_auto_show_process_window = 1
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "}}} vim-do
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+endif
