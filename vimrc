@@ -76,7 +76,8 @@ Plug 'scrooloose/nerdcommenter'
 " Plug 'raimondi/delimitmate'
 
 " Language alignment by element
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
 
 " Syntax check for most languages.
 " Plug 'scrooloose/syntastic'
@@ -90,13 +91,13 @@ endif
 Plug 'Chiel92/vim-autoformat'
 
 " For common language hint
-if v:version > 800
-  Plug 'shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-else
-  Plug 'valloric/youcompleteme'
-endif
+" if v:version > 800
+"   Plug 'shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" else
+" endif
+Plug 'valloric/youcompleteme'
 
 Plug 'valloric/listtoggle'
 
@@ -973,14 +974,14 @@ let g:formatters_python = ['autopep8']
 noremap <leader>af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AutoPair 配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:AutoPairsMapCR = 0
-imap <silent><CR> <CR><Plug>AutoPairsReturn
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} AutoPair
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " AutoPair 配置{{{
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:AutoPairsMapCR = 0
+" imap <silent><CR> <CR><Plug>AutoPairsReturn
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}} AutoPair
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwikilist 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1130,34 +1131,46 @@ let Grep_Skip_Dirs = 'node_modules dist .git vendor'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}emmet.vim 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"tabular settings{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let mapleader=','
-if exists(":Tabularize")
-    nmap <leader>t= :Tabularize /=<CR>
-    vmap <leader>t= :Tabularize /=<CR>
-    nmap <leader>t: :Tabularize /:\zs<CR>
-    vmap <leader>t: :Tabularize /:\zs<CR>
-    vmap <leader>t| :Tabularize /|\zs<CR>
-    vmap <leader>t| :Tabularize /|\zs<CR>
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "tabular settings{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " let mapleader=','
+" if exists(":Tabularize")
+"     nmap <leader>t= :Tabularize /=<CR>
+"     vmap <leader>t= :Tabularize /=<CR>
+"     nmap <leader>t: :Tabularize /:\zs<CR>
+"     vmap <leader>t: :Tabularize /:\zs<CR>
+"     vmap <leader>t| :Tabularize /|\zs<CR>
+"     vmap <leader>t| :Tabularize /|\zs<CR>
+" endif
+"
+" inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+"
+" function! s:align()
+"     let p = '^\s*|\s.*\s|\s*$'
+"     if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+"         let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+"         let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+"         Tabularize/|/l1
+"         normal! 0
+"         call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+"     endif
+" endfunction
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}}tabular settings
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " vim-easy-align settings {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap <Leader>a <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
 endif
-
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-
-function! s:align()
-    let p = '^\s*|\s.*\s|\s*$'
-    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-        Tabularize/|/l1
-        normal! 0
-        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-    endif
-endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}tabular settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}}vim-easy-align settings
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-markdown{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
