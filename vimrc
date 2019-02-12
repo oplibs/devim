@@ -76,8 +76,8 @@ Plug 'scrooloose/nerdcommenter'
 " Plug 'raimondi/delimitmate'
 
 " Language alignment by element
-" Plug 'godlygeek/tabular'
-Plug 'junegunn/vim-easy-align'
+Plug 'godlygeek/tabular'
+" Plug 'junegunn/vim-easy-align'
 
 " Syntax check for most languages.
 " Plug 'scrooloose/syntastic'
@@ -1131,54 +1131,52 @@ let Grep_Skip_Dirs = 'node_modules dist .git vendor'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}emmet.vim 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "tabular settings{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " let mapleader=','
-" if exists(":Tabularize")
-"     nmap <leader>t= :Tabularize /=<CR>
-"     vmap <leader>t= :Tabularize /=<CR>
-"     nmap <leader>t: :Tabularize /:\zs<CR>
-"     vmap <leader>t: :Tabularize /:\zs<CR>
-"     vmap <leader>t| :Tabularize /|\zs<CR>
-"     vmap <leader>t| :Tabularize /|\zs<CR>
-" endif
-"
-" inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-"
-" function! s:align()
-"     let p = '^\s*|\s.*\s|\s*$'
-"     if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-"         let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-"         let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-"         Tabularize/|/l1
-"         normal! 0
-"         call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-"     endif
-" endfunction
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}}tabular settings
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " vim-easy-align settings {{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap <Leader>a <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
-if !exists('g:easy_align_delimiters')
-  let g:easy_align_delimiters = {}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"tabular settings{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let mapleader=','
+if exists(":Tabularize")
+    nmap <leader>t= :Tabularize /=<CR>
+    vmap <leader>t= :Tabularize /=<CR>
+    nmap <leader>t: :Tabularize /:\zs<CR>
+    vmap <leader>t: :Tabularize /:\zs<CR>
+    vmap <leader>t| :Tabularize /|\zs<CR>
+    vmap <leader>t| :Tabularize /|\zs<CR>
 endif
-let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}}vim-easy-align settings
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+    let p = '^\s*|\s.*\s|\s*$'
+    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        Tabularize/|/l1
+        normal! 0
+        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    endif
+endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}tabular settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " " vim-easy-align settings {{{
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Start interactive EasyAlign in visual mode (e.g. vipga)
+" xmap ga <Plug>(EasyAlign)
+" " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" nmap ga <Plug>(EasyAlign)
+" " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " " }}}vim-easy-align settings
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-markdown{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_folding_style_pythonic=1
-let g:vim_markdown_no_default_key_mappings=1
-let g:vim_markdown_math=1
-let g:vim_markdown_frontmatter=1
+let g:vim_markdown_folding_disabled        = 1
+let g:vim_markdown_folding_style_pythonic  = 1
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_math                    = 1
+let g:vim_markdown_frontmatter             = 1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} vim-markdown
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
