@@ -1,152 +1,167 @@
 "=========================================================================
-" DesCRiption: devim for MacVim
-" Last Change: 2017年06月30日 15时13分
-" Version: 0.05
+" DesCRiption: devim for Vim
+" Last Change: 2019年01月30日 15时13分
+" Version: 0.10
 "=========================================================================
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" Let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Let vim-plug manage the vim plugins
+" Installation: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+call plug#begin('~/.vim/plugged')
 
-" Keep Plugin commands between vundle#begin/end.
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-Plugin 'L9'
+" Plugin 'L9'
+Plug 'vim-scripts/L9'
 
 " Shell utils
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
-" Plugin 'christoomey/vim-run-interactive'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimshell.vim'
 
 " Common plugin to process text file save
-Plugin 'tpope/vim-sensible'
+Plug 'tpope/vim-sensible'
 
 " Display the matching tag in source: tags, { [ (......
-Plugin 'matchit.zip'
+" Plugin 'matchit.zip'
+Plug 'tmhedberg/matchit'
 
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 " Grep content finder
-Plugin 'grep.vim'
-Plugin 'rking/ag.vim'
-" Plugin 'dyng/ctrlsf.vim'
+Plug 'vim-scripts/grep.vim'
+Plug 'rking/ag.vim'
+" Plug 'dyng/ctrlsf.vim'
 " File finder
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 "
-Plugin 'chrisbra/vim-diff-enhanced'
+Plug 'chrisbra/vim-diff-enhanced'
 
-Plugin 'BufOnly.vim'
+"Plugin 'BufOnly.vim'
+Plug 'vim-scripts/BufOnly.vim'
 
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'joonty/vim-do'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'joonty/vim-do'
 
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-surround'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
 
-" Plugin 'SirVer/ultisnips'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 
-" Plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+" Plug on GitHub repo
+Plug 'tpope/vim-fugitive'
 
 " NerdTree series plugin
-Plugin 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Plugin 'xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'xuyuanp/nerdtree-git-plugin'
 
-" Plugin to display tag in source files;
-" Plugin 'taglist.vim'
-Plugin 'majutsushi/tagbar'
+" Plug to display tag in source files;
+" Plug 'taglist.vim'
+Plug 'majutsushi/tagbar'
 
-" Plugin to display status in line
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bling/vim-bufferline'
+" Plug to display status in line
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-bufferline'
 
-" Plugin to comment text quickly
-Plugin 'scrooloose/nerdcommenter'
-" Plugin 'jiangmiao/auto-pairs'
-" Plugin 'raimondi/delimitmate'
+" Plug to comment text quickly
+Plug 'scrooloose/nerdcommenter'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'raimondi/delimitmate'
 
 " Language alignment by element
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 " Syntax check for most languages.
-" Plugin 'scrooloose/syntastic'
-Plugin 'w0rp/ale'
+" Plug 'scrooloose/syntastic'
+if v:version > 800
+  Plug 'w0rp/ale'
+else
+  Plug 'scrooloose/syntastic'
+endif
 
 " Autoformat tools
-Plugin 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
 
 " For common language hint
-Plugin 'valloric/youcompleteme'
-Plugin 'valloric/listtoggle'
+if v:version > 800
+  Plug 'shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+else
+  Plug 'valloric/youcompleteme'
+endif
+
+Plug 'valloric/listtoggle'
 
 " Programming language plugins
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 
-"Plugin for developing of C and CPP
-Plugin 'a.vim'
-Plugin 'brookhong/cscope.vim'
-Plugin 'vhdirk/vim-cmake'
-" Plugin 'jalcine/cmake.vim'
+"Plug for developing of C and CPP
+"Plugin 'a.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'brookhong/cscope.vim'
+Plug 'vhdirk/vim-cmake'
+" Plug 'jalcine/cmake.vim'
 
 " Backend development
-Plugin 'fatih/vim-go'
 
-Plugin 'derekwyatt/vim-scala'
+if v:version > 704
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+endif
 
 " Frontend development
-Plugin 'pangloss/vim-javascript'
-Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'mxw/vim-jsx'
-Plugin 'ap/vim-css-color'
+Plug 'pangloss/vim-javascript'
+Plug 'maksimr/vim-jsbeautify'
+" Plug 'mxw/vim-jsx'
+Plug 'ap/vim-css-color'
 
 " small language parser
-Plugin 'elzr/vim-json'
-" Plugin 'chase/vim-ansible-yaml'
+" Plug 'elzr/vim-json'
+" Plug 'chase/vim-ansible-yaml'
 " Nginx grammar support
-" Plugin 'evanmiller/nginx-vim-syntax'
-"Plugin for markdown
-Plugin 'plasticboy/vim-markdown'
-"Plugin for latex
-" Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'vim-latex/vim-latex'
+" Plug 'evanmiller/nginx-vim-syntax'
+"Plug for markdown
+Plug 'plasticboy/vim-markdown'
+"Plug for latex
+" Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'vim-latex/vim-latex'
 
 " Two color scheme for vim
-Plugin 'tomasr/molokai'
-" Plugin 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
+" Plug 'altercation/vim-colors-solarized'
 
-Plugin 'vimwiki/vimwiki'
-" Plugin 'itchyny/calendar.vim'
+Plug 'vimwiki/vimwiki'
+" Plug 'itchyny/calendar.vim'
 
-" Dash for help: This plugin is for mac software dash.
-" Plugin 'rizzatti/dash.vim'
-"
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" All of your Plugs must be added before the following line
+call plug#end()
 "
 " Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+" :PlugList       - lists configured plugins
+" :PlugInstall    - installs plugins; append `!` to update or just :PlugUpdate
+" :PlugSearch foo - searches for foo; append `!` to refresh local cache
+" :PlugClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
+" Start of user define scripts
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " return OS type, eg: windows, or linux, mac, et.st..{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" if v:version > 800
+"     echom "asyn"
+" else
+"     echom "syn"
+"     echom v:version
+" endif
+"echom v:version
+
 function! CurSys()
     if has("win16") || has("win32") || has("win64") || has("win95")
         return "windows"
@@ -447,7 +462,7 @@ augroup json_autocmd
 augroup END
 " autoformat the json file.
 " autocmd FileType json noremap <buffer> <leader>af :call JsBeautify()<cr>
-autocmd filetype json noremap <buffer> <leader>af <Esc>:%!python -m json.tool<CR>
+" autocmd filetype json noremap <buffer> <leader>af <Esc>:%!python -m json.tool<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -659,7 +674,7 @@ let NERDTreeAutoCenter=1
 let NERDTreeWinSize=30
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup=0
-" 忽略一下文件的显示
+" 忽略以下文件的显示
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 " 显示书签列表
 let NERDTreeShowBookmarks=1
@@ -766,66 +781,169 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
 "}}}"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""syntastic 配置{{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" let g:syntastic_error_symbol='>>'
-"" let g:syntastic_warning_symbol='>'
-"
-"let g:syntastic_error_symbol = '❌'
-"let g:syntastic_style_error_symbol = '⁉️'
-"let g:syntastic_warning_symbol = '⚠️'
-"let g:syntastic_style_warning_symbol = '💩'
-"
-"highlight link SyntasticErrorSign SignColumn
-"highlight link SyntasticWarningSign SignColumn
-"highlight link SyntasticStyleErrorSign SignColumn
-"highlight link SyntasticStyleWarningSign SignColumn
-""" to see error location list
-""let g:syntastic_always_populate_loc_list = 0
-""let g:syntastic_auto_loc_list = 0
-"function! ToggleErrors()
-"    let old_last_winnr = winnr('$')
-"    lclose
-"    if old_last_winnr == winnr('$')
-"        " Nothing was closed, open syntastic error location panel
-"        Errors
-"    endif
-"endfunction
-"
-"
-"" if syntastic go error, please open the following line to check the syntastic output
-"" let g:syntastic_debug=3
-"
-""" 修改高亮的背景色, 适应主题
-"highlight SyntasticErrorSign guifg=white guibg=yellow
-"let g:syntastic_enable_highlighting=1
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_enable_highlighting=1
-"
-"let g:syntastic_php_checkers = ['php']
-""let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
-"let g:syntastic_python_checkers = ['pylint']
-"let g:syntastic_javascript_checkers = ['eslint']
-""let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-"let g:syntastic_html_checkers=['eslint']
-"let g:syntastic_css_checkers = ['eslint']
-"
-"" From the vim-go document but not work for displaying list
-"" let g:syntastic_go_checkers = ['golint', 'errcheck']
-"" let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
-"let g:syntastic_go_checkers = ['go']
-"
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] ,'passive_filetypes': ['js'] }
-"map <leader>sc :call SyntasticCheck()<CR>
-"map <leader>ss :call SyntasticToggleMode()<CR>
-"
-"set statusline+=%*
-""}}}
+if v:version > 800
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  "ale 配置{{{
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  "set statusline+=%#warningmsg#
+  set statusline+=%{ALEGetStatusLine()}
+  highlight clear ALEErrorSign
+  highlight clear ALEWarningSign
+
+  nmap sp <Plug>(ale_previous_wrap)
+  nmap sn <Plug>(ale_next_wrap)
+  nmap <Leader>sc :ALEToggle<CR>
+  nmap <Leader>sd :ALEDetail<CR>
+
+  let g:ale_sign_column_always = 1
+  let g:ale_sign_error = 'X'
+  let g:ale_sign_warning = '!'
+  " '❌' '⁉️''⚠️''💩'
+  let g:ale_statusline_format = ['⨉ %d error(s)', '⚠ %d warning(s)', '⬥ ok']
+  " let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
+
+  let g:ale_set_highlights = 0
+
+  let g:airline#extensions#ale#error_symbol = 1
+  let g:airline#extensions#ale#warning_symbol = 1
+
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 1
+  let g:ale_open_list = 0
+  " Set this if you want to.
+  " This can be useful if you are combining ALE with
+  " some other plugin which sets quickfix errors, etc.
+  let g:ale_keep_list_window_open = 1
+
+  " Write this in your vimrc file
+  let g:ale_lint_on_text_changed = 'never'
+
+  let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8'], 'c++':['clang'], 'c':['clang'], 'java':['javac']}
+  " let g:ale_linter_aliases = {'jsx': 'css'}
+
+  " let b:ale_fixers = {'py':['autopep8']}
+  let b:ale_warn_about_trailing_whitespace = 0
+  " " You can disable this option too
+  " " if you don't want linters to run on opening a file
+  let g:ale_lint_on_enter = 1
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " let g:ale_echo_cursor = 1
+  " let g:ale_echo_msg_error_str = 'Error'
+  " let g:ale_echo_msg_warning_str = 'Warning'
+  " let g:ale_echo_msg_format = '%s'
+  " let g:ale_enabled = 1
+  " let g:ale_fix_on_save = 0
+  " let g:ale_fixers = {}
+  " let g:ale_keep_list_window_open = 1
+  " let g:ale_lint_delay = 0
+  " let g:ale_lint_on_enter = 1
+  " let g:ale_lint_on_save = 1
+  " let g:ale_lint_on_text_changed = 'never'
+  " let g:ale_linter_aliases = {}
+  " let g:ale_linters = {}
+  " let g:ale_open_list = 0
+  " let g:ale_set_highlights = 1
+  " let g:ale_set_loclist = 0
+  " let g:ale_set_quickfix = 1
+  " let g:ale_list_vertical = 1
+  " let g:ale_set_signs = 1
+  " let g:ale_sign_column_always = 0
+  " let g:ale_sign_error = '>>'
+  " let g:ale_sign_offset = 1000000
+  " let g:ale_sign_warning = '--'
+  " let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
+  " let g:ale_warn_about_trailing_whitespace = 1
+
+  " let g:ale_set_loclist=0
+  " let g:ale_set_quickfix=0
+
+  function! OpenALEResults()
+    let l:bfnum = bufnr('')
+    let l:items = ale#engine#GetLoclist(l:bfnum)
+    call setqflist([], 'r', {'items': l:items, 'title': 'ALE results'})
+    botright cwindow
+  endfunction"
+
+  function! RunALELint()
+    if empty(ale#engine#GetLoclist(bufnr('')))
+      let b:ale_enabled = 1
+      augroup ALEProgress
+        autocmd!
+        autocmd User ALELintPost call OpenALEResults() | au! ALEProgress
+      augroup end
+      call ale#Queue(0, 'lint_file')
+    else
+      call OpenALEResults()
+    endif
+  endfunction
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  "}}}ale
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+else
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  "syntastic 配置{{{
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " let g:syntastic_error_symbol='>>'
+  " let g:syntastic_warning_symbol='>'
+
+  let g:syntastic_error_symbol = '❌'
+  let g:syntastic_style_error_symbol = '⁉️'
+  let g:syntastic_warning_symbol = '⚠️'
+  let g:syntastic_style_warning_symbol = '💩'
+
+  highlight link SyntasticErrorSign SignColumn
+  highlight link SyntasticWarningSign SignColumn
+  highlight link SyntasticStyleErrorSign SignColumn
+  highlight link SyntasticStyleWarningSign SignColumn
+  "" to see error location list
+  "let g:syntastic_always_populate_loc_list = 0
+  "let g:syntastic_auto_loc_list = 0
+  function! ToggleErrors()
+      let old_last_winnr = winnr('$')
+      lclose
+      if old_last_winnr == winnr('$')
+          " Nothing was closed, open syntastic error location panel
+          Errors
+      endif
+  endfunction
+
+
+  " if syntastic go error, please open the following line to check the syntastic output
+  " let g:syntastic_debug=3
+
+  "" 修改高亮的背景色, 适应主题
+  highlight SyntasticErrorSign guifg=white guibg=yellow
+  let g:syntastic_enable_highlighting=1
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_loc_list_height = 5
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_enable_highlighting=1
+
+  let g:syntastic_php_checkers = ['php']
+  "let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+  let g:syntastic_python_checkers = ['pylint']
+  let g:syntastic_javascript_checkers = ['eslint']
+  "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+  let g:syntastic_html_checkers=['eslint']
+  let g:syntastic_css_checkers = ['eslint']
+
+  " From the vim-go document but not work for displaying list
+  " let g:syntastic_go_checkers = ['golint', 'errcheck']
+  " let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
+  let g:syntastic_go_checkers = ['go']
+
+  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] ,'passive_filetypes': ['js'] }
+  map <leader>sc :call SyntasticCheck()<CR>
+  map <leader>ss :call SyntasticToggleMode()<CR>
+
+  set statusline+=%*
+  "}}}
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  "}}}syntastic 配置
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " loclist {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -833,103 +951,6 @@ nnoremap <Leader>sn :lnext<cr>
 nnoremap <Leader>sp :lprevious<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} loclist
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"ale 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set statusline+=%#warningmsg#
-set statusline+=%{ALEGetStatusLine()}
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-nmap <Leader>sc :ALEToggle<CR>
-nmap <Leader>sd :ALEDetail<CR>
-
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-" '❌' '⁉️''⚠️''💩'
-let g:ale_statusline_format = ['⨉ %d error(s)', '⚠ %d warning(s)', '⬥ ok']
-" let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
-
-let g:ale_set_highlights = 0
-
-let g:airline#extensions#ale#error_symbol = 1
-let g:airline#extensions#ale#warning_symbol = 1
-
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 0
-" Set this if you want to.
-" This can be useful if you are combining ALE with
-" some other plugin which sets quickfix errors, etc.
-let g:ale_keep_list_window_open = 1
-
-" Write this in your vimrc file
-let g:ale_lint_on_text_changed = 'never'
-
-let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8'], 'c++':['clang'], 'c':['clang'], 'java':['javac']}
-" let g:ale_linter_aliases = {'jsx': 'css'}
-
-" let b:ale_fixers = {'py':['autopep8']}
-let b:ale_warn_about_trailing_whitespace = 0
-" " You can disable this option too
-" " if you don't want linters to run on opening a file
-let g:ale_lint_on_enter = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:ale_echo_cursor = 1
-" let g:ale_echo_msg_error_str = 'Error'
-" let g:ale_echo_msg_warning_str = 'Warning'
-" let g:ale_echo_msg_format = '%s'
-" let g:ale_enabled = 1
-" let g:ale_fix_on_save = 0
-" let g:ale_fixers = {}
-" let g:ale_keep_list_window_open = 1
-" let g:ale_lint_delay = 0
-" let g:ale_lint_on_enter = 1
-" let g:ale_lint_on_save = 1
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_linter_aliases = {}
-" let g:ale_linters = {}
-" let g:ale_open_list = 0
-" let g:ale_set_highlights = 1
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
-" let g:ale_list_vertical = 1
-" let g:ale_set_signs = 1
-" let g:ale_sign_column_always = 0
-" let g:ale_sign_error = '>>'
-" let g:ale_sign_offset = 1000000
-" let g:ale_sign_warning = '--'
-" let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
-" let g:ale_warn_about_trailing_whitespace = 1
-
-" let g:ale_set_loclist=0
-" let g:ale_set_quickfix=0
-
-function! OpenALEResults()
-  let l:bfnum = bufnr('')
-  let l:items = ale#engine#GetLoclist(l:bfnum)
-  call setqflist([], 'r', {'items': l:items, 'title': 'ALE results'})
-  botright cwindow
-endfunction"
-
-function! RunALELint()
-  if empty(ale#engine#GetLoclist(bufnr('')))
-    let b:ale_enabled = 1
-    augroup ALEProgress
-      autocmd!
-      autocmd User ALELintPost call OpenALEResults() | au! ALEProgress
-    augroup end
-    call ale#Queue(0, 'lint_file')
-  else
-    call OpenALEResults()
-  endif
-endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}ale
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-autoformat.vim 配置{{{
@@ -991,50 +1012,60 @@ let g:vimwiki_use_calendar = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" youcompleteme配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
-inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+if v:version > 800
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " deoplete配置{{{
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  let g:deoplete#enable_at_startup = 1
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " }}}deoplete配置
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+else
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " youcompleteme配置{{{
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
+  inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+  inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
+  inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
+  inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+  inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-let g:ycm_key_list_select_completion=['<c-n>']
-" let g:ycm_key_list_select_completion = ['<Down>', '<space>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
+  "youcompleteme  默认tab  s-tab 和自动补全冲突
+  let g:ycm_key_list_select_completion=['<c-n>']
+  " let g:ycm_key_list_select_completion = ['<Down>', '<space>']
+  "let g:ycm_key_list_previous_completion=['<c-p>']
+  let g:ycm_key_list_previous_completion = ['<Up>']
+  let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 
-let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
-let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
-nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
-" nnoremap <leader>lo :lopen<CR> "open locationlist
-" nnoremap <leader>lc :lclose<CR>   "close locationlist
-inoremap <leader><leader> <C-x><C-o>
-"在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-" let g:ycm_semantic_triggers =  {
-"   \   'c' : ['->', '.'],
-"   \   'cpp,objcpp' : ['->', '.', '::'],
-"   \   'perl' : ['->'],
-"   \   'php' : ['->', '::'],
-"   \ }
-nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>yd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} youcompleteme
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
+  let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
+  let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
+  let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
+  nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
+  " nnoremap <leader>lo :lopen<CR> "open locationlist
+  " nnoremap <leader>lc :lclose<CR>   "close locationlist
+  inoremap <leader><leader> <C-x><C-o>
+  "在注释输入中也能补全
+  let g:ycm_complete_in_comments = 1
+  "在字符串输入中也能补全
+  let g:ycm_complete_in_strings = 1
+  "注释和字符串中的文字也会被收入补全
+  let g:ycm_collect_identifiers_from_comments_and_strings = 0
+  " let g:ycm_semantic_triggers =  {
+  "   \   'c' : ['->', '.'],
+  "   \   'cpp,objcpp' : ['->', '.', '::'],
+  "   \   'perl' : ['->'],
+  "   \   'php' : ['->', '::'],
+  "   \ }
+  nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
+  nnoremap <leader>yd :YcmCompleter GoToDefinition<CR>
+  nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " }}} youcompleteme
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+endif
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " UltiSnips {{{
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1163,55 +1194,43 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-go {{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" use goimports for formatting
-let g:go_fmt_command = "goimports"
-"
-" " turn highlighting on
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+if v:version > 704
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "vim-go {{{
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " use goimports for formatting
+  let g:go_fmt_command = "goimports"
+  "
+  " " turn highlighting on
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
 
-" Open go doc in vertical window, horizontal, or tab
-" au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-" au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-" au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+  " Open go doc in vertical window, horizontal, or tab
+  " au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+  " au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+  " au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
 
-au FileType go nmap <leader>gr <Plug>(go-run)
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-au FileType go nmap <leader>gc <Plug>(go-coverage)
+  au FileType go nmap <leader>gr <Plug>(go-run)
+  au FileType go nmap <leader>gb <Plug>(go-build)
+  au FileType go nmap <leader>gt <Plug>(go-test)
+  au FileType go nmap <leader>gc <Plug>(go-coverage)
 
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+  au FileType go nmap <Leader>ds <Plug>(go-def-split)
+  au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+  au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-go
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "latex{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType latex nmap <leader>gr :exec '!latex' shellescape(@%, 1)<cr>
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-scala {{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au FileType scala nmap <leader>gr :exec '!scala' shellescape(@%, 1)<cr>
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-scala
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-do{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:do_auto_show_process_window = 1
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-do
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "}}} vim-go
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "vim-do{{{
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  let g:do_auto_show_process_window = 1
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " "}}} vim-do
+  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+endif
