@@ -16,7 +16,7 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'vim-scripts/L9'
 
 " Shell utils
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell.vim'
 
 " Common plugin to process text file save
@@ -31,7 +31,6 @@ Plug 'easymotion/vim-easymotion'
 " Grep content finder
 Plug 'vim-scripts/grep.vim'
 Plug 'rking/ag.vim'
-" Plug 'dyng/ctrlsf.vim'
 " File finder
 Plug 'kien/ctrlp.vim'
 "
@@ -47,10 +46,10 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 
-" Plug 'SirVer/ultisnips'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Plug on GitHub repo
@@ -72,7 +71,7 @@ Plug 'bling/vim-bufferline'
 
 " Plug to comment text quickly
 Plug 'scrooloose/nerdcommenter'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 " Plug 'raimondi/delimitmate'
 
 " Language alignment by element
@@ -97,7 +96,11 @@ Plug 'Chiel92/vim-autoformat'
 "   Plug 'roxma/vim-hug-neovim-rpc'
 " else
 " endif
-Plug 'valloric/youcompleteme'
+if v:version > 800
+Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
+else
+Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer' }
+endif
 
 Plug 'valloric/listtoggle'
 
@@ -737,8 +740,8 @@ let g:multi_cursor_quit_key='<Esc>'
 "ctrlp 配置{{{  设置忽略目录和文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
-" let g:ctrlp_map = ',,'
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<leader><leader>p'
+" let g:ctrlp_map = '<c-p>'
 let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
             \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
@@ -974,15 +977,15 @@ let g:formatters_python = ['autopep8']
 noremap <leader>af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 "}}}
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " AutoPair 配置{{{
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:AutoPairsMapCR = 0
-" imap <silent><CR> <CR><Plug>AutoPairsReturn
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}} AutoPair
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AutoPair 配置{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:AutoPairsMapCR = 0
+imap <silent><CR> <CR><Plug>AutoPairsReturn
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} AutoPair
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwikilist 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>ww <Plug>VimwikiIndex
@@ -1017,7 +1020,7 @@ if v:version > 800
   " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " deoplete配置{{{
   " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let g:deoplete#enable_at_startup = 1
+  " let g:deoplete#enable_at_startup = 1
   " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " }}}deoplete配置
   " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1034,10 +1037,10 @@ else
   inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
   "youcompleteme  默认tab  s-tab 和自动补全冲突
-  let g:ycm_key_list_select_completion=['<c-n>']
+  let g:ycm_key_list_select_completion=['<C-n>']
   " let g:ycm_key_list_select_completion = ['<Down>', '<space>']
-  "let g:ycm_key_list_previous_completion=['<c-p>']
-  let g:ycm_key_list_previous_completion = ['<Up>']
+  let g:ycm_key_list_previous_completion=['<S-n>']
+  "let g:ycm_key_list_previous_completion = ['<Up>']
   let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 
   let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
@@ -1067,32 +1070,35 @@ else
   " }}} youcompleteme
   " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 endif
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " UltiSnips {{{
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " better key bindings for UltiSnipsExpandTrigger
-" " let g:UltiSnipsExpandTrigger = "<tab>"
-" " let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
-" let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'
-" let g:UltiSnipsSnippetDirectories=['UltiSnips', '~/.vim/bundle/vim-snippets/snippets/']
-" let g:UltiSnipsExpandTrigger="<S-j>"
-" let g:UltiSnipsJumpForwardTrigger = "<S-j>"
-" let g:UltiSnipsJumpBackwardTrigger = "<S-k>"
-" let g:UltiSnipsEditSplit = 'horizontal'
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnips {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsSnippetDirectories=['UltiSnips', '~/.vim/plugged/vim-snippets/snippets/']
 
-" autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+""let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit = 'horizontal'
+" "let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
+
+autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
 " autocmd FileType php UltiSnipsAddFiletypes yii
-" " let g:UltiSnipsEnableSnipMate = 0
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}} UltiSnips
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:UltiSnipsEnableSnipMate = 0
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} UltiSnips
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " snipmate{{{
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:snipMate={}
-let g:snipMate.scope_aliases={}
-let g:snipMate.scope_aliases['php']='php,html,js,css,yii,yii-chtml'
-let g:snipMate.scope_aliases['js']='js,css,javascript.node,javascript.es6,javascript.jquery'
+" let g:snipMate={}
+" let g:snipMate.scope_aliases={}
+" let g:snipMate.scope_aliases['php']='php,html,js,css,yii,yii-chtml'
+" let g:snipMate.scope_aliases['js']='js,css,javascript.node,javascript.es6,javascript.jquery'
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}} snipmate
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
