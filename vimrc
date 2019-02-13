@@ -90,11 +90,7 @@ endif
 Plug 'Chiel92/vim-autoformat'
 
 " For common language hint
-" if v:version > 800
 " Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
-" else
-" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer' }
-" endif
 
 if v:version > 704
   if has('nvim')
@@ -125,9 +121,7 @@ Plug 'vim-scripts/a.vim'
 Plug 'brookhong/cscope.vim'
 Plug 'vhdirk/vim-cmake'
 
-" Backend development
-
-if v:version > 704
+if executable('go')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 endif
 
@@ -941,7 +935,6 @@ else
       endif
   endfunction
 
-
   " if syntastic go error, please open the following line to check the syntastic output
   " let g:syntastic_debug=3
 
@@ -1281,10 +1274,10 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if v:version > 704
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " "vim-go {{{
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('go')
   " use goimports for formatting
   let g:go_fmt_command = "goimports"
   "
@@ -1310,10 +1303,10 @@ if v:version > 704
   au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
   au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+endif
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " "}}} vim-go
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-do{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
