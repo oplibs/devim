@@ -3,7 +3,6 @@
 " Last Change: 2019年01月30日 15时13分
 " Version: 0.10
 "=========================================================================
-
 " Let vim-plug manage the vim plugins
 " Installation: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.vim/plugged')
@@ -23,7 +22,6 @@ Plug 'Shougo/vimshell.vim'
 Plug 'tpope/vim-sensible'
 
 " Display the matching tag in source: tags, { [ (......
-" Plugin 'matchit.zip'
 Plug 'tmhedberg/matchit'
 
 Plug 'easymotion/vim-easymotion'
@@ -32,23 +30,23 @@ Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/grep.vim'
 Plug 'rking/ag.vim'
 " File finder
-if has ("python3")
- Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+if has ("python3") || has ("python")
+  Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 else
- Plug 'kien/ctrlp.vim'
+  Plug 'kien/ctrlp.vim'
 endif
 
 ""git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ""~/.fzf/install
 Plug 'junegunn/fzf'
-"
+
 Plug 'chrisbra/vim-diff-enhanced'
 
 "Plugin 'BufOnly.vim'
 Plug 'vim-scripts/BufOnly.vim'
 
 Plug 'skywind3000/asyncrun.vim'
-Plug 'joonty/vim-do'
+" Plug 'joonty/vim-do'
 
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'terryma/vim-multiple-cursors'
@@ -612,9 +610,7 @@ au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 " let g:autopep8_aggressive=1
 " let g:autopep8_indent_size=2
 " let g:autopep8_diff_type='vertical'
-"
 " set modifiable
-
 map <leader>gr :call RunPython()<CR>
 function RunPython()
     let mp = &makeprg
@@ -652,9 +648,8 @@ endfunction
 " let Tlist_Process_File_Always = 1
 " let Tlist_Display_Prototype = 0
 " let Tlist_Compact_Format = 1
-" "-----------------------------------------------------------------
-
-"-----------------------------------------------------------------
+" -----------------------------------------------------------------
+" -----------------------------------------------------------------
 " " plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。
 " " \m mark or unmark the word under (or before) the cursor
 " " \r manually input a regular expression. 用于搜索.
@@ -663,9 +658,6 @@ endfunction
 " " \* 当前MarkWord的下一个 \# 当前MarkWord的上一个
 " " \/ 所有MarkWords的下一个 \? 所有MarkWords的上一个
 " "-----------------------------------------------------------------
-"
-set listchars=tab:\|\
-set list
 " vim-indent-guide config {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
@@ -720,60 +712,50 @@ let NERDTreeWinSize=30
 let g:nerdtree_tabs_open_on_console_startup=0
 " 忽略以下文件的显示
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
-" 显示书签列表
-let NERDTreeShowBookmarks=1
 
 " NERDTree git 配置信息如下
 let g:NERDTreeIndicatorMapCustom = {
-            \ "Modified"  : "✹",
-            \ "Staged"    : "✚",
-            \ "Untracked" : "✭",
-            \ "Renamed"   : "➜",
-            \ "Unmerged"  : "═",
-            \ "Deleted"   : "✖",
-            \ "Dirty"     : "✗",
-            \ "Clean"     : "✔︎",
-            \ "Unknown"   : "?"
-            \ }
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 "-----------------------------------------------------------------
 "}}} NERDTree
 "-----------------------------------------------------------------
 "-----------------------------------------------------------------
-"NERDCommenter.vim 配置{{{
+"NERDCommenter.vim configuration{{{
 "-----------------------------------------------------------------
 " plugin - NERD_commenter.vim 注释代码用的，
 " [count],cc 光标以下count行逐行添加注释(7,cc)
 " [count],cu 光标以下count行逐行取消注释(7,cu)
 " [count],cm 光标以下count行尝试添加块注释(7,cm)
 " ,cA 在行尾插入 /* */,并且进入插入模式。 这个命令方便写注释。
-" 注：count参数可选，无则默认为选中行或当前行
 "-----------------------------------------------------------------
 let NERDSpaceDelims=1 " 让注释符与语句之间留一个空格
 let NERDCompactSexyComs=1 " 多行注释时样子更好看
 "-----------------------------------------------------------------
-"}}}
-"-----------------------------------------------------------------
-"
-" "-----------------------------------------------------------------
+"}}}NERDCommenter.vim configuration
+" ----------------------------------------------------------------
+" ----------------------------------------------------------------
 " " plugin - matchit.vim 对%命令进行扩展使得能在嵌套标签和语句之间跳转
 " " % 正向匹配 g% 反向匹配
 " " [% 定位块首 ]% 定位块尾
-" "-----------------------------------------------------------------
-"
-" "-----------------------------------------------------------------
-" " plugin – a.vim
-" "-----------------------------------------------------------------
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "----------------------------------------------------------------
 " multi-cursor配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "----------------------------------------------------------------
 " Default mapping for vim-multi-cursor
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}
+" }}}multi-cursor配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "fzf 配置{{{
@@ -789,9 +771,9 @@ set rtp+=~/.fzf
 let g:ctrlp_map = '<leader><leader>p'
 " let g:ctrlp_map = '<c-p>'
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
-            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-            \ }
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
 
 if executable('ag')
     " Use Ag over Grep
@@ -1006,12 +988,21 @@ nnoremap <Leader>sp :lprevious<cr>
 "vim-autoformat.vim 配置{{{
 "这里使用astyle格式化c,cpp,cc,java,需要用homebrew安装astyle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:formatdef_vogon = '"astyle --style=attach --pad-oper"'
-let g:formatters_cpp  = ['vogon']
-let g:formatters_c    = ['vogon']
-let g:formatters_cc   = ['vogon']
-let g:formatters_java = ['vogon']
-let g:formatters_gofmt = ['vogon']
+
+if executable('astyle')
+  let g:formatdef_baselint  = '"astyle --style=google"'
+endif
+" let g:formatdef_vogon = '"astyle --style=attach --pad-oper"'
+let g:formatters_cpp    = ['baselint']
+let g:formatters_c      = ['baselint']
+let g:formatters_cc     = ['baselint']
+let g:formatters_objc   = ['baselint']
+let g:formatters_java   = ['baselint']
+
+" let g:formatters_cpp  = ['vogon']
+" let g:formatters_c    = ['vogon']
+" let g:formatters_cc   = ['vogon']
+" let g:formatters_java = ['vogon']
 " The following three lines do not work!!!!!!
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
@@ -1320,12 +1311,11 @@ if v:version > 704
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " "}}} vim-go
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " "vim-do{{{
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let g:do_auto_show_process_window = 1
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " "}}} vim-do
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 endif
-
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-do{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:do_auto_show_process_window = 1
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}} vim-do
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
