@@ -32,7 +32,11 @@ Plug 'easymotion/vim-easymotion'
 Plug 'vim-scripts/grep.vim'
 Plug 'rking/ag.vim'
 " File finder
-Plug 'kien/ctrlp.vim'
+if has ("python3")
+ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+else
+ Plug 'kien/ctrlp.vim'
+endif
 
 ""git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ""~/.fzf/install
@@ -146,6 +150,11 @@ Plug 'plasticboy/vim-markdown'
 " Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'vim-latex/vim-latex'
 
+" start screen
+Plug 'mhinz/vim-startify'
+"theme color
+Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
 " Two color scheme for vim
 Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
@@ -207,9 +216,10 @@ endif
 set t_Co=256
 syntax enable
 set background=dark
-colorscheme molokai " 设定配色方案
+" colorscheme jellybeans
+" colorscheme molokai
 " let g:molokai_original = 1
-" colorscheme solarized
+colorscheme gruvbox
 
 if has("gui_running")
     set guioptions-=T
@@ -408,10 +418,22 @@ let g:bufferline_active_buffer_right = ']'
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-airline{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"加强版状态栏
+let g:airline_theme='molokai'
+"使用powerline打过补丁的字体
+let g:airline_powerline_fonts = 1
+
+"开启tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
+
+"关闭状态显示空白符号计数,这个用处不大"
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+"tabline中buffer显示编号
+let g:airline#extensions#tabline#buffer_nr_show = 1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -785,8 +807,8 @@ map <Leader><leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
 " <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+" map  <Leader>f <Plug>(easymotion-bd-f)
+" nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " " s{char}{char} to move to {char}{char}
 " nmap s <Plug>(easymotion-overwin-f2)
