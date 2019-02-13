@@ -169,7 +169,7 @@ call plug#end()
 " :PlugSearch foo - searches for foo; append `!` to refresh local cache
 " :PlugClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-" Start of user define scripts
+" begin of user define scripts
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " return OS type, eg: windows, or linux, mac, et.st..{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -626,7 +626,7 @@ endfunction
 """""""""""""""""""""""""""""""
 "" }}} python autopep8
 """""""""""""""""""""""""""""""
-" start plugin configuration
+" begin plugin configuration
 " "-----------------------------------------------------------------
 " " plugin - taglist.vim 查看函数列表，需要ctags程序
 " " F4 打开隐藏taglist窗口
@@ -691,7 +691,6 @@ let NERDTreeMinimalUI=1 "不显示帮助面板
 let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
 let NERDTreeShowHidden=0 "显示隐藏文件
 let NERDTreeQuitOnOpen=1 "打开文件时关闭树
-" let NERDTreeShowLineNumbers=1
 " autocmd VimEnter * NERDTree
 
 " function! NERDTree_Start()
@@ -764,24 +763,27 @@ set rtp+=~/.fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}fzf 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"ctrlp 配置{{{  设置忽略目录和文件
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
-let g:ctrlp_map = '<leader><leader>p'
-" let g:ctrlp_map = '<c-p>'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-    \ }
+if !has ("python3") || !has ("python")
+else
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  "ctrlp 配置{{{  设置忽略目录和文件
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
+  let g:ctrlp_map = '<leader><leader>p'
+  " let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
+      \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+      \ }
 
-if executable('ag')
-    " Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files.
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " Ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
+  if executable('ag')
+      " Use Ag over Grep
+      set grepprg=ag\ --nogroup\ --nocolor
+      " Use ag in CtrlP for listing files.
+      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+      " Ag is fast enough that CtrlP doesn't need to cache
+      let g:ctrlp_use_caching = 0
+  endif
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}
