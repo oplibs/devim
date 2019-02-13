@@ -406,6 +406,11 @@ endif
 " }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"打开vimrc快捷键
+nnoremap <leader>ev  :e $MYVIMRC<cr>
+"运行当前vimrc脚本
+nnoremap<leader>sv  :source $MYVIMRC<cr>
+
 """"""""""""""""""""""""""""""
 " vim-bufferline {{{
 """""""""""""""""""""""""""""""
@@ -625,13 +630,7 @@ endfunction
 """""""""""""""""""""""""""""""
 "" }}} python autopep8
 """""""""""""""""""""""""""""""
-" "-----------------------------------------------------------------
-" " plugin - bufexplorer.vim Buffers切换
-" " \be 全屏方式查看全部打开的文件列表
-" " \bv 左右方式查看 \bs 上下方式查看
-" "-----------------------------------------------------------------
-"
-"
+" start plugin configuration
 " "-----------------------------------------------------------------
 " " plugin - taglist.vim 查看函数列表，需要ctags程序
 " " F4 打开隐藏taglist窗口
@@ -665,6 +664,16 @@ endfunction
 " " \/ 所有MarkWords的下一个 \? 所有MarkWords的上一个
 " "-----------------------------------------------------------------
 "
+set listchars=tab:\|\
+set list
+" vim-indent-guide config {{{
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=yellow ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+hi IndentGuidesOdd  ctermbg=grey
+hi IndentGuidesEven ctermbg=darkgrey
+" }}}vim-indent-guide config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1319,3 +1328,4 @@ if v:version > 704
   " "}}} vim-do
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 endif
+
