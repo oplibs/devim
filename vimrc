@@ -33,6 +33,10 @@ Plug 'vim-scripts/grep.vim'
 Plug 'rking/ag.vim'
 " File finder
 Plug 'kien/ctrlp.vim'
+
+""git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+""~/.fzf/install
+Plug 'junegunn/fzf'
 "
 Plug 'chrisbra/vim-diff-enhanced'
 
@@ -118,7 +122,6 @@ Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/a.vim'
 Plug 'brookhong/cscope.vim'
 Plug 'vhdirk/vim-cmake'
-" Plug 'jalcine/cmake.vim'
 
 " Backend development
 
@@ -741,7 +744,13 @@ let g:multi_cursor_quit_key='<Esc>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"fzf 配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=~/.fzf
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}fzf 配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctrlp 配置{{{  设置忽略目录和文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
