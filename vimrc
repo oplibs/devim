@@ -46,12 +46,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-" Plug 'garbas/vim-snipmate'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 " Plug on GitHub repo
 Plug 'tpope/vim-fugitive'
 
@@ -91,16 +85,28 @@ Plug 'Chiel92/vim-autoformat'
 
 " For common language hint
 " if v:version > 800
-"   Plug 'shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
 " else
+" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer' }
 " endif
-if v:version > 800
-Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer' }
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 
 Plug 'valloric/listtoggle'
 
@@ -1016,60 +1022,91 @@ let g:vimwiki_use_calendar = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if v:version > 800
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " deoplete配置{{{
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " let g:deoplete#enable_at_startup = 1
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " }}}deoplete配置
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-else
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " youcompleteme配置{{{
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-  autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-  inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
-  inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
-  inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
-  inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-  inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " youcompleteme配置{{{
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
+" inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+" inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
+" inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
+" inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+" inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
-  "youcompleteme  默认tab  s-tab 和自动补全冲突
-  let g:ycm_key_list_select_completion=['<C-n>']
-  " let g:ycm_key_list_select_completion = ['<Down>', '<space>']
-  let g:ycm_key_list_previous_completion=['<S-n>']
-  "let g:ycm_key_list_previous_completion = ['<Up>']
-  let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
+" "youcompleteme  默认tab  s-tab 和自动补全冲突
+" let g:ycm_key_list_select_completion=['<C-n>']
+" " let g:ycm_key_list_select_completion = ['<Down>', '<space>']
+" let g:ycm_key_list_previous_completion=['<S-n>']
+" "let g:ycm_key_list_previous_completion = ['<Up>']
+" let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
 
-  let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
-  let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
-  let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
-  let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
-  nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
-  " nnoremap <leader>lo :lopen<CR> "open locationlist
-  " nnoremap <leader>lc :lclose<CR>   "close locationlist
-  inoremap <leader><leader> <C-x><C-o>
-  "在注释输入中也能补全
-  let g:ycm_complete_in_comments = 1
-  "在字符串输入中也能补全
-  let g:ycm_complete_in_strings = 1
-  "注释和字符串中的文字也会被收入补全
-  let g:ycm_collect_identifiers_from_comments_and_strings = 0
-  " let g:ycm_semantic_triggers =  {
-  "   \   'c' : ['->', '.'],
-  "   \   'cpp,objcpp' : ['->', '.', '::'],
-  "   \   'perl' : ['->'],
-  "   \   'php' : ['->', '::'],
-  "   \ }
-  nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
-  nnoremap <leader>yd :YcmCompleter GoToDefinition<CR>
-  nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " }}} youcompleteme
-  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
+" let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
+" let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
+" let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
+" nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
+" " nnoremap <leader>lo :lopen<CR> "open locationlist
+" " nnoremap <leader>lc :lclose<CR>   "close locationlist
+" inoremap <leader><leader> <C-x><C-o>
+" "在注释输入中也能补全
+" let g:ycm_complete_in_comments = 1
+" "在字符串输入中也能补全
+" let g:ycm_complete_in_strings = 1
+" "注释和字符串中的文字也会被收入补全
+" let g:ycm_collect_identifiers_from_comments_and_strings = 0
+" " let g:ycm_semantic_triggers =  {
+" "   \   'c' : ['->', '.'],
+" "   \   'cpp,objcpp' : ['->', '.', '::'],
+" "   \   'perl' : ['->'],
+" "   \   'php' : ['->', '::'],
+" "   \ }
+" nnoremap <leader>yl :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>yd :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>yg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}} youcompleteme
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" deocomplete {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:deoplete#enable_at_startup = 1
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}deocomplete
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neocomplete {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
 endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} neocomplete
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1082,8 +1119,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
-""let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsEditSplit="vertical"
+" "let g:UltiSnipsEditSplit = 'horizontal'
 " "let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
 
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
