@@ -31,7 +31,11 @@ Plug 'vim-scripts/grep.vim'
 Plug 'rking/ag.vim'
 " File finder
 if has ("python3") || has ("python")
-  Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+  if v:version > 800
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+  else
+    Plug 'kien/ctrlp.vim'
+  endif
 else
   Plug 'kien/ctrlp.vim'
 endif
