@@ -33,12 +33,11 @@ Plug 'rking/ag.vim'
 if has ("python3") || has ("python")
   if v:version >= 800
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-  else
-    Plug 'kien/ctrlp.vim'
+  " else
+    " Plug 'kien/ctrlp.vim'
   endif
-else
-  Plug 'kien/ctrlp.vim'
 endif
+Plug 'kien/ctrlp.vim'
 
 ""git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ""~/.fzf/install
@@ -761,8 +760,8 @@ set rtp+=~/.fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}fzf 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !has ("python3") || !has ("python")
-else
+" if !has ("python3") || !has ("python")
+" else
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "ctrlp 配置{{{  设置忽略目录和文件
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -773,15 +772,15 @@ else
       \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
       \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
       \ }
+" endif
 
-  if executable('ag')
-      " Use Ag over Grep
-      set grepprg=ag\ --nogroup\ --nocolor
-      " Use ag in CtrlP for listing files.
-      let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-      " Ag is fast enough that CtrlP doesn't need to cache
-      let g:ctrlp_use_caching = 0
-  endif
+if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag in CtrlP for listing files.
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}
