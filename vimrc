@@ -234,7 +234,7 @@ set guioptions-=m " 隐藏菜单栏
 " 根据从窗口右侧向左数的列数来自动换行"
 set wrapmargin=2
 "要在文本行超过一定长度时自动换行:"
-set textwidth=80
+" set textwidth=80
 " 插入括号时，短暂地跳转到匹配的对应括号
 set showmatch
 "光标放在窗口中间而不是第一行，以下选项使光标距窗口上下保留5行
