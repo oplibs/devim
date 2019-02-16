@@ -33,8 +33,6 @@ Plug 'rking/ag.vim'
 if has ("python3") || has ("python")
   if v:version >= 800
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-  " else
-    " Plug 'kien/ctrlp.vim'
   endif
 endif
 Plug 'kien/ctrlp.vim'
@@ -51,7 +49,7 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'skywind3000/asyncrun.vim'
 " Plug 'joonty/vim-do'
 
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'yggdroot/indentline'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 
@@ -232,6 +230,17 @@ set cursorline cursorcolumn
 
 set guioptions-=T " 隐藏工具栏
 set guioptions-=m " 隐藏菜单栏
+
+" 根据从窗口右侧向左数的列数来自动换行"
+set wrapmargin=2
+"要在文本行超过一定长度时自动换行:"
+set textwidth=80
+" 插入括号时，短暂地跳转到匹配的对应括号
+set showmatch
+"光标放在窗口中间而不是第一行，以下选项使光标距窗口上下保留5行
+set scrolloff=5
+"Vim窗口底部显示一个永久状态栏，可以显示文件名、行号和列号等内容：
+set laststatus=2
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}color scheme & GUI setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -288,7 +297,6 @@ set hlsearch " 搜索时高亮显示被找到的文本
 set noerrorbells " 关闭错误信息响铃
 " set novisualbell " 关闭使用可视响铃代替呼叫
 " set t_vb= " 置空错误铃声的终端代码
-" set showmatch " 插入括号时，短暂地跳转到匹配的对应括号
 " set matchtime=2 " 短暂跳转到匹配括号的时间
 set magic
 "set noautowrite
@@ -490,7 +498,7 @@ augroup json_autocmd
     autocmd!
     autocmd FileType json set autoindent
     autocmd FileType json set formatoptions=tcq2l
-    autocmd FileType json set textwidth=78 shiftwidth=2
+    autocmd FileType json set textwidth=80 shiftwidth=2
     autocmd FileType json set softtabstop=2 tabstop=8
     autocmd FileType json set expandtab
     autocmd FileType json set foldmethod=syntax
@@ -507,6 +515,7 @@ augroup END
 """""""""""""""""""""""""""""""
 " " javascript file setting for javascript airbnb style guide
 autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " open javascript folding
 function! JavaScriptFold()
@@ -655,17 +664,25 @@ endfunction
 " " \* 当前MarkWord的下一个 \# 当前MarkWord的上一个
 " " \/ 所有MarkWords的下一个 \? 所有MarkWords的上一个
 " "-----------------------------------------------------------------
-" vim-indent-guide config {{{
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=yellow ctermbg=3
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-hi IndentGuidesOdd  ctermbg=grey
-hi IndentGuidesEven ctermbg=darkgrey
-" }}}vim-indent-guide config
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-indentline config {{{
+" "-----------------------------------------------------------------
+let g:indentLine_color_term = 239
+let g:indentLine_char = '¦'
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
+let g:indentLine_enabled = 1
+" none X terminal
+" let g:indentLine_color_tty_light = 7 " (default: 4)
+" let g:indentLine_color_dark = 1 " (default: 2)
+"" Background (Vim, GVim)
+" let g:indentLine_bgcolor_term = 202
+" let g:indentLine_bgcolor_gui = '#FF5F00'"
+" -----------------------------------------------------------------
+" }}}vim-indentline config
+" -----------------------------------------------------------------
+" -----------------------------------------------------------------
 "NERDTree配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------------
 " " plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
 " " :ERDtree 打开NERD_tree :NERDtreeClose 关闭NERD_tree
 " " o 打开关闭文件或者目录 t 在标签页中打开
