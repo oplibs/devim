@@ -136,7 +136,6 @@ Plug 'ap/vim-css-color'
 " Plug 'elzr/vim-json'
 " Plug 'chase/vim-ansible-yaml'
 " Nginx grammar support
-" Plug 'evanmiller/nginx-vim-syntax'
 "Plug for markdown
 Plug 'plasticboy/vim-markdown'
 "Plug for latex
@@ -207,18 +206,18 @@ endif
 " color scheme & GUI setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
-syntax enable
 set background=dark
 " colorscheme jellybeans
 " colorscheme molokai
 " let g:molokai_original = 1
 colorscheme gruvbox
 
-if has("gui_running")
-    set guioptions-=T
-else
-    syntax enable
-endif
+" if has("gui_running")
+set guioptions-=T " 隐藏工具栏
+" else
+    " syntax enable
+" endif
+set guioptions-=m " 隐藏菜单栏
 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
@@ -228,13 +227,10 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
-set guioptions-=T " 隐藏工具栏
-set guioptions-=m " 隐藏菜单栏
-
 " 根据从窗口右侧向左数的列数来自动换行"
-set wrapmargin=2
+"set wrapmargin=2
 "要在文本行超过一定长度时自动换行:"
-" set textwidth=80
+"set textwidth=80
 " 插入括号时，短暂地跳转到匹配的对应括号
 set showmatch
 "光标放在窗口中间而不是第一行，以下选项使光标距窗口上下保留5行
@@ -250,14 +246,13 @@ set laststatus=2
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin on
 
+" augroup FiletypeGroup
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
+" au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
-
-" augroup FiletypeGroup
 " autocmd!
-" au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 " augroup END
 
 " we also want to get rid of accidental trailing whitespace on save
@@ -269,11 +264,12 @@ autocmd BufWritePre * :%s/\s\+$//e
     " autocmd QuickFixCmdPost l*    lwindow
 " augroup END
 
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " }}} file type setting
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible " 关闭 vi 兼容模式
+" ----------------------------------------------------------------------
 syntax on " 自动语法高亮
+syntax enable
+set nocompatible " 关闭 vi 兼容模式
 set number " 显示行号
 set cursorline " 突出显示当前行
 set ruler " 打开状态栏标尺
@@ -498,7 +494,8 @@ augroup json_autocmd
     autocmd!
     autocmd FileType json set autoindent
     autocmd FileType json set formatoptions=tcq2l
-    autocmd FileType json set textwidth=80 shiftwidth=2
+    " autocmd FileType json set textwidth=80 shiftwidth=2
+    autocmd FileType json set shiftwidth=2
     autocmd FileType json set softtabstop=2 tabstop=8
     autocmd FileType json set expandtab
     autocmd FileType json set foldmethod=syntax
@@ -559,10 +556,6 @@ let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
 " temp commnent for checking
-" au FileType python inoremap <buffer> $r return
-" au FileType python inoremap <buffer> $p print
-" au FileType python map <buffer> <leader>1 /class
-" au FileType python map <buffer> <leader>D ?def
 au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 
 " 一键运行
@@ -693,7 +686,6 @@ let g:indentLine_enabled = 1
 " " r 递归刷新当前目录 R 递归刷新当前根目录
 " "-----------------------------------------------------------------
 " F3 NERDTree 切换
-"map <Command+n> :NERDTreeToggle<CR>
 map <S-n> :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR>
 map <C-i> :NERDTreeFind<CR>
@@ -777,20 +769,22 @@ set rtp+=~/.fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}fzf 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" if !has ("python3") || !has ("python")
-" else
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  "ctrlp 配置{{{  设置忽略目录和文件
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
-  let g:ctrlp_map = '<leader><leader>p'
-  " let g:ctrlp_map = '<c-p>'
-  let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
-      \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-      \ }
-" endif
-
+" -----------------------------------------------------------
+" ctrlp config{{{  设置忽略目录和文件
+" -----------------------------------------------------------
+" \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
+let g:ctrlp_map = '<leader><leader>p'
+" let g:ctrlp_map = '<c-p>'
+let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
+            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+            \ }
+" -----------------------------------------------------------
+" }}} ctrlp config
+" -----------------------------------------------------------
+" -----------------------------------------------------------
+" ag config {{{
+" -----------------------------------------------------------
 if executable('ag')
     " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor
@@ -799,11 +793,12 @@ if executable('ag')
     " Ag is fast enough that CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 0
 endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>ag :Ag<space>
+" -----------------------------------------------------------
+" }}} ag config
+" -----------------------------------------------------------
 "Easymotion 配置{{{
+" -----------------------------------------------------------
 "let g:EasyMotion_leader_key = 'f'
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
@@ -827,8 +822,9 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 " " Move to word
 " map  <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
-"}}}"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" -----------------------------------------------------------
+" }}}Easymotion config
+" -----------------------------------------------------------
 if v:version > 800
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "ale 配置{{{
@@ -965,7 +961,7 @@ else
   let g:syntastic_auto_loc_list = 1
   let g:syntastic_loc_list_height = 5
   let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
+  let g:syntastic_check_on_wq = 1
   let g:syntastic_enable_highlighting=1
 
   let g:syntastic_php_checkers = ['php']
@@ -1000,10 +996,9 @@ nnoremap <Leader>sp :lprevious<cr>
 " }}} loclist
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vim-autoformat.vim 配置{{{
+"vim-autoformat config{{{
 "这里使用astyle格式化c,cpp,cc,java,需要用homebrew安装astyle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 if executable('astyle')
   let g:formatdef_baselint  = '"astyle --style=google"'
 endif
@@ -1028,7 +1023,9 @@ let g:formatters_python = ['autopep8']
 " au BufWrite * :Autoformat
 noremap <leader>af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
-"}}}
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}vim-autoformat config
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutoPair 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1060,13 +1057,6 @@ let g:vimwiki_use_calendar = 1
 " autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Calendar {{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map ca :Calendar<cr>
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " youcompleteme配置{{{
@@ -1151,8 +1141,6 @@ let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} neocomplete
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1327,6 +1315,13 @@ endif
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " "}}} vim-go
   " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Calendar {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map ca :Calendar<cr>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} Calendar
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-do{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
