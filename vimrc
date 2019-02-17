@@ -120,8 +120,12 @@ Plug 'mattn/emmet-vim'
 "Plug for developing of C and CPP
 "Plugin 'a.vim'
 Plug 'vim-scripts/a.vim'
-Plug 'brookhong/cscope.vim'
-Plug 'vhdirk/vim-cmake'
+if executable('cscope')
+  Plug 'brookhong/cscope.vim'
+endif
+if executable('cmake')
+  Plug 'vhdirk/vim-cmake'
+endif
 
 if executable('go')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -1262,31 +1266,33 @@ let g:vim_markdown_frontmatter             = 1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "cscope{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>sl :call ToggleLocationList()<CR>
+if executable('cscope')
+  nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+  nnoremap <leader>sl :call ToggleLocationList()<CR>
 
-"s: Find this C symbol
-nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-" g: Find this definition
-nnoremap  <leader>fd :call CscopeFind('g', expand('<cword>'))<CR>
-" c: Find functions calling this function
-nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fg :call CscopeFind('d', expand('<cword>'))<CR>
-" t: Find this text string
-nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-" e: Find this egrep pattern
-nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-" f: Find this file
-nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-" i: Find files #including this file
-nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+  "s: Find this C symbol
+  nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+  " g: Find this definition
+  nnoremap  <leader>fd :call CscopeFind('g', expand('<cword>'))<CR>
+  " c: Find functions calling this function
+  nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+  " d: Find functions called by this function
+  nnoremap  <leader>fg :call CscopeFind('d', expand('<cword>'))<CR>
+  " t: Find this text string
+  nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+  " e: Find this egrep pattern
+  nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+  " f: Find this file
+  nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+  " i: Find files #including this file
+  nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " "vim-go {{{
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-go {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('go')
   " use goimports for formatting
   let g:go_fmt_command = "goimports"
