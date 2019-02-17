@@ -34,6 +34,7 @@ if has ("python3") || has ("python")
   if v:version >= 800
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
   endif
+  Plug 'python-mode/python-mode', { 'branch': 'develop'  }
 endif
 Plug 'kien/ctrlp.vim'
 
@@ -558,6 +559,7 @@ au FileType python syn keyword pythonDecorator True None False self
 " temp commnent for checking
 au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 
+" let g:pymode_python = 'python3'
 " 一键运行
 "编译运行
 "" map <leader>gr :call CompileRunGcc()<CR>
