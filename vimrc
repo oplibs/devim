@@ -153,7 +153,7 @@ Plug 'mhinz/vim-startify'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 " Two color scheme for vim
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
 Plug 'vimwiki/vimwiki'
@@ -978,6 +978,34 @@ else
   let g:syntastic_html_checkers=['eslint']
   let g:syntastic_css_checkers = ['eslint']
 
+  " start for java config
+  " let g:syntastic_java_javac_executable = '~/.vim/plugged/syntastic/syntax_checkers/java/javac.vim'
+  let g:syntastic_java_checkers = [ "javac" ]
+  if !exists('g:syntastic_java_javac_options')
+      let g:syntastic_java_javac_options = '-Xlint'
+  endif
+
+  if !exists('g:syntastic_java_javac_classpath')
+      let g:syntastic_java_javac_classpath = $JAVA_HOME"/lib/*.jar\n./src";
+  endif
+
+  if !exists('g:syntastic_java_maven_executable')
+      let g:syntastic_java_maven_executable = 'mvn'
+  endif
+
+  " if !exists('g:syntastic_java_maven_options')
+      " let g:syntastic_java_maven_options = ''
+  " endif
+
+  if !exists('g:syntastic_java_javac_delete_output')
+      let g:syntastic_java_javac_delete_output = 1
+  endif
+
+  if !exists('g:syntastic_java_javac_autoload_maven_classpath')
+      let g:syntastic_java_javac_autoload_maven_classpath = 1
+  endif
+  " end for java config
+
   " From the vim-go document but not work for displaying list
   " let g:syntastic_go_checkers = ['golint', 'errcheck']
   " let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
@@ -996,8 +1024,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " loclist {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>sn :lnext<cr>
-nnoremap <Leader>sp :lprevious<cr>
+nnoremap <Leader>ln :lnext<cr>
+nnoremap <Leader>lp :lprevious<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} loclist
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
