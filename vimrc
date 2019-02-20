@@ -933,13 +933,13 @@ else
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "syntastic 配置{{{
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " let g:syntastic_error_symbol='>>'
-  " let g:syntastic_warning_symbol='>'
+  let g:syntastic_error_symbol='X'
+  let g:syntastic_warning_symbol='!'
 
-  let g:syntastic_error_symbol = '❌'
-  let g:syntastic_style_error_symbol = '⁉️'
-  let g:syntastic_warning_symbol = '⚠️'
-  let g:syntastic_style_warning_symbol = '💩'
+  " let g:syntastic_error_symbol = '❌'
+  " let g:syntastic_style_error_symbol = '⁉️'
+  " let g:syntastic_warning_symbol = '⚠️'
+  " let g:syntastic_style_warning_symbol = '💩'
 
   highlight link SyntasticErrorSign SignColumn
   highlight link SyntasticWarningSign SignColumn
@@ -963,7 +963,7 @@ else
   "" 修改高亮的背景色, 适应主题
   highlight SyntasticErrorSign guifg=white guibg=yellow
   let g:syntastic_enable_highlighting=1
-  let g:syntastic_always_populate_loc_list = 1
+  " let g:syntastic_always_populate_loc_list = 1
   let g:syntastic_auto_loc_list = 1
   let g:syntastic_loc_list_height = 5
   let g:syntastic_check_on_open = 1
