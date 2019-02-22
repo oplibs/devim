@@ -782,8 +782,8 @@ set rtp+=~/.fzf
 let g:ctrlp_map = '<leader><leader>p'
 " let g:ctrlp_map = '<c-p>'
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$',
-            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+            \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$\|target$',
+            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc|swp|class)$',
             \ }
 " -----------------------------------------------------------
 " }}} ctrlp config
