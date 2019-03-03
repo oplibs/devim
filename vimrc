@@ -47,7 +47,8 @@ Plug 'chrisbra/vim-diff-enhanced'
 "Plugin 'BufOnly.vim'
 Plug 'vim-scripts/BufOnly.vim'
 
-Plug 'skywind3000/asyncrun.vim'
+" Plug 'skywind3000/asyncrun.vim'
+Plug 'thinca/vim-quickrun'
 " Plug 'joonty/vim-do'
 
 Plug 'yggdroot/indentline'
@@ -550,7 +551,7 @@ autocmd FileType css noremap <buffer> <leader>af :call CSSBeautify()<cr>
 autocmd FileType javascript vnoremap <buffer> <leader>af :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <leader>af :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <leader>af :call RangeCSSBeautify()<cr>
-au FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
+" au FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
 " """""""""""""""""""""""""""""
 " }}} JavaScript section
 " """""""""""""""""""""""""""""
@@ -561,7 +562,7 @@ let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
 " temp commnent for checking
-au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
+" au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 
 " let g:pymode_python = 'python3'
 " 一键运行
@@ -616,7 +617,7 @@ au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 " let g:autopep8_indent_size=2
 " let g:autopep8_diff_type='vertical'
 " set modifiable
-map <leader>gr :call RunPython()<CR>
+" map <leader>gr :call RunPython()<CR>
 function RunPython()
     let mp = &makeprg
     let ef = &errorformat
@@ -1315,6 +1316,14 @@ if executable('cscope')
   " i: Find files #including this file
   nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 endif
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-quickrun {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:quickrun_no_default_key_mappings = 1
+nmap <Leader>r <Plug>(quickrun)
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
