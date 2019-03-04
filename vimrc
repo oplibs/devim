@@ -36,6 +36,11 @@ if has ("python3") || has ("python")
   endif
   Plug 'python-mode/python-mode', { 'branch': 'develop'  }
 endif
+
+if has('mac')
+  Plug 'lyokha/vim-xkbswitch'
+endif
+
 Plug 'kien/ctrlp.vim'
 
 ""git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -65,7 +70,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 
 " Plug to display tag in source files;
 " Plug 'taglist.vim'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 " Plug to display status in line
 Plug 'bling/vim-airline'
@@ -444,6 +449,8 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 "tabline中buffer显示编号
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+let g:airline#extensions#tagbar#enabled = 0
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -453,6 +460,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 nnoremap <leader>. :bnext<CR>
 nnoremap <leader>m :bprevious<CR>
 nnoremap <leader><space> :b#<CR>
+nnoremap <Leader>k :bdelete<CR>
+nnoremap <Leader>o :BufOnly<CR>
 "
 "窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
 "光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
@@ -803,6 +812,16 @@ endif
 map <leader>ag :Ag<space>
 " -----------------------------------------------------------
 " }}} ag config
+" -----------------------------------------------------------
+" -----------------------------------------------------------
+"xkbswitch 配置{{{
+" -----------------------------------------------------------
+if has('mac')
+  let g:XkbSwitchEnabled = 1
+endif
+" -----------------------------------------------------------
+"}}}xkbswitch 配置
+" -----------------------------------------------------------
 " -----------------------------------------------------------
 "Easymotion 配置{{{
 " -----------------------------------------------------------
