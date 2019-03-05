@@ -132,8 +132,8 @@ Plug 'valloric/listtoggle'
 Plug 'mattn/emmet-vim'
 
 "Plug for developing of C and CPP
-"Plugin 'a.vim'
 Plug 'vim-scripts/a.vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
 if executable('cmake')
   Plug 'vhdirk/vim-cmake'
 endif
@@ -1310,6 +1310,19 @@ let Grep_Skip_Dirs = 'node_modules dist .git vendor'
 "let g:user_emmet_expandabbr_key = '<Tab>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}emmet.vim 配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-cpp-enhanced-highlight {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let g:cpp_no_function_highlight = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} vim-cpp-enhanced-highlight
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "tabular settings{{{
