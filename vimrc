@@ -33,7 +33,16 @@ Plug 'rking/ag.vim'
 if has ("python3") || has ("python")
   if v:version >= 800
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+  else
+    Plug 'kien/ctrlp.vim'
   endif
+endif
+
+if executable('cscope')
+  Plug 'brookhong/cscope.vim'
+endif
+
+if has ("python3") || has ("python")
   Plug 'python-mode/python-mode', { 'branch': 'develop'  }
 endif
 
@@ -41,18 +50,16 @@ if has('mac')
   Plug 'lyokha/vim-xkbswitch'
 endif
 
-Plug 'kien/ctrlp.vim'
-
 ""git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ""~/.fzf/install
 Plug 'junegunn/fzf'
 
-Plug 'chrisbra/vim-diff-enhanced'
+" Plug 'chrisbra/vim-diff-enhanced'
 
 "Plugin 'BufOnly.vim'
 Plug 'vim-scripts/BufOnly.vim'
 
-" Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'thinca/vim-quickrun'
 " Plug 'joonty/vim-do'
 
@@ -67,6 +74,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 
 " Plug to display tag in source files;
 " Plug 'taglist.vim'
@@ -79,7 +87,7 @@ Plug 'bling/vim-bufferline'
 
 " Plug to comment text quickly
 Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 " Plug 'raimondi/delimitmate'
 
 " Language alignment by element
@@ -126,9 +134,6 @@ Plug 'mattn/emmet-vim'
 "Plug for developing of C and CPP
 "Plugin 'a.vim'
 Plug 'vim-scripts/a.vim'
-if executable('cscope')
-  Plug 'brookhong/cscope.vim'
-endif
 if executable('cmake')
   Plug 'vhdirk/vim-cmake'
 endif
@@ -281,7 +286,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 syntax on " 自动语法高亮
 syntax enable
 set nocompatible " 关闭 vi 兼容模式
-set number " 显示行号
+" set number " 显示行号
+set relativenumber " 显示行号
 set cursorline " 突出显示当前行
 set ruler " 打开状态栏标尺
 
@@ -379,6 +385,13 @@ nnoremap <Leader>as :AsyncRun<space>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}AsyncRun
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-do{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:do_auto_show_process_window = 1
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}} vim-do
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " source file syntax{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -798,6 +811,80 @@ let g:ctrlp_custom_ignore = {
 " -----------------------------------------------------------
 " }}} ctrlp config
 " -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "cscope{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('cscope')
+  nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+  nnoremap <leader>sl :call ToggleLocationList()<CR>
+
+  "s: Find this C symbol
+  nnoremap  <leader>cs :call CscopeFind('s', expand('<cword>'))<CR>
+  " g: Find this definition
+  nnoremap  <leader>cd :call CscopeFind('g', expand('<cword>'))<CR>
+  " c: Find functions calling this function
+  nnoremap  <leader>cc :call CscopeFind('c', expand('<cword>'))<CR>
+  " d: Find functions called by this function
+  nnoremap  <leader>cg :call CscopeFind('d', expand('<cword>'))<CR>
+  " t: Find this text string
+  nnoremap  <leader>ct :call CscopeFind('t', expand('<cword>'))<CR>
+  " e: Find this egrep pattern
+  nnoremap  <leader>ce :call CscopeFind('e', expand('<cword>'))<CR>
+  " f: Find this file
+  nnoremap  <leader>cf :call CscopeFind('f', expand('<cword>'))<CR>
+  " i: Find files #including this file
+  nnoremap  <leader>ci :call CscopeFind('i', expand('<cword>'))<CR>
+endif
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------
+" LeaderF config{{{
+" -----------------------------------------------------------
+let g:Lf_ShortcutF = '<c-p>'
+noremap <Leader>ff :LeaderfFunction<cr>
+noremap <Leader>fb :LeaderfBuffer<cr>
+noremap <Leader>ft :LeaderfTag<cr>
+noremap <Leader>fm :LeaderfMru<cr>
+noremap <Leader>fl :LeaderfLine<cr>
+
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+
+let g:Lf_NormalMap = {
+	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+	\ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+	\ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+	\ }
+" let g:Lf_ShortcutF = '<c-p>'
+" let g:Lf_ShortcutB = '<m-n>'
+" noremap <c-n> :LeaderfMru<cr>
+" noremap <m-p> :LeaderfFunction!<cr>
+" noremap <m-n> :LeaderfBuffer<cr>
+" noremap <m-m> :LeaderfTag<cr>
+" let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+"
+" let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+" let g:Lf_WorkingDirectoryMode = 'Ac'
+" let g:Lf_WindowHeight = 0.30
+" let g:Lf_CacheDirectory = expand('~/.vim/cache')
+" let g:Lf_ShowRelativePath = 0
+" let g:Lf_HideHelp = 1
+" let g:Lf_StlColorscheme = 'powerline'
+" let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+" -----------------------------------------------------------
+" }}}LeaderF config
+" -----------------------------------------------------------
 " -----------------------------------------------------------
 " ag config {{{
 " -----------------------------------------------------------
@@ -1063,10 +1150,6 @@ let g:formatters_cc     = ['baselint']
 let g:formatters_objc   = ['baselint']
 let g:formatters_java   = ['baselint']
 
-" let g:formatters_cpp  = ['vogon']
-" let g:formatters_c    = ['vogon']
-" let g:formatters_cc   = ['vogon']
-" let g:formatters_java = ['vogon']
 " The following three lines do not work!!!!!!
 " let g:formatdef_eslint = '"eslint -o"'
 " let g:formatters_javascript = ['eslint']
@@ -1079,38 +1162,6 @@ noremap <leader>af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vim-autoformat config
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AutoPair 配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:AutoPairsMapCR = 0
-imap <silent><CR> <CR><Plug>AutoPairsReturn
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} AutoPair
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
- """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwikilist 配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <Leader>ww <Plug>VimwikiIndex
-let g:vimwiki_list = [{'path': '~/projects/work/treki',
-            \    'path_html': '~/projects/work/treki/vimwiki_html',
-            \    'template_path': '~/projects/work/treki/template',
-            \    'template_default': "~/projects/work/treki/templates/default.tpl",
-            \    "auto_export": 1},{'path': '~/projects/work/kodetrek',
-            \    'path_html': '~/projects/work/kodetrek/vimwiki_html',
-            \    'template_path': '~/projects/work/kodetrek/template',
-            \    'template_default': "~/projects/work/kodetrek/templates/default.tpl",
-            \    "auto_export": 1}]
-let g:vimwiki_camel_case = 0
-let g:vimwiki_folding='list'
-map <leader>tt <Plug>VimwikiToggleListItem
-let g:vimwiki_use_calendar = 1
-" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " youcompleteme配置{{{
@@ -1200,7 +1251,6 @@ let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " better key bindings for UltiSnipsExpandTrigger
 " let g:UltiSnipsSnippetDirectories=['UltiSnips', '~/.vim/plugged/vim-snippets/snippets/']
-
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -1210,7 +1260,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 " "let g:UltiSnipsEditSplit = 'horizontal'
 " "let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips'
-
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
 " autocmd FileType php UltiSnipsAddFiletypes yii
 " let g:UltiSnipsEnableSnipMate = 0
@@ -1231,7 +1280,7 @@ autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
 " listtoggle配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lt_location_list_toggle_map = '<leader>l'
-" let g:lt_quickfix_list_toggle_map = '<leader>q'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} listtoggle
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1290,6 +1339,14 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}tabular settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-quickrun {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:quickrun_no_default_key_mappings = 1
+nmap <Leader>r <Plug>(quickrun)
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "}}}
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " " vim-easy-align settings {{{
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1310,41 +1367,6 @@ let g:vim_markdown_math                    = 1
 let g:vim_markdown_frontmatter             = 1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} vim-markdown
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "cscope{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if executable('cscope')
-  nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-  nnoremap <leader>sl :call ToggleLocationList()<CR>
-
-  "s: Find this C symbol
-  nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-  " g: Find this definition
-  nnoremap  <leader>fd :call CscopeFind('g', expand('<cword>'))<CR>
-  " c: Find functions calling this function
-  nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-  " d: Find functions called by this function
-  nnoremap  <leader>fg :call CscopeFind('d', expand('<cword>'))<CR>
-  " t: Find this text string
-  nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-  " e: Find this egrep pattern
-  nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-  " f: Find this file
-  nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-  " i: Find files #including this file
-  nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
-endif
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-quickrun {{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:quickrun_no_default_key_mappings = 1
-nmap <Leader>r <Plug>(quickrun)
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-go {{{
@@ -1376,9 +1398,9 @@ if executable('go')
 
   au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 endif
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""
   " "}}} vim-go
-  " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Calendar {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1386,10 +1408,27 @@ endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-do{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:do_auto_show_process_window = 1
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-do
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimwikilist 配置{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>ww <Plug>VimwikiIndex
+let g:vimwiki_list = [{'path': '~/projects/work/treki',
+            \    'path_html': '~/projects/work/treki/vimwiki_html',
+            \    'template_path': '~/projects/work/treki/template',
+            \    'template_default': "~/projects/work/treki/templates/default.tpl",
+            \    "auto_export": 1},{'path': '~/projects/work/kodetrek',
+            \    'path_html': '~/projects/work/kodetrek/vimwiki_html',
+            \    'template_path': '~/projects/work/kodetrek/template',
+            \    'template_default': "~/projects/work/kodetrek/templates/default.tpl",
+            \    "auto_export": 1}]
+let g:vimwiki_camel_case = 0
+let g:vimwiki_folding='list'
+map <leader>tt <Plug>VimwikiToggleListItem
+let g:vimwiki_use_calendar = 1
+" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}vimwikilist
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
