@@ -69,6 +69,8 @@ Plug 'tpope/vim-surround'
 
 " Plug on GitHub repo
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/gv.vim'
 
 " NerdTree series plugin
 Plug 'scrooloose/nerdtree' , { 'on': 'NERDTreeToggle' }
@@ -371,11 +373,18 @@ let g:tagbar_autofocus=1
 nmap <Leader>t :TagbarToggle<CR>
 " "-----------------------------------------------------------------
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vim-interactive-shell 配置{{{
+" vim-interactive-shell 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nnoremap <Leader>r :RunInInteractiveShell<space>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}} tarbar
+" }}}vim-interactive-shell 配置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gitgutter 配置{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>gg :GitGutterToggle<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} gitgutter配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "AsyncRun{{{
