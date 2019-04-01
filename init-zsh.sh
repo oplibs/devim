@@ -5,8 +5,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 #install
 export SHELL="zsh"   # added to .zshrc
-git clone git://github.com/wting/autojump.git
-cd autojump
+git clone git://github.com/wting/autojump.git ~/
+cd ~/autojump
 ./install.py #./uninstall.py
 cat '[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh' >> ~/.zshrc
 cat 'autoload -U compinit && compinit -u' >> ~/.zshrc
