@@ -11,5 +11,5 @@ cd ~/autojump
 cat '[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh' >> ~/.zshrc
 cat 'autoload -U compinit && compinit -u' >> ~/.zshrc
 
-cat '[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh' >> ~/.bashrc
-cat 'autoload -U compinit && compinit -u' >> ~/.bashrc
+# cat '[[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh' >> ~/.bashrc
+# cat 'autoload -U compinit && compinit -u' >> ~/.bashrc
