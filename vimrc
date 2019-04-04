@@ -288,8 +288,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 syntax on " 自动语法高亮
 syntax enable
 set nocompatible " 关闭 vi 兼容模式
-" set number " 显示行号
-set relativenumber " 显示行号
+set number " 显示行号
+" set relativenumber " 显示行号
 set cursorline " 突出显示当前行
 set ruler " 打开状态栏标尺
 
