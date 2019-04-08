@@ -6,5 +6,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 
-cp zshrc ~/.zshrc
-/bin/zsh
+export SHELL="zsh"   # added to .zshrc
+git clone git://github.com/wting/autojump.git ~/autojump
+cd ~/autojump
+./install.py #./uninstall.py
+rm -rf ~/autojump
+
+echo "plugins=(autojump zsh_autosuggestions zsh-syntax-highlighting)" >> ~/.zshrc
+echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh" >> ~/.zshrc
