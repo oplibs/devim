@@ -12,5 +12,5 @@ cd ~/autojump
 ./install.py #./uninstall.py
 rm -rf ~/autojump
 
-echo "plugins=(autojump zsh_autosuggestions zsh-syntax-highlighting)" >> ~/.zshrc
+echo "plugins=(autojump web-search extract docker zsh_autosuggestions zsh-syntax-highlighting)" >> ~/.zshrc
 echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh" >> ~/.zshrc
