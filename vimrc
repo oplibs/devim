@@ -1140,8 +1140,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " loclist {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>ln :lnext<cr>
-nnoremap <Leader>lp :lprevious<cr>
+" nnoremap <Leader>ln :lnext<cr>
+" nnoremap <Leader>lp :lprevious<cr>
+nnoremap <C-j> :lnext<cr>
+nnoremap <C-k> :lprevious<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} loclist
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
