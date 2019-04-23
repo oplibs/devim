@@ -110,7 +110,7 @@ Plug 'Chiel92/vim-autoformat'
 " For common language hint
 " Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
 "
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'artur-shaik/vim-javacomplete2'
 
 if v:version > 704
