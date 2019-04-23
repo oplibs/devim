@@ -99,7 +99,7 @@ Plug 'godlygeek/tabular'
 " Syntax check for most languages.
 " Plug 'scrooloose/syntastic'
 if v:version > 800
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'w0rp/ale'
 else
   Plug 'scrooloose/syntastic'
