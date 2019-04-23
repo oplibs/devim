@@ -99,6 +99,7 @@ Plug 'godlygeek/tabular'
 " Syntax check for most languages.
 " Plug 'scrooloose/syntastic'
 if v:version > 800
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'w0rp/ale'
 else
   Plug 'scrooloose/syntastic'
@@ -110,7 +111,6 @@ Plug 'Chiel92/vim-autoformat'
 " For common language hint
 " Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
 "
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'artur-shaik/vim-javacomplete2'
 
 if v:version > 704
