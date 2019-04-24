@@ -828,24 +828,24 @@ let g:ctrlp_custom_ignore = {
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('cscope')
   nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-  nnoremap <leader>sl :call ToggleLocationList()<CR>
+  nnoremap <leader>ll :call ToggleLocationList()<CR>
 
   "s: Find this C symbol
-  nnoremap  <leader>cs :call CscopeFind('s', expand('<cword>'))<CR>
+  nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
   " g: Find this definition
-  nnoremap  <leader>cd :call CscopeFind('g', expand('<cword>'))<CR>
+  nnoremap  <leader>fd :call CscopeFind('g', expand('<cword>'))<CR>
   " c: Find functions calling this function
-  nnoremap  <leader>cc :call CscopeFind('c', expand('<cword>'))<CR>
+  nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
   " d: Find functions called by this function
-  nnoremap  <leader>cg :call CscopeFind('d', expand('<cword>'))<CR>
+  nnoremap  <leader>fg :call CscopeFind('d', expand('<cword>'))<CR>
   " t: Find this text string
-  nnoremap  <leader>ct :call CscopeFind('t', expand('<cword>'))<CR>
+  nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
   " e: Find this egrep pattern
-  nnoremap  <leader>ce :call CscopeFind('e', expand('<cword>'))<CR>
+  nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
   " f: Find this file
-  nnoremap  <leader>cf :call CscopeFind('f', expand('<cword>'))<CR>
+  nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
   " i: Find files #including this file
-  nnoremap  <leader>ci :call CscopeFind('i', expand('<cword>'))<CR>
+  nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
@@ -854,7 +854,7 @@ endif
 " LeaderF config{{{
 " -----------------------------------------------------------
 let g:Lf_ShortcutF = '<c-p>'
-noremap <Leader>ff :LeaderfFunction<cr>
+noremap <Leader>fv :LeaderfFunction<cr>
 noremap <Leader>fb :LeaderfBuffer<cr>
 noremap <Leader>ft :LeaderfTag<cr>
 noremap <Leader>fm :LeaderfMru<cr>
