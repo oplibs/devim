@@ -93,9 +93,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 
 " Syntax check for most languages.
-" Plug 'scrooloose/syntastic'
 if v:version > 800
-  " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'w0rp/ale'
 else
   Plug 'scrooloose/syntastic'
@@ -118,6 +116,9 @@ if v:version > 704
   endif
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
+endif
+if v:version > 800
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 endif
 
 " Plug 'MarcWeber/vim-addon-mw-utils'
@@ -1254,6 +1255,22 @@ let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} neocomplete
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} coc
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips {{{
