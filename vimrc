@@ -50,13 +50,10 @@ if has('mac')
   Plug 'lyokha/vim-xkbswitch'
 endif
 
-""git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-""~/.fzf/install
 Plug 'junegunn/fzf'
 
 " Plug 'chrisbra/vim-diff-enhanced'
 
-"Plugin 'BufOnly.vim'
 Plug 'vim-scripts/BufOnly.vim'
 
 Plug 'skywind3000/asyncrun.vim'
@@ -94,7 +91,6 @@ Plug 'scrooloose/nerdcommenter'
 
 " Language alignment by element
 Plug 'godlygeek/tabular'
-" Plug 'junegunn/vim-easy-align'
 
 " Syntax check for most languages.
 " Plug 'scrooloose/syntastic'
@@ -107,12 +103,11 @@ endif
 
 " Autoformat tools
 Plug 'Chiel92/vim-autoformat'
-
-" For common language hint
-" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
 "
 Plug 'artur-shaik/vim-javacomplete2'
 
+" For common language hint
+" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
 if v:version > 704
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -154,7 +149,6 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'ap/vim-css-color'
 
 " small language parser
-" Plug 'elzr/vim-json'
 " Plug 'chase/vim-ansible-yaml'
 " Nginx grammar support
 "Plug for markdown
@@ -365,6 +359,43 @@ set tabstop=4 " 设定 tab 长度为 4
 set expandtab
 filetype plugin indent on " 开启插件
 
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " source file syntax{{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if CurSys()=='osx'
+    autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
+    autocmd filetype css set dictionary=$VIMFILES/dict/css.dict
+    " autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
+endif
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}} source file syntax
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 配置多语言环境{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("multi_byte")
+    " UTF-8 编码
+    set encoding=utf-8
+    set termencoding=utf-8
+    set formatoptions+=mM
+    set fencs=utf-8,gbk
+
+    if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
+        set ambiwidth=double
+    endif
+
+    if has("win32")
+        source $VIMRUNTIME/delmenu.vim
+        source $VIMRUNTIME/menu.vim
+        language messages zh_CN.utf-8
+    endif
+else
+    echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
+endif
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " "-----------------------------------------------------------------
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
@@ -404,42 +435,6 @@ nnoremap <Leader>as :AsyncRun<space>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}} vim-do
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " source file syntax{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if CurSys()=='osx'
-    autocmd filetype javascript set dictionary=$VIMFILES/dict/javascript.dict
-    autocmd filetype css set dictionary=$VIMFILES/dict/css.dict
-    " autocmd filetype php set dictionary=$VIMFILES/dict/php.dict
-endif
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}} source file syntax
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 配置多语言环境{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("multi_byte")
-    " UTF-8 编码
-    set encoding=utf-8
-    set termencoding=utf-8
-    set formatoptions+=mM
-    set fencs=utf-8,gbk
-
-    if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
-        set ambiwidth=double
-    endif
-
-    if has("win32")
-        source $VIMRUNTIME/delmenu.vim
-        source $VIMRUNTIME/menu.vim
-        language messages zh_CN.utf-8
-    endif
-else
-    echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
-endif
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "打开vimrc快捷键
 nnoremap <leader>ev  :e $MYVIMRC<cr>
