@@ -548,7 +548,7 @@ augroup END
 """""""""""""""""""""""""""""""
 " " javascript file setting for javascript airbnb style guide
 autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=2 expandtab
-autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " open javascript folding
 function! JavaScriptFold()
