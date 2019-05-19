@@ -179,11 +179,6 @@ call plug#end()
 " :PlugSearch foo - searches for foo; append `!` to refresh local cache
 " :PlugClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-" begin of user define scripts
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" return OS type, eg: windows, or linux, mac, et.st..{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " if v:version > 800
 "     echom "asyn"
 " else
@@ -192,6 +187,10 @@ call plug#end()
 " endif
 "echom v:version
 
+" begin of user define scripts
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" return OS type, eg: windows, or linux, mac, et.st..{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! CurSys()
     if has("win16") || has("win32") || has("win64") || has("win95")
         return "windows"
@@ -229,10 +228,10 @@ set background=dark
 colorscheme gruvbox
 
 " if has("gui_running")
-set guioptions-=T " 隐藏工具栏
 " else
     " syntax enable
 " endif
+set guioptions-=T " 隐藏工具栏
 set guioptions-=m " 隐藏菜单栏
 
 highlight NonText guibg=#060606
@@ -265,14 +264,11 @@ filetype plugin on
 " augroup FiletypeGroup
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
-" au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
 " autocmd!
 " augroup END
 
-" we also want to get rid of accidental trailing whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
 
 " augroup quickfix
     " autocmd!
@@ -283,6 +279,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " ----------------------------------------------------------------------
 " }}} file type setting
 " ----------------------------------------------------------------------
+" we also want to get rid of accidental trailing whitespace on save
+set nobackup " 覆盖文件时不备份
+autocmd BufWritePre * :%s/\s\+$//e
 syntax on " 自动语法高亮
 syntax enable
 set nocompatible " 关闭 vi 兼容模式
@@ -296,7 +295,6 @@ set autoindent
 set cindent " 开启新行时使用智能自动缩进
 set smartindent " 开启新行时使用智能自动缩进
 
-set nobackup " 覆盖文件时不备份
 "set autochdir " 自动切换当前目录为当前文件所在的目录
 set helplang=cn
 " set backupcopy=yes " 设置备份时的行为为覆盖
@@ -532,7 +530,7 @@ augroup json_autocmd
     autocmd FileType json set formatoptions=tcq2l
     " autocmd FileType json set textwidth=80 shiftwidth=2
     autocmd FileType json set shiftwidth=4
-    autocmd FileType json set softtabstop=4 tabstop=8
+    autocmd FileType json set softtabstop=4 tabstop=4
     autocmd FileType json set expandtab
     autocmd FileType json set foldmethod=syntax
 augroup END
@@ -547,8 +545,7 @@ augroup END
 " JavaScript section {{{
 """""""""""""""""""""""""""""""
 " " javascript file setting for javascript airbnb style guide
-autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=2 expandtab
-" autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 " open javascript folding
 function! JavaScriptFold()
@@ -568,7 +565,7 @@ let javascript_enable_domhtmlcss=1
 " 设置字典 ~/.vim/dict/文件的路径
 
 " au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
+" au FileType javascript setl fen
 " """""""""""""""""""""""""""""
 " => vim-jsbeautify{{{
 " """""""""""""""""""""""""""""
