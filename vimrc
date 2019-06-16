@@ -34,7 +34,7 @@ if has ("python3") || has ("python")
   if v:version >= 800
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
   else
-    Plug 'kien/ctrlp.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
   endif
 endif
 
