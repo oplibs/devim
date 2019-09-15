@@ -47,6 +47,7 @@ if has('mac')
   Plug 'lyokha/vim-xkbswitch'
 endif
 
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/fzf'
 
 " Plug 'chrisbra/vim-diff-enhanced'
@@ -132,6 +133,7 @@ Plug 'mattn/emmet-vim'
 "Plug for developing of C and CPP
 Plug 'vim-scripts/a.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'cquery-project/cquery'
 if executable('cmake')
   Plug 'vhdirk/vim-cmake'
 endif
@@ -164,7 +166,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 " Plug 'itchyny/calendar.vim'
 
 " All of your Plugs must be added before the following line
@@ -1436,27 +1438,27 @@ endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwikilist 配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <Leader>ww <Plug>VimwikiIndex
-let g:vimwiki_list = [{'path': '~/projects/work/treki',
-            \    'path_html': '~/projects/work/treki/vimwiki_html',
-            \    'template_path': '~/projects/work/treki/template',
-            \    'template_default': "~/projects/work/treki/templates/default.tpl",
-            \    "auto_export": 1},{'path': '~/projects/work/kodetrek',
-            \    'path_html': '~/projects/work/kodetrek/vimwiki_html',
-            \    'template_path': '~/projects/work/kodetrek/template',
-            \    'template_default': "~/projects/work/kodetrek/templates/default.tpl",
-            \    "auto_export": 1}]
-let g:vimwiki_camel_case = 0
-let g:vimwiki_folding='list'
-map <leader>tt <Plug>VimwikiToggleListItem
-let g:vimwiki_use_calendar = 1
-" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}vimwikilist
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " vimwikilist 配置{{{
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nmap <Leader>ww <Plug>VimwikiIndex
+" let g:vimwiki_list = [{'path': '~/projects/work/treki',
+"             \    'path_html': '~/projects/work/treki/vimwiki_html',
+"             \    'template_path': '~/projects/work/treki/template',
+"             \    'template_default': "~/projects/work/treki/templates/default.tpl",
+"             \    "auto_export": 1},{'path': '~/projects/work/kodetrek',
+"             \    'path_html': '~/projects/work/kodetrek/vimwiki_html',
+"             \    'template_path': '~/projects/work/kodetrek/template',
+"             \    'template_default': "~/projects/work/kodetrek/templates/default.tpl",
+"             \    "auto_export": 1}]
+" let g:vimwiki_camel_case = 0
+" let g:vimwiki_folding='list'
+" map <leader>tt <Plug>VimwikiToggleListItem
+" let g:vimwiki_use_calendar = 1
+" " autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
+" " autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
+" " autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
+" " autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}}vimwikilist
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
