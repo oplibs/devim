@@ -31,6 +31,7 @@ Plug 'vim-scripts/grep.vim'
 Plug 'rking/ag.vim'
 " File finder
 if has ("python3") || has ("python")
+  Plug 'python-mode/python-mode', { 'branch': 'develop'  }
   if v:version >= 800
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
   else
@@ -40,10 +41,6 @@ endif
 
 if executable('cscope')
   Plug 'brookhong/cscope.vim'
-endif
-
-if has ("python3") || has ("python")
-  Plug 'python-mode/python-mode', { 'branch': 'develop'  }
 endif
 
 if has('mac')
@@ -167,7 +164,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 " Plug 'itchyny/calendar.vim'
 
 " All of your Plugs must be added before the following line
@@ -268,7 +265,6 @@ autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
 " autocmd!
 " augroup END
-
 
 " augroup quickfix
     " autocmd!
@@ -395,6 +391,16 @@ endif
 " }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
+"光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
+"时候会变得非常方便.
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}}
+
 " "-----------------------------------------------------------------
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
@@ -481,22 +487,10 @@ nnoremap <leader>m :bprevious<CR>
 nnoremap <leader><space> :b#<CR>
 nnoremap <Leader>k :bdelete<CR>
 nnoremap <Leader>o :BufOnly<CR>
-"
-"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
-"光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
-"时候会变得非常方便.
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Tab操作快捷方式!
 " nnoremap <C-TAB> :tabnext<CR>
 " nnoremap <C-S-TAB> :tabprev<CR>
-"
-" "关于tab的快捷键
 " " map tn :tabnext<cr>
 " " map tp :tabprevious<cr>
 " " map td :tabnew .<cr>
@@ -546,7 +540,6 @@ augroup END
 """""""""""""""""""""""""""""""
 " " javascript file setting for javascript airbnb style guide
 " autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-
 " open javascript folding
 function! JavaScriptFold()
     setl foldmethod=syntax
@@ -587,7 +580,6 @@ autocmd FileType css vnoremap <buffer> <leader>af :call RangeCSSBeautify()<cr>
 """"""""""""""""""""""""""""""
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
-
 " temp commnent for checking
 " au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 
