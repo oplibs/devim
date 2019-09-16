@@ -39,6 +39,8 @@ if has ("python3") || has ("python")
   endif
 endif
 
+Plug 'shougo/echodoc.vim'
+
 if executable('cscope')
   Plug 'brookhong/cscope.vim'
 endif
