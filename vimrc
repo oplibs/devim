@@ -79,6 +79,8 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'taglist.vim'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
+Plug 'ludovicchabant/vim-gutentags'
+
 " Plug to display status in line
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -131,6 +133,11 @@ Plug 'valloric/listtoggle'
 
 " Programming language plugins
 Plug 'mattn/emmet-vim'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
+Plug 'sgur/vim-textobj-parameter'
 
 "Plug for developing of C and CPP
 Plug 'vim-scripts/a.vim'
@@ -390,6 +397,33 @@ if has("multi_byte")
     endif
 else
     echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
+endif
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set tags=./.tags;,.tags
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gutentags {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+    silent! call mkdir(s:vim_tags, 'p')
 endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
@@ -847,9 +881,9 @@ endif
 " LeaderF config{{{
 " -----------------------------------------------------------
 let g:Lf_ShortcutF = '<c-p>'
-noremap <Leader>fv :LeaderfFunction<cr>
+noremap <Leader>fv :LeaderfFunction!<cr>
 noremap <Leader>fb :LeaderfBuffer<cr>
-noremap <Leader>ft :LeaderfTag<cr>
+noremap <Leader>ft :LeaderfTag!<cr>
 noremap <Leader>fm :LeaderfMru<cr>
 noremap <Leader>fl :LeaderfLine<cr>
 
