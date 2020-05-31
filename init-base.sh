@@ -6,6 +6,7 @@
 curl -sL install-node.now.sh/lts | /bin/bash
 # Optional install yarn if you want install extension by CocInstall command
 curl --compressed -o- -L https://yarnpkg.com/install.sh | /bin/bash
+npm install -g yarn
 
 echo "Initing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
