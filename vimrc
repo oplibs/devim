@@ -120,7 +120,8 @@ if v:version > 704
   Plug 'Shougo/neosnippet-snippets'
 endif
 if v:version > 800
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 endif
 
 " Plug 'MarcWeber/vim-addon-mw-utils'
