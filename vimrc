@@ -575,8 +575,8 @@ augroup END
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if filereadable(".vimpath")
     source .vimpath
-    # adding following cmd to enable more search path
-    #set path+=/home/admin/dev/sql/sql-parser/**
+    " adding following cmd to enable more search path
+    " set path+=/home/admin/dev/sql/sql-parser/**
 endif
 
 """"""""""""""""""""""""""""""
