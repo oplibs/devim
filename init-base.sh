@@ -11,8 +11,16 @@ echo "Initing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-pip install pynvim
-pip3 install pynvim
+if command -v pip >/dev/null 2>&1; then
+    pip install pynvim
+else
+    echo 'no exists pip'
+fi
+if command -v pip3 >/dev/null 2>&1; then
+    pip3 install pynvim
+else
+    echo 'no exists pip3'
+fi
 # "wget https://jaist.dl.sourceforge.net/project/astyle/astyle/astyle%203.1/astyle_3.1_linux.tar.gz
 # "tar xzvf astyle_3.1_linux.tar.gz
 # "cd astyle_3.1_linux/build/gcc
