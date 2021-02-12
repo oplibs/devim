@@ -3,9 +3,12 @@
 # echo "Initing vim-plug..."
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-curl -sL install-node.now.sh/lts | sh
+curl -sL install-node.now.sh/lts -o lts.sh
+/bin/bash ./lts.sh --yes
 # Optional install yarn if you want install extension by CocInstall command
-curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+curl --compressed -o- -L https://yarnpkg.com/install.sh -o install.sh
+/bin/bash install.sh --yes
+npm install -g yarn
 
 echo "Initing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

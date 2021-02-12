@@ -1,5 +1,9 @@
 #!/bin/sh
 
+## for brew upgrade
+# brew install python@3.8
+# pip3 install pynvim
+
 echo "Initing vim-plug..."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

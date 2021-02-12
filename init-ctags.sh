@@ -5,4 +5,4 @@ cd ~/ctags
 ./autogen.sh
 ./configure --prefix=/usr/local
 make -j8
-sudo make install
+make install

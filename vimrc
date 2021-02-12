@@ -52,7 +52,8 @@ endif
 if v:version >= 800
   Plug 'ludovicchabant/vim-gutentags'
 endif
-Plug 'junegunn/fzf'
+" Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Plug 'chrisbra/vim-diff-enhanced'
 
@@ -120,7 +121,8 @@ if v:version > 704
   Plug 'Shougo/neosnippet-snippets'
 endif
 if v:version > 800
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 endif
 
 " Plug 'MarcWeber/vim-addon-mw-utils'
@@ -571,6 +573,11 @@ augroup END
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if filereadable(".vimpath")
+    source .vimpath
+    " adding following cmd to enable more search path
+    " set path+=/home/admin/dev/sql/sql-parser/**
+endif
 
 """"""""""""""""""""""""""""""
 " JavaScript section {{{
@@ -849,6 +856,18 @@ let g:ctrlp_custom_ignore = {
 " "cscope{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('cscope')
+  set csprg=/usr/bin/cscope
+  set csto=0
+  set cst
+  set nocsverb
+  " add any database in current directory
+  if filereadable("cscope.out")
+      cs add cscope.out
+      " else add database pointed to by environment
+  elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+  endif
+  set csverb
   nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
   nnoremap <leader>ll :call ToggleLocationList()<CR>
 
