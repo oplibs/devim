@@ -149,9 +149,9 @@ if executable('cmake')
   Plug 'vhdirk/vim-cmake'
 endif
 
-" if executable('go')
-"   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" endif
+if executable('go')
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+endif
 
 " Frontend development
 Plug 'pangloss/vim-javascript'
@@ -167,6 +167,8 @@ Plug 'plasticboy/vim-markdown'
 "Plug for latex
 " Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'vim-latex/vim-latex'
+
+Plug 'goerz/jupytext.vim'
 
 " start screen
 Plug 'mhinz/vim-startify'
