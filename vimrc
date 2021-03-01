@@ -59,9 +59,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'vim-scripts/BufOnly.vim'
 
-Plug 'skywind3000/asyncrun.vim'
+if v:version > 800
+  Plug 'skywind3000/asyncrun.vim'
+endif
 Plug 'thinca/vim-quickrun'
-" Plug 'joonty/vim-do'
 
 Plug 'yggdroot/indentline'
 Plug 'terryma/vim-multiple-cursors'
@@ -469,8 +470,10 @@ nmap <Leader>gg :GitGutterToggle<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "AsyncRun{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:asyncrun_open = 8
-nnoremap <Leader>as :AsyncRun<space>
+if v:version > 800
+  let g:asyncrun_open = 8
+  nnoremap <Leader>as :AsyncRun<space>
+endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}AsyncRun
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
