@@ -16,5 +16,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/plugins/zsh-history-substring-search
 
 echo "plugins=(autojump web-search extract docker zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)" >> ~/.zshrc
+echo "export TERM=vt100" >> ~/.zshrc
 echo "[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh" >> ~/.zshrc
 echo "PROMPT='\${ret_status} %{\$fg[green]%}%n@\$fg[red]%}%m:%{\$fg[cyan]%}%d/>%{\$reset_color%} \$(git_prompt_info)'" >> ~/.oh-my-zsh/themes/robbyrussell.zsh-theme
