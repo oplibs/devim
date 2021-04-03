@@ -160,13 +160,10 @@ Plug 'maksimr/vim-jsbeautify'
 " Plug 'mxw/vim-jsx'
 Plug 'ap/vim-css-color'
 
-" small language parser
-" Plug 'chase/vim-ansible-yaml'
 " Nginx grammar support
 "Plug for markdown
 Plug 'plasticboy/vim-markdown'
 "Plug for latex
-" Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'vim-latex/vim-latex'
 
 Plug 'goerz/jupytext.vim'
