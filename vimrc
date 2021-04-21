@@ -952,7 +952,7 @@ if executable('ag')
     " Ag is fast enough that CtrlP doesn't need to cache
     let g:ctrlp_use_caching = 0
 endif
-map <leader>ag :Ag<space>
+map <leader>ag :Ag!<space>
 " -----------------------------------------------------------
 " }}} ag config
 " -----------------------------------------------------------
