@@ -54,6 +54,7 @@ if v:version >= 800
 endif
 " Plug 'junegunn/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Plug 'chrisbra/vim-diff-enhanced'
 
