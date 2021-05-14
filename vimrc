@@ -45,9 +45,9 @@ if executable('cscope')
   Plug 'brookhong/cscope.vim'
 endif
 
-if has('mac')
-  Plug 'lyokha/vim-xkbswitch'
-endif
+" if has('mac')
+"  Plug 'lyokha/vim-xkbswitch'
+" endif
 
 if v:version >= 800
   Plug 'ludovicchabant/vim-gutentags'
@@ -959,9 +959,9 @@ map <leader>ag :Ag!<space>
 " -----------------------------------------------------------
 "xkbswitch 配置{{{
 " -----------------------------------------------------------
-if has('mac')
-  let g:XkbSwitchEnabled = 1
-endif
+" if has('mac')
+  " let g:XkbSwitchEnabled = 1
+" endif
 " -----------------------------------------------------------
 "}}}xkbswitch 配置
 " -----------------------------------------------------------
