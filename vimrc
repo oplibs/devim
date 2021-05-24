@@ -362,9 +362,9 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}source folding setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
-set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
-set tabstop=4 " 设定 tab 长度为 4
+set shiftwidth=2 " 设定 << 和 >> 命令移动时的宽度为 4
+set softtabstop=2 " 使得按退格键时可以一次删掉 4 个空格
+set tabstop=2 " 设定 tab 长度为 4
 set expandtab
 filetype plugin indent on " 开启插件
 
@@ -565,8 +565,8 @@ augroup json_autocmd
     autocmd FileType json set autoindent
     autocmd FileType json set formatoptions=tcq2l
     " autocmd FileType json set textwidth=80 shiftwidth=2
-    autocmd FileType json set shiftwidth=4
-    autocmd FileType json set softtabstop=4 tabstop=4
+    autocmd FileType json set shiftwidth=2
+    autocmd FileType json set softtabstop=2 tabstop=2
     autocmd FileType json set expandtab
     autocmd FileType json set foldmethod=syntax
 augroup END
