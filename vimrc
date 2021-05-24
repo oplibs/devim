@@ -127,6 +127,7 @@ if v:version > 800
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 endif
 
+Plug 'rhysd/vim-clang-format'
 " Plug 'MarcWeber/vim-addon-mw-utils'
 " Plug 'tomtom/tlib_vim'
 " Plug 'garbas/vim-snipmate'
@@ -669,6 +670,7 @@ au FileType python syn keyword pythonDecorator True None False self
 " let g:pymode_rope_lookup_project = 0
 "
 " let g:pymode_rope_complete_on_dot = 0  " 防止和youcompleteme冲突
+autocmd FileType python noremap <buffer> <leader>af :PymodeLintAuto<CR>
 """""""""""""""""""""""""""""""
 ""}}} python-mode
 """""""""""""""""""""""""""""""
@@ -1216,7 +1218,8 @@ let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
 let g:formatters_python = ['autopep8']
 " au FileType c,cpp,cc,java,python nnoremap <leader>af :Autoformat<CR>
 " au BufWrite * :Autoformat
-noremap <leader>af :Autoformat<CR>
+autocmd FileType python vnoremap <buffer> <leader>af :Autoformat<cr>
+" noremap <leader>af :Autoformat<CR>
 "au FileType json nnoremap ,af :Autoformat<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vim-autoformat config
@@ -1273,37 +1276,37 @@ let g:deoplete#enable_at_startup = 1
 " }}}deocomplete
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" neocomplete {{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} neocomplete
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " neocomplete {{{
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Plugin key-mappings.
+" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+"
+" " SuperTab like snippets behavior.
+" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+" "imap <expr><TAB>
+" " \ pumvisible() ? "\<C-n>" :
+" " \ neosnippet#expandable_or_jumpable() ?
+" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"
+" " For conceal markers.
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
+"
+" " Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+"
+" " Tell Neosnippet about the other snippets
+" let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
+"
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}} neocomplete
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1444,6 +1447,25 @@ nmap <Leader>r <Plug>(quickrun)
 " " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " " }}}vim-easy-align settings
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" clang-format {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc,java  map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} clang-format
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-markdown{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1495,27 +1517,23 @@ let g:vim_markdown_frontmatter             = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " vimwikilist 配置{{{
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nmap <Leader>ww <Plug>VimwikiIndex
-" let g:vimwiki_list = [{'path': '~/projects/work/treki',
-"             \    'path_html': '~/projects/work/treki/vimwiki_html',
-"             \    'template_path': '~/projects/work/treki/template',
-"             \    'template_default': "~/projects/work/treki/templates/default.tpl",
-"             \    "auto_export": 1},{'path': '~/projects/work/kodetrek',
-"             \    'path_html': '~/projects/work/kodetrek/vimwiki_html',
-"             \    'template_path': '~/projects/work/kodetrek/template',
-"             \    'template_default': "~/projects/work/kodetrek/templates/default.tpl",
-"             \    "auto_export": 1}]
-" let g:vimwiki_camel_case = 0
-" let g:vimwiki_folding='list'
-" map <leader>tt <Plug>VimwikiToggleListItem
-" let g:vimwiki_use_calendar = 1
-" " autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
-" " autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
-" " autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
-" " autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}}vimwikilist
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" vimwikilist 配置{{{
+"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nmap <Leader>ww <Plug>VimwikiIndex
+"let g:vimwiki_list = [{'path': '~/projects/work/treki',
+"            \    'path_html': '~/projects/work/treki/vimwiki_html',
+"            \    'template_path': '~/projects/work/treki/template',
+"            \    'template_default': "~/projects/work/treki/templates/default.tpl",
+"            \    "auto_export": 1}]
+"let g:vimwiki_camel_case = 0
+"let g:vimwiki_folding='list'
+"map <leader>tt <Plug>VimwikiToggleListItem
+"let g:vimwiki_use_calendar = 1
+"" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
+"" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
+"" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
+"" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
+"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" }}}vimwikilist
+"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""

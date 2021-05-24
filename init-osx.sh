@@ -18,8 +18,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 brew install astyle
-# "wget https://jaist.dl.sourceforge.net/project/astyle/astyle/astyle%203.1/astyle_3.1_linux.tar.gz
-# "tar xzvf astyle_3.1_linux.tar.gz
-# "cd astyle_3.1_linux/build/gcc
-# "make
-# "sudo make install
+brew install clang-format
+brew install ctags
+brew install the_silver_searcher
