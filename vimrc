@@ -365,7 +365,7 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
 set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
-set tabstop=4 " 设定 tab 长度为 4
+set tabstop=2 " 设定 tab 长度为 4
 set expandtab
 filetype plugin indent on " 开启插件
 
@@ -453,13 +453,6 @@ let g:tagbar_autofocus=1
 nmap <Leader>t :TagbarToggle<CR>
 " "-----------------------------------------------------------------
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-interactive-shell 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap <Leader>r :RunInInteractiveShell<space>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}vim-interactive-shell 配置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gitgutter 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>gg :GitGutterToggle<CR>
@@ -498,9 +491,9 @@ let g:bufferline_active_buffer_right = ']'
 """"""""""""""""""""""""""""""
 " }}} vim-bufferline
 """""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-airline{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "加强版状态栏
 let g:airline_theme='molokai'
 "使用powerline打过补丁的字体
@@ -519,12 +512,12 @@ let g:airline#extensions#whitespace#symbol = '!'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:airline#extensions#tagbar#enabled = 0
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " Buffers操作快捷方式{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""}}}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Buffers操作快捷方式{{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>. :bnext<CR>
 nnoremap <leader>m :bprevious<CR>
 nnoremap <leader><space> :b#<CR>
@@ -566,8 +559,8 @@ augroup json_autocmd
     autocmd FileType json set autoindent
     autocmd FileType json set formatoptions=tcq2l
     " autocmd FileType json set textwidth=80 shiftwidth=2
-    autocmd FileType json set shiftwidth=4
-    autocmd FileType json set softtabstop=4 tabstop=4
+    autocmd FileType json set shiftwidth=2
+    autocmd FileType json set softtabstop=2 tabstop=2
     autocmd FileType json set expandtab
     autocmd FileType json set foldmethod=syntax
 augroup END
@@ -670,7 +663,7 @@ au FileType python syn keyword pythonDecorator True None False self
 " let g:pymode_rope_lookup_project = 0
 "
 " let g:pymode_rope_complete_on_dot = 0  " 防止和youcompleteme冲突
-autocmd FileType python noremap <buffer> <leader>af :PymodeLintAuto<CR>
+autocmd FileType python noremap <buffer> <leader>cf :PymodeLintAuto<CR>
 """""""""""""""""""""""""""""""
 ""}}} python-mode
 """""""""""""""""""""""""""""""
@@ -682,7 +675,7 @@ autocmd FileType python noremap <buffer> <leader>af :PymodeLintAuto<CR>
 " let g:autopep8_select="E501,W293"
 " let g:autopep8_pep8_passes=100
 " let g:autopep8_aggressive=1
-" let g:autopep8_indent_size=2
+let g:autopep8_indent_size=2
 " let g:autopep8_diff_type='vertical'
 " set modifiable
 " map <leader>gr :call RunPython()<CR>
@@ -700,7 +693,6 @@ endfunction
 """""""""""""""""""""""""""""""
 "" }}} python autopep8
 """""""""""""""""""""""""""""""
-" begin plugin configuration
 " "-----------------------------------------------------------------
 " " plugin - taglist.vim 查看函数列表，需要ctags程序
 " " F4 打开隐藏taglist窗口
