@@ -363,8 +363,8 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}source folding setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set shiftwidth=4 " 设定 << 和 >> 命令移动时的宽度为 4
-set softtabstop=4 " 使得按退格键时可以一次删掉 4 个空格
+set shiftwidth=2 " 设定 << 和 >> 命令移动时的宽度为 4
+set softtabstop=2 " 使得按退格键时可以一次删掉 4 个空格
 set tabstop=2 " 设定 tab 长度为 4
 set expandtab
 filetype plugin indent on " 开启插件
