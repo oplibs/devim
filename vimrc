@@ -179,7 +179,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
-" Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 " Plug 'itchyny/calendar.vim'
 
 " All of your Plugs must be added before the following line
@@ -753,7 +753,7 @@ let g:indentLine_enabled = 0
 " " r 递归刷新当前目录 R 递归刷新当前根目录
 " "-----------------------------------------------------------------
 " F3 NERDTree 切换
-map <S-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR>
 map <C-i> :NERDTreeFind<CR>
 let NERDChristmasTree=1
@@ -1509,23 +1509,23 @@ let g:vim_markdown_frontmatter             = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" vimwikilist 配置{{{
-"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nmap <Leader>ww <Plug>VimwikiIndex
-"let g:vimwiki_list = [{'path': '~/projects/work/treki',
-"            \    'path_html': '~/projects/work/treki/vimwiki_html',
-"            \    'template_path': '~/projects/work/treki/template',
-"            \    'template_default': "~/projects/work/treki/templates/default.tpl",
-"            \    "auto_export": 1}]
-"let g:vimwiki_camel_case = 0
-"let g:vimwiki_folding='list'
-"map <leader>tt <Plug>VimwikiToggleListItem
-"let g:vimwiki_use_calendar = 1
-"" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
-"" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
-"" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
-"" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
-"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" }}}vimwikilist
-"" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimwikilist 配置{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Leader>vk <Plug>VimwikiIndex
+let g:vimwiki_list = [{'path': '~/projects/work/treki',
+            \    'path_html': '~/projects/work/treki/vimwiki_html',
+            \    'template_path': '~/projects/work/treki/template',
+            \    'template_default': "~/projects/work/treki/templates/default.tpl",
+            \    "auto_export": 1}]
+let g:vimwiki_camel_case = 0
+let g:vimwiki_folding='list'
+" autocmd FileType wiki noremap <buffer> <leader>tt <Plug>VimwikiToggleListItem
+let g:vimwiki_use_calendar = 1
+" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
+" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}vimwikilist
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
