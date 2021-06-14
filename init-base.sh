@@ -6,7 +6,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 curl -sL install-node.now.sh/lts -o lts.sh
 /bin/bash ./lts.sh --yes
 # Optional install yarn if you want install extension by CocInstall command
-curl --compressed -o- -L https://yarnpkg.com/install.sh -o install.sh
+#curl --compressed -o- -L https://yarnpkg.com/install.sh -o install.sh
+wget https://yarnpkg.com/install.sh
 /bin/bash install.sh --yes
 npm install -g yarn
 
