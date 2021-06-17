@@ -1,5 +1,5 @@
 * json
-:CocInstall coc-json coc-sh coc-cmake coc-markdownlint
+:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css
 
 * c, c++, object-c
 cquery
