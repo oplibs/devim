@@ -1,7 +1,6 @@
 * json
-:CocInstall coc-json
-* bash
-:CocInstall coc-sh
+:CocInstall coc-json coc-sh coc-cmake coc-markdownlint
+
 * c, c++, object-c
 cquery
 "languageserver": {
@@ -16,9 +15,6 @@ cquery
   }
 }
 
-* cmake
-:CocInstall coc-cmake
-
 * docker
 npm install -g dockerfile-language-server-nodejs
 "languageserver": {
@@ -28,9 +24,6 @@ npm install -g dockerfile-language-server-nodejs
       "args": ["--stdio"]
   }
 }
-
-* markdown
-:CocInstall coc-markdownlint
 
 * sql
 npm i -g sql-language-server (error)
