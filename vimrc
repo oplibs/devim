@@ -111,7 +111,10 @@ Plug 'artur-shaik/vim-javacomplete2'
 
 " For common language hint
 " Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
-if v:version > 704
+if v:version > 800
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+else
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   else
@@ -122,17 +125,13 @@ if v:version > 704
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets'
 endif
-if v:version > 800
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-endif
 
 Plug 'rhysd/vim-clang-format'
 " Plug 'MarcWeber/vim-addon-mw-utils'
 " Plug 'tomtom/tlib_vim'
 " Plug 'garbas/vim-snipmate'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 Plug 'valloric/listtoggle'
 
