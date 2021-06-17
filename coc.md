@@ -3,14 +3,18 @@
 * bash
 :CocInstall coc-sh
 * c, c++, object-c
+cquery
 "languageserver": {
-      "clangd": {
-          "command": "clangd",
-          "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-          "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-      }
+  "cquery": {
+    "command": "cquery",
+    "args": ["--log-file=/tmp/cq.log"],
+    "filetypes": ["c", "cc", "cpp", "c++"],
+    "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".hg/"],
+    "initializationOptions": {
+      "cacheDirectory": "/tmp/cquery"
+    }
+  }
 }
-:CocInstall coc-clangd
 
 * cmake
 :CocInstall coc-cmake
