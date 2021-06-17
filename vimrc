@@ -111,7 +111,7 @@ Plug 'artur-shaik/vim-javacomplete2'
 
 " For common language hint
 " Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
-if v:version > 800 && has('cquery')
+if v:version > 800
     " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 else
