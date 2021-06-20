@@ -1,5 +1,7 @@
 * json
-:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-ultisnips coc-yank coc-tabnine coc-ultisnips
+:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-yank coc-tabnine
+:CocInstall coc-snippets #coc-ultisnips 
+:CocInstall https://github.com/andys8/vscode-jest-snippets
 
 * c, c++, object-c
 cquery
