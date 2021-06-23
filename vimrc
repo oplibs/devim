@@ -1577,12 +1577,34 @@ let g:vimwiki_list = [{'path': '~/projects/work/treki',
             \    "auto_export": 1}]
 let g:vimwiki_camel_case = 0
 let g:vimwiki_folding='list'
-" autocmd FileType wiki noremap <buffer> <leader>tt <Plug>VimwikiToggleListItem
 let g:vimwiki_use_calendar = 1
-" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"
+let $author_name = ""
+let $author_email = ""
+func SetTitle()
+  if &filetype == 'sh'
+    call setline(1,"\###################################################################")
+    call append(line("."), "\# File Name: ".expand("%"))
+    call append(line(".")+1, "\# Author: ".$author_name)
+    call append(line(".")+2, "\# mail: ".$author_email)
+    call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+    call append(line(".")+4, "\##############################################################")
+    call append(line(".")+5, "\#!/bin/bash")
+    call append(line(".")+6, "")
+  else
+    call setline(1,"\#!/usr/bin/python")
+    call append(line("."), "\# -*- coding: utf-8 -*")
+    call append(line(".")+1, "\##############################################################")
+    call append(line(".")+2, "\# File Name: ".expand("%"))
+    call append(line(".")+3, "\# Author: ".$author_name)
+    call append(line(".")+4, "\# mail: ".$author_email)
+    call append(line(".")+5, "\# Created Time: ".strftime("%c"))
+    call append(line(".")+6, "\##############################################################")
+    call append(line(".")+7, "")
+  endif
+  autocmd BufNewFile * normal G
+endfunc
