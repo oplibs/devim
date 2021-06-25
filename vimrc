@@ -263,6 +263,7 @@ set showmatch
 set scrolloff=5
 "Vim窗口底部显示一个永久状态栏，可以显示文件名、行号和列号等内容：
 set laststatus=2
+set cmdheight=2
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}color scheme & GUI setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1311,6 +1312,63 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} coc
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1519,12 +1577,34 @@ let g:vimwiki_list = [{'path': '~/projects/work/treki',
             \    "auto_export": 1}]
 let g:vimwiki_camel_case = 0
 let g:vimwiki_folding='list'
-" autocmd FileType wiki noremap <buffer> <leader>tt <Plug>VimwikiToggleListItem
 let g:vimwiki_use_calendar = 1
-" autocmd FileType wiki nmap <silent><buffer> <t-space> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-y> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-,> <Plug>VimwikiToggleListItem
-" autocmd FileType wiki vmap <silent><buffer> <C-/> VimwikiToggleListItem
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"
+let $author_name = ""
+let $author_email = ""
+func SetTitle()
+  if &filetype == 'sh'
+    call setline(1,"\###################################################################")
+    call append(line("."), "\# File Name: ".expand("%"))
+    call append(line(".")+1, "\# Author: ".$author_name)
+    call append(line(".")+2, "\# mail: ".$author_email)
+    call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+    call append(line(".")+4, "\##############################################################")
+    call append(line(".")+5, "\#!/bin/bash")
+    call append(line(".")+6, "")
+  else
+    call setline(1,"\#!/usr/bin/python")
+    call append(line("."), "\# -*- coding: utf-8 -*")
+    call append(line(".")+1, "\##############################################################")
+    call append(line(".")+2, "\# File Name: ".expand("%"))
+    call append(line(".")+3, "\# Author: ".$author_name)
+    call append(line(".")+4, "\# mail: ".$author_email)
+    call append(line(".")+5, "\# Created Time: ".strftime("%c"))
+    call append(line(".")+6, "\##############################################################")
+    call append(line(".")+7, "")
+  endif
+  autocmd BufNewFile * normal G
+endfunc

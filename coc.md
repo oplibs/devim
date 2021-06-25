@@ -1,7 +1,8 @@
 * json
-:CocInstall coc-json
-* bash
-:CocInstall coc-sh
+:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-yank coc-tabnine
+:CocInstall coc-snippets #coc-ultisnips 
+:CocInstall https://github.com/andys8/vscode-jest-snippets
+
 * c, c++, object-c
 cquery
 "languageserver": {
@@ -16,9 +17,6 @@ cquery
   }
 }
 
-* cmake
-:CocInstall coc-cmake
-
 * docker
 npm install -g dockerfile-language-server-nodejs
 "languageserver": {
@@ -28,9 +26,6 @@ npm install -g dockerfile-language-server-nodejs
       "args": ["--stdio"]
   }
 }
-
-* markdown
-:CocInstall coc-markdownlint
 
 * sql
 npm i -g sql-language-server (error)
