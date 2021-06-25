@@ -1582,7 +1582,7 @@ let g:vimwiki_use_calendar = 1
 " }}}vimwikilist
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"
+autocmd BufNewFile *.py,*.sh,*.cc,*.cpp,*.c,*.h, exec ":call SetTitle()"
 let $author_name = ""
 let $author_email = ""
 func SetTitle()
@@ -1595,6 +1595,28 @@ func SetTitle()
     call append(line(".")+4, "\##############################################################")
     call append(line(".")+5, "\#!/bin/bash")
     call append(line(".")+6, "")
+  elseif &filetype == 'cpp'
+    call setline(1,"/**")
+    call append(line("."), " * ")
+    call append(line(".")+1, " * Copyright (C) The software Authors. All rights reserved. ")
+    call append(line(".")+2, " * ")
+    call append(line(".")+3, " * File Name: ".expand("%"))
+    call append(line(".")+4, " * Author: ".$author_name)
+    call append(line(".")+5, " * mail: ".$author_email)
+    call append(line(".")+6, " * Created Time: ".strftime("%c"))
+    call append(line(".")+7, " * Brief: ")
+    call append(line(".")+8, " */")
+  elseif &filetype == 'c'
+    call setline(1,"/**")
+    call append(line("."), " * ")
+    call append(line(".")+1, " * Copyright (C) The software Authors. All rights reserved. ")
+    call append(line(".")+2, " * ")
+    call append(line(".")+3, " * File Name: ".expand("%"))
+    call append(line(".")+4, " * Author: ".$author_name)
+    call append(line(".")+5, " * mail: ".$author_email)
+    call append(line(".")+6, " * Created Time: ".strftime("%c"))
+    call append(line(".")+7, " * Brief: ")
+    call append(line(".")+8, " */")
   else
     call setline(1,"\#!/usr/bin/python")
     call append(line("."), "\# -*- coding: utf-8 -*")
