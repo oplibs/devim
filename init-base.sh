@@ -30,3 +30,4 @@ fi
 # "cd astyle_3.1_linux/build/gcc
 # "make
 # "sudo make install
+cp ./.tmux.conf ~/
