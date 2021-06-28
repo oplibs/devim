@@ -224,9 +224,9 @@ endfunction
 " set guifont=Inconsolata:h12:cANSI
 " endif
 
-if CurSys() == "osx"
-    nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
-endif
+" if CurSys() == "osx"
+"     nnoremap ,w :exe ':silent !open -a /Applications/Google\ Chrome.app %'<CR>
+" endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " color scheme & GUI setting{{{
@@ -414,7 +414,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set tags=./.tags;,.tags
+set tags=./tags;,tags
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gutentags {{{
@@ -445,7 +445,7 @@ endif
 " "-----------------------------------------------------------------
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
-" let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=30
 let g:tagbar_autofocus=1
 " autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
@@ -455,7 +455,7 @@ nmap <Leader>t :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gitgutter 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <Leader>gg :GitGutterToggle<CR>
+nmap <Leader>tg :GitGutterToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} gitgutter配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -869,21 +869,21 @@ if executable('cscope')
   nnoremap <leader>ll :call ToggleLocationList()<CR>
 
   "s: Find this C symbol
-  nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+  nnoremap  <leader>gs :call CscopeFind('s', expand('<cword>'))<CR>
   " g: Find this definition
-  nnoremap  <leader>fd :call CscopeFind('g', expand('<cword>'))<CR>
+  nnoremap  <leader>gd :call CscopeFind('g', expand('<cword>'))<CR>
   " c: Find functions calling this function
-  nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+  nnoremap  <leader>gc :call CscopeFind('c', expand('<cword>'))<CR>
   " d: Find functions called by this function
-  nnoremap  <leader>fg :call CscopeFind('d', expand('<cword>'))<CR>
+  nnoremap  <leader>gg :call CscopeFind('d', expand('<cword>'))<CR>
   " t: Find this text string
-  nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+  nnoremap  <leader>gt :call CscopeFind('t', expand('<cword>'))<CR>
   " e: Find this egrep pattern
-  nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+  nnoremap  <leader>ge :call CscopeFind('e', expand('<cword>'))<CR>
   " f: Find this file
-  nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+  nnoremap  <leader>gf :call CscopeFind('f', expand('<cword>'))<CR>
   " i: Find files #including this file
-  nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+  nnoremap  <leader>gi :call CscopeFind('i', expand('<cword>'))<CR>
 endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}

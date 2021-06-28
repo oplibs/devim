@@ -5,10 +5,12 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 
 curl -sL install-node.now.sh/lts -o lts.sh
 /bin/bash ./lts.sh --yes
+rm -f lts.sh
 # Optional install yarn if you want install extension by CocInstall command
 #curl --compressed -o- -L https://yarnpkg.com/install.sh -o install.sh
 wget https://yarnpkg.com/install.sh
 /bin/bash install.sh --yes
+rm -f install.sh
 npm install -g yarn
 
 echo "Initing fzf..."
