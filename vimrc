@@ -995,7 +995,10 @@ if v:version > 800
   "ale 配置{{{
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "set statusline+=%#warningmsg#
-  set statusline+=%{ALEGetStatusLine()}
+  " set statusline+=%{ALEGetStatusLine()}
+  "set statusline=%{LinterStatus()}
+  let g:airline#extensions#ale#enabled = 1
+
   highlight clear ALEErrorSign
   highlight clear ALEWarningSign
 
@@ -1011,10 +1014,10 @@ if v:version > 800
   let g:ale_statusline_format = ['⨉ %d error(s)', '⚠ %d warning(s)', '⬥ ok']
   " let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
 
-  let g:ale_set_highlights = 0
+  let g:ale_set_highlights = 1
 
-  let g:airline#extensions#ale#error_symbol = 1
-  let g:airline#extensions#ale#warning_symbol = 1
+  let g:#extensions#ale#error_symbol = 1
+  let g:#extensions#ale#warning_symbol = 1
 
   let g:ale_set_loclist = 0
   let g:ale_set_quickfix = 1
@@ -1023,6 +1026,7 @@ if v:version > 800
   " This can be useful if you are combining ALE with
   " some other plugin which sets quickfix errors, etc.
   let g:ale_keep_list_window_open = 1
+  let g:ale_list_window_size = 5
 
   " Write this in your vimrc file
   let g:ale_lint_on_text_changed = 'never'
@@ -1062,9 +1066,6 @@ if v:version > 800
   " let g:ale_sign_warning = '--'
   " let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
   " let g:ale_warn_about_trailing_whitespace = 1
-
-  " let g:ale_set_loclist=0
-  " let g:ale_set_quickfix=0
 
   function! OpenALEResults()
     let l:bfnum = bufnr('')
