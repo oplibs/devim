@@ -1,29 +1,31 @@
 * json
-:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-yank coc-tabnine
-:CocInstall coc-snippets #coc-ultisnips 
+:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-yank coc-tabnine coc-snippets #coc-ultisnips 
 :CocInstall https://github.com/andys8/vscode-jest-snippets
+* docker : npm install -g dockerfile-language-server-nodejs
+* c, c++, object-c: cquery
 
-* c, c++, object-c
-cquery
-"languageserver": {
-  "cquery": {
-    "command": "cquery",
-    "args": ["--log-file=/tmp/cq.log"],
-    "filetypes": ["c", "cc", "cpp", "c++"],
-    "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".hg/"],
-    "initializationOptions": {
-      "cacheDirectory": "/tmp/cquery"
+{
+  "languageserver": {
+    "cquery": {
+      "command": "cquery",
+      "args": ["--log-file=/tmp/cq.log"],
+      "filetypes": ["c", "cc", "cpp", "c++"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/cquery"
+      }
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    },
+    "dockerfile": {
+        "command": "docker-langserver",
+        "filetypes": ["dockerfile"],
+        "args": ["--stdio"]
     }
-  }
-}
-
-* docker
-npm install -g dockerfile-language-server-nodejs
-"languageserver": {
-  "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
   }
 }
 
