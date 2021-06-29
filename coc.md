@@ -38,3 +38,18 @@ npm i -g sql-language-server (error)
       "filetypes": ["sql", "mysql"]
           }
       }
+
+* c, c++, object-c: ccls
+
+{
+  "ccls": {
+    "command": "ccls",
+    "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+    "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+    "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+  }
+}
