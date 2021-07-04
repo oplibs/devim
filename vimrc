@@ -1032,6 +1032,9 @@ if v:version > 800
   let g:ale_lint_on_text_changed = 'never'
 
   let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8'], 'c++':['clang'], 'c':['clang'], 'java':['javac']}
+" Useful reference
+" let g:ale_c_clang_options='-I' . getcwd() . '/autil/'
+" let g:ale_cpp_clang_options='-I' . getcwd() . '/autil/
   " let g:ale_linter_aliases = {'jsx': 'css'}
 
   " let b:ale_fixers = {'py':['autopep8']}
@@ -1633,3 +1636,8 @@ func SetTitle()
   endif
   autocmd BufNewFile * normal G
 endfunc
+
+let &path = getcwd() . '/**'
+if filereadable("ws.vim")
+    source ws.vim
+endif
