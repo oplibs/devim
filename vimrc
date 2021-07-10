@@ -1039,6 +1039,7 @@ if v:version > 800
   let g:ale_lint_on_text_changed = 'never'
 
   let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8'], 'c++':['clang'], 'c':['clang'], 'java':['javac']}
+  let g:ale_cpp_clang_options = '-std=c++14 -Wall -nostdinc++ -isystem /usr/local/Cellar/llvm/12.0.0_1/include/c++/v1/'
 " Useful reference
 " let g:ale_c_clang_options='-I' . getcwd() . '/autil/'
 " let g:ale_cpp_clang_options='-I' . getcwd() . '/autil/
@@ -1321,31 +1322,31 @@ if PlugLoaded('neoclide/coc.nvim')
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
   endfunction
-  
+
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
         \ coc#refresh()
-  
+
   " Make <CR> auto-select the first completion item and notify coc.nvim to
   " format on enter, <cr> could be remapped by other vim plugin
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                                 \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-  
+
   " Use `[g` and `]g` to navigate diagnostics
   " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
   nmap <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <silent> ]g <Plug>(coc-diagnostic-next)
-  
+
   " GoTo code navigation.
   nmap <silent> cgd <Plug>(coc-definition)
   nmap <silent> cgy <Plug>(coc-type-definition)
   nmap <silent> cgi <Plug>(coc-implementation)
   nmap <silent> cgr <Plug>(coc-references)
-  
+
   " Use K to show documentation in preview window.
   nnoremap <silent> K :call <SID>show_documentation()<CR>
-  
+
   function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
       execute 'h '.expand('<cword>')
@@ -1355,17 +1356,17 @@ if PlugLoaded('neoclide/coc.nvim')
       execute '!' . &keywordprg . " " . expand('<cword>')
     endif
   endfunction
-  
+
   " Highlight the symbol and its references when holding the cursor.
   autocmd CursorHold * silent call CocActionAsync('highlight')
-  
+
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
-  
+
   " Formatting selected code.
   xmap <leader>f  <Plug>(coc-format-selected)
   nmap <leader>f  <Plug>(coc-format-selected)
-  
+
   augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).
@@ -1373,12 +1374,12 @@ if PlugLoaded('neoclide/coc.nvim')
     " Update signature help on jump placeholder.
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
   augroup end
-  
+
   " Applying codeAction to the selected region.
   " Example: `<leader>aap` for current paragraph
   xmap <leader>a  <Plug>(coc-codeaction-selected)
   nmap <leader>a  <Plug>(coc-codeaction-selected)
-  
+
   " Remap keys for applying codeAction to the current buffer.
   nmap <leader>ac  <Plug>(coc-codeaction)
   " Apply AutoFix to problem on the current line.
@@ -1650,3 +1651,8 @@ let &path = getcwd() . '/**'
 if filereadable("ws.vim")
     source ws.vim
 endif
+" "reference of ws.vim
+" let g:ale_c_build_dir = "./build"
+" let g:ale_c_parse_makefile = 1
+" let g:ale_c_clang_options="-I/path/to/your/project"
+" #let g:ale_cpp_clang_options = '-std=c++14 -Wall -nostdinc++ -isystem /usr/local/Cellar/llvm/12.0.0_1/include/c++/v1/ -I./'
