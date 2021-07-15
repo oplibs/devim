@@ -1005,7 +1005,7 @@ if v:version > 800
 
   let g:ale_sign_column_always = 1
   let g:ale_sign_error = '✗'
-  let g:ale_sign_warning = '?'
+  let g:ale_sign_warning = 'ï'
   " '❌' '⁉️''⚠️''💩'
   let g:ale_statusline_format = ['⨉ %d error(s)', '⚠ %d warning(s)', '⬥ ok']
   " let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
@@ -1028,7 +1028,7 @@ if v:version > 800
   let g:ale_lint_on_text_changed = 'never'
 
   let g:ale_linters = {'jsx': ['stylelint', 'eslint'], 'py':['flake8'], 'c++':['clang'], 'c':['clang'], 'java':['javac']}
-  let g:ale_cpp_clang_options = '-std=c++14 -Wall -nostdinc++ -isystem /usr/local/Cellar/llvm/12.0.0_1/include/c++/v1/'
+" let g:ale_cpp_clang_options = '-std=c++14 -Wall -nostdinc++ -isystem /usr/local/Cellar/llvm/12.0.0_1/include/c++/v1/'
 " Useful reference
 " let g:ale_c_clang_options='-I' . getcwd() . '/autil/'
 " let g:ale_cpp_clang_options='-I' . getcwd() . '/autil/
@@ -1093,9 +1093,11 @@ else
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "syntastic 配置{{{
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let g:syntastic_error_symbol='X'
+  let g:syntastic_error_symbol='✗'
   let g:syntastic_warning_symbol='!'
 
+  let g:ale_sign_error = '✗'
+  let g:ale_sign_warning = 'ï'
   " let g:syntastic_error_symbol = '❌'
   " let g:syntastic_style_error_symbol = '⁉️'
   " let g:syntastic_warning_symbol = '⚠️'
