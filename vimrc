@@ -167,7 +167,8 @@ Plug 'plasticboy/vim-markdown'
 "Plug for latex
 Plug 'vim-latex/vim-latex'
 
-Plug 'goerz/jupytext.vim'
+"Plug 'goerz/jupytext.vim'
+" Plug 'jupyter-vim/jupyter-vim'
 
 " start screen
 Plug 'mhinz/vim-startify'
