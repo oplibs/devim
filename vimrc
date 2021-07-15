@@ -245,15 +245,15 @@ set background=dark
 " let g:molokai_original = 1
 colorscheme gruvbox
 
+highlight NonText guibg=#060606
+highlight Folded  guibg=#0A0A0A guifg=#9090D0
+
 " if has("gui_running")
 " else
     " syntax enable
 " endif
 set guioptions-=T " 隐藏工具栏
 set guioptions-=m " 隐藏菜单栏
-
-highlight NonText guibg=#060606
-highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 " Highlight current line and column
 au WinLeave * set nocursorline nocursorcolumn
@@ -274,29 +274,6 @@ set cmdheight=1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}color scheme & GUI setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" file type setting{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin on
-
-" augroup FiletypeGroup
-autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
-autocmd BufNewFile,BufRead *.{tpl} set filetype=html
-au! BufRead,BufNewFile *.json set filetype=json
-" autocmd!
-" augroup END
-
-" augroup quickfix
-    " autocmd!
-    " autocmd QuickFixCmdPost [^l]* cwindow
-    " autocmd QuickFixCmdPost l*    lwindow
-" augroup END
-
-" ----------------------------------------------------------------------
-" }}} file type setting
-" ----------------------------------------------------------------------
 " we also want to get rid of accidental trailing whitespace on save
 set nobackup " 覆盖文件时不备份
 autocmd BufWritePre * :%s/\s\+$//e
@@ -357,6 +334,29 @@ set clipboard=unnamed
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" file type setting{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype plugin on
+
+" augroup FiletypeGroup
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
+autocmd BufNewFile,BufRead *.{tpl} set filetype=html
+au! BufRead,BufNewFile *.json set filetype=json
+" autocmd!
+" augroup END
+
+" augroup quickfix
+    " autocmd!
+    " autocmd QuickFixCmdPost [^l]* cwindow
+    " autocmd QuickFixCmdPost l*    lwindow
+" augroup END
+
+" ----------------------------------------------------------------------
+" }}} file type setting
+" ----------------------------------------------------------------------
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " source folding setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -421,11 +421,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set tags=./tags;,tags
-
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gutentags {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set tags=./tags;,tags
+
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
@@ -450,7 +451,6 @@ endif
 " }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " "-----------------------------------------------------------------
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
@@ -458,7 +458,6 @@ let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=30
 let g:tagbar_autofocus=1
 " autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
-" nmap <C-t> :TagbarToggle<CR>
 nmap <Leader>t :TagbarToggle<CR>
 " "-----------------------------------------------------------------
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -478,13 +477,6 @@ endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}AsyncRun
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-do{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:do_auto_show_process_window = 1
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}} vim-do
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "打开vimrc快捷键
 nnoremap <leader>ev  :e $MYVIMRC<cr>
@@ -547,9 +539,9 @@ nnoremap <Leader>o :BufOnly<CR>
 " nnoremap <leader>3 :set filetype=javascript<CR>
 " nnoremap <leader>4 :set filetype=php<CR>
 "
-" " set fileformats=unix,dos,mac
-" " nmap <leader>fd :se fileformat=dos<CR>
-" " nmap <leader>fu :se fileformat=unix<CR>
+" set fileformats=unix,dos,mac
+nmap <leader>fd :se fileformat=dos<CR>
+nmap <leader>fu :se fileformat=unix<CR>
 "
 " " use Ctrl+[l|n|p|cc] to list|next|previous|jump to count the result
 " " map <C-x>l <ESC>:cl<CR>
@@ -557,9 +549,6 @@ nnoremap <Leader>o :BufOnly<CR>
 " " map <C-x>p <ESC>:cp<CR>
 " " map <C-x>c <ESC>:cc<CR>
 "
-" " 让 Tohtml 产生有 CSS 语法的 html
-" " syntax/2html.vim，可以用:runtime! syntax/2html.vim
-" let html_use_css=1
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " json file setting{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1015,8 +1004,8 @@ if v:version > 800
   nmap <Leader>sd :ALEDetail<CR>
 
   let g:ale_sign_column_always = 1
-  let g:ale_sign_error = 'X'
-  let g:ale_sign_warning = '!'
+  let g:ale_sign_error = '✗'
+  let g:ale_sign_warning = '?'
   " '❌' '⁉️''⚠️''💩'
   let g:ale_statusline_format = ['⨉ %d error(s)', '⚠ %d warning(s)', '⬥ ok']
   " let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
