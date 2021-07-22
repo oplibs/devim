@@ -853,6 +853,7 @@ let g:ctrlp_custom_ignore = {
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('cscope')
 
+  " cscope -Rbkq
   let g:cscope_silent = 1
 
   set csprg=/usr/bin/cscope
