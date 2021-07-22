@@ -852,6 +852,9 @@ let g:ctrlp_custom_ignore = {
 " "cscope{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('cscope')
+
+  let g:cscope_silent = 1
+
   set csprg=/usr/bin/cscope
   set csto=0
   set cst
