@@ -856,7 +856,7 @@ if executable('cscope')
   " cscope -Rbkq
   let g:cscope_silent = 1
 
-  set csprg=/usr/bin/cscope
+  set csprg=cscope
   set csto=0
   set cst
   set nocsverb
