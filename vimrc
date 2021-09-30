@@ -1626,13 +1626,13 @@ let $author_name = ""
 let $author_email = ""
 func SetTitle()
   if &filetype == 'sh'
-    call setline(1,"\###################################################################")
-    call append(line("."), "\# File Name: ".expand("%"))
-    call append(line(".")+1, "\# Author: ".$author_name)
-    call append(line(".")+2, "\# mail: ".$author_email)
-    call append(line(".")+3, "\# Created Time: ".strftime("%c"))
-    call append(line(".")+4, "\##############################################################")
-    call append(line(".")+5, "\#!/bin/bash")
+    call setline(1,"\#!/bin/bash")
+    call append(line("."), "\##############################################################")
+    call append(line(".")+1, "\# File Name: ".expand("%"))
+    call append(line(".")+2, "\# Author: ".$author_name)
+    call append(line(".")+3, "\# mail: ".$author_email)
+    call append(line(".")+4, "\# Created Time: ".strftime("%c"))
+    call append(line(".")+5, "\##############################################################")
     call append(line(".")+6, "")
   elseif &filetype == 'cpp'
     call setline(1,"/**")
@@ -1667,7 +1667,7 @@ func SetTitle()
     call append(line(".")+6, "\##############################################################")
     call append(line(".")+7, "")
   endif
-  autocmd BufNewFile * normal G
+  autocmd BufNewFile * normal g
 endfunc
 
 let &path = getcwd() . '/**'
