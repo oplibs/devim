@@ -63,7 +63,8 @@ Plug 'vim-scripts/BufOnly.vim'
 if v:version > 800
   Plug 'skywind3000/asyncrun.vim'
 endif
-Plug 'thinca/vim-quickrun'
+" Plug 'thinca/vim-quickrun'
+Plug 'sillybun/vim-repl'
 
 Plug 'yggdroot/indentline'
 Plug 'terryma/vim-multiple-cursors'
@@ -1493,8 +1494,34 @@ endfunction
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-quickrun {{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:quickrun_no_default_key_mappings = 1
-nmap <Leader>r <Plug>(quickrun)
+" let g:quickrun_no_default_key_mappings = 1
+" nmap <Leader>r <Plug>(quickrun)
+let g:repl_program = {
+      \   'python': 'python',
+      \   'default': 'zsh',
+      \   'r': 'R',
+      \   'lua': 'lua',
+      \   }
+let g:repl_predefine_python = {
+      \   'numpy': 'import numpy as np',
+      \   'matplotlib': 'from matplotlib import pyplot as plt'
+      \   }
+let g:repl_cursor_down = 1
+let g:repl_python_automerge = 1
+let g:repl_ipython_version = '7'
+nnoremap <leader>rs :REPLToggle<Cr>
+" run here
+autocmd Filetype python nnoremap <leader>rh <Esc>:REPLDebugStopAtCurrentLine<Cr>
+" step into
+autocmd Filetype python nnoremap <leader>ri <Esc>:REPLPDBN<Cr>
+" step over
+autocmd Filetype python nnoremap <leader>rn <Esc>:REPLPDBS<Cr>
+let g:repl_position = 3
+" let g:repl_width = None
+" let g:repl_height = None
+let g:sendtorepl_invoke_key = "<leader>w"
+let g:repl_position = 0
+let g:repl_stayatrepl_when_open = 0
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
