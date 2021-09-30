@@ -524,7 +524,6 @@ let g:airline#extensions#tagbar#enabled = 0
 nnoremap <leader>. :bnext<CR>
 nnoremap <leader>m :bprevious<CR>
 nnoremap <leader><space> :b#<CR>
-nnoremap <Leader>k :bdelete<CR>
 nnoremap <Leader>o :BufOnly<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Tab操作快捷方式!
@@ -542,8 +541,8 @@ nnoremap <Leader>o :BufOnly<CR>
 " nnoremap <leader>4 :set filetype=php<CR>
 "
 " set fileformats=unix,dos,mac
-nmap <leader>fd :se fileformat=dos<CR>
-nmap <leader>fu :se fileformat=unix<CR>
+" nmap <leader>fd :se fileformat=dos<CR>
+" nmap <leader>fu :se fileformat=unix<CR>
 "
 " " use Ctrl+[l|n|p|cc] to list|next|previous|jump to count the result
 " " map <C-x>l <ESC>:cl<CR>
@@ -679,17 +678,17 @@ let g:autopep8_indent_size=2
 " let g:autopep8_diff_type='vertical'
 " set modifiable
 " map <leader>gr :call RunPython()<CR>
-function RunPython()
-    let mp = &makeprg
-    let ef = &errorformat
-    let exeFile = expand("%:t")
-    setlocal makeprg=python\ -u
-    set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-    silent make %
-    copen
-    let &makeprg = mp
-    let &errorformat = ef
-endfunction
+" function RunPython()
+"     let mp = &makeprg
+"     let ef = &errorformat
+"     let exeFile = expand("%:t")
+"     setlocal makeprg=python\ -u
+"     set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+"     silent make %
+"     copen
+"     let &makeprg = mp
+"     let &errorformat = ef
+" endfunction
 """""""""""""""""""""""""""""""
 "" }}} python autopep8
 """""""""""""""""""""""""""""""
@@ -744,7 +743,7 @@ let g:indentLine_enabled = 0
 "NERDTree配置{{{
 " -----------------------------------------------------------------
 " " plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
-" " :ERDtree 打开NERD_tree :NERDtreeClose 关闭NERD_tree
+" " :NERDtree 打开NERD_tree :NERDtreeClose 关闭NERD_tree
 " " o 打开关闭文件或者目录 t 在标签页中打开
 " " T 在后台标签页中打开 ! 执行此文件
 " " p 到上层目录 P 到根目录
@@ -783,7 +782,7 @@ let NERDTreeWinSize=30
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup=0
 " 忽略以下文件的显示
-let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class']
 
 " NERDTree git 配置信息如下
 let g:NERDTreeIndicatorMapCustom = {
@@ -903,7 +902,7 @@ noremap <Leader>fm :LeaderfMru<cr>
 noremap <Leader>fl :LeaderfLine<cr>
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git', '.hg']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_WindowHeight = 0.30
 let g:Lf_CacheDirectory = expand('~/.vim/cache')
