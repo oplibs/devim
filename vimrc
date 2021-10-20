@@ -1608,10 +1608,10 @@ endif
 " vimwikilist 配置{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>vk <Plug>VimwikiIndex
-let g:vimwiki_list = [{'path'       : '~/projects/work/treki',
-            \    'path_html'        : '~/projects/work/treki/vimwiki_html',
-            \    'template_path'    : '~/projects/work/treki/template',
-            \    'template_default' : "~/projects/work/treki/templates/default.tpl",
+let g:vimwiki_list = [{'path'       : '~/projects/treki',
+            \    'path_html'        : '~/projects/treki/vimwiki_html',
+            \    'template_path'    : '~/projects/treki/template',
+            \    'template_default' : "~/projects/treki/templates/default.tpl",
             \    "auto_export": 1}]
 let g:vimwiki_camel_case = 0
 let g:vimwiki_folding='list'
@@ -1637,24 +1637,22 @@ func SetTitle()
     call setline(1,"/**")
     call append(line("."), " * ")
     call append(line(".")+1, " * Copyright (C) The software Authors. All rights reserved. ")
-    call append(line(".")+2, " * ")
-    call append(line(".")+3, " * File Name: ".expand("%"))
-    call append(line(".")+4, " * Author: ".$author_name)
-    call append(line(".")+5, " * mail: ".$author_email)
-    call append(line(".")+6, " * Created Time: ".strftime("%c"))
-    call append(line(".")+7, " * Brief: ")
-    call append(line(".")+8, " */")
+    call append(line(".")+2, " * File Name: ".expand("%"))
+    call append(line(".")+3, " * Author: ".$author_name)
+    call append(line(".")+4, " * mail: ".$author_email)
+    call append(line(".")+5, " * Created Time: ".strftime("%c"))
+    call append(line(".")+6, " * Brief: ")
+    call append(line(".")+7, " */")
   elseif &filetype == 'c'
     call setline(1,"/**")
     call append(line("."), " * ")
     call append(line(".")+1, " * Copyright (C) The software Authors. All rights reserved. ")
-    call append(line(".")+2, " * ")
-    call append(line(".")+3, " * File Name: ".expand("%"))
-    call append(line(".")+4, " * Author: ".$author_name)
-    call append(line(".")+5, " * mail: ".$author_email)
-    call append(line(".")+6, " * Created Time: ".strftime("%c"))
-    call append(line(".")+7, " * Brief: ")
-    call append(line(".")+8, " */")
+    call append(line(".")+2, " * File Name: ".expand("%"))
+    call append(line(".")+3, " * Author: ".$author_name)
+    call append(line(".")+4, " * mail: ".$author_email)
+    call append(line(".")+5, " * Created Time: ".strftime("%c"))
+    call append(line(".")+6, " * Brief: ")
+    call append(line(".")+7, " */")
   else
     call setline(1,"\#!/usr/bin/python")
     call append(line("."), "\# -*- coding: utf-8 -*")
