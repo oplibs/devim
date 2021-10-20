@@ -1,5 +1,5 @@
 * json
-:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-yank coc-tabnine coc-snippets #coc-ultisnips 
+:CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-yank coc-tabnine coc-snippets #coc-ultisnips
 :CocInstall https://github.com/andys8/vscode-jest-snippets
 * docker : npm install -g dockerfile-language-server-nodejs
 * c, c++, object-c: cquery
@@ -13,6 +13,16 @@
       "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".hg/"],
       "initializationOptions": {
         "cacheDirectory": "/tmp/cquery"
+      }
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
       }
     },
     "golang": {
