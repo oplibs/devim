@@ -147,7 +147,7 @@ Plug 'sgur/vim-textobj-parameter'
 "Plug for developing of C and CPP
 Plug 'vim-scripts/a.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'cquery-project/cquery'
+" Plug 'cquery-project/cquery'
 if executable('cmake')
   Plug 'vhdirk/vim-cmake'
 endif
