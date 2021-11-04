@@ -6,15 +6,6 @@
 
 {
   "languageserver": {
-    "cquery": {
-      "command": "cquery",
-      "args": ["--log-file=/tmp/cq.log"],
-      "filetypes": ["c", "cc", "cpp", "c++"],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".hg/"],
-      "initializationOptions": {
-        "cacheDirectory": "/tmp/cquery"
-      }
-    },
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
