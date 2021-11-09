@@ -910,6 +910,7 @@ let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+let g:Lf_UseCache = 0
 
 let g:Lf_NormalMap = {
 	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
@@ -1635,8 +1636,8 @@ func SetTitle()
     call append(line(".")+6, "")
   elseif &filetype == 'cpp'
     call setline(1,"/**")
-    call append(line("."), " * ")
-    call append(line(".")+1, " * Copyright (C) The software Authors. All rights reserved. ")
+    call append(line("."), " * Copyright (C) The software Authors. All rights reserved. ")
+    call append(line(".")+1, " * ")
     call append(line(".")+2, " * File Name: ".expand("%"))
     call append(line(".")+3, " * Author: ".$author_name)
     call append(line(".")+4, " * mail: ".$author_email)
@@ -1645,8 +1646,8 @@ func SetTitle()
     call append(line(".")+7, " */")
   elseif &filetype == 'c'
     call setline(1,"/**")
-    call append(line("."), " * ")
-    call append(line(".")+1, " * Copyright (C) The software Authors. All rights reserved. ")
+    call append(line("."), " * Copyright (C) The software Authors. All rights reserved. ")
+    call append(line(".")+1, " * ")
     call append(line(".")+2, " * File Name: ".expand("%"))
     call append(line(".")+3, " * Author: ".$author_name)
     call append(line(".")+4, " * mail: ".$author_email)
