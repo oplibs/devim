@@ -1660,8 +1660,9 @@ func SetTitle()
     call append(line(".")+3, "\# Author: ".$author_name)
     call append(line(".")+4, "\# mail: ".$author_email)
     call append(line(".")+5, "\# Created Time: ".strftime("%c"))
-    call append(line(".")+6, "\##############################################################")
-    call append(line(".")+7, "")
+    call append(line(".")+6, "\# Brief:")
+    call append(line(".")+7, "\##############################################################")
+    call append(line(".")+8, "")
   endif
   autocmd BufNewFile * normal g
 endfunc
