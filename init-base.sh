@@ -8,7 +8,7 @@ curl -sL install-node.now.sh/lts -o lts.sh
 rm -f lts.sh
 # Optional install yarn if you want install extension by CocInstall command
 #curl --compressed -o- -L https://yarnpkg.com/install.sh -o install.sh
-wget https://yarnpkg.com/install.sh
+wget https://yarnpkg.com/install.sh --no-check-certificate
 /bin/bash install.sh --yes
 rm -f install.sh
 npm install -g yarn
