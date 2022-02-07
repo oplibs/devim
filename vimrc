@@ -347,6 +347,7 @@ autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd BufNewFile,BufRead *.{jsx} set filetype=javascript
 autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 au! BufRead,BufNewFile *.json set filetype=json
+au! BufNewFile,BufRead *.cu,*.cuh set filetype=cpp
 " autocmd!
 " augroup END
 
