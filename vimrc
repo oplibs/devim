@@ -457,7 +457,7 @@ endif
 " "-----------------------------------------------------------------
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
-let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_width=30
 let g:tagbar_autofocus=1
 " autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
@@ -901,6 +901,7 @@ noremap <Leader>fb :LeaderfBuffer<cr>
 noremap <Leader>ft :LeaderfTag!<cr>
 noremap <Leader>fm :LeaderfMru<cr>
 noremap <Leader>fl :LeaderfLine<cr>
+noremap <Leader>ff :LeaderfFile<cr>
 
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git', '.hg']
