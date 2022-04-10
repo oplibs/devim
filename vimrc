@@ -98,8 +98,8 @@ Plug 'scrooloose/nerdcommenter'
 " Language alignment by element
 Plug 'godlygeek/tabular'
 
-" " Just fucking python, which vim is using IN MACOS
-" Plug 'ianding1/leetcode.vim'
+" Just fucking python, which vim is using IN MACOS
+Plug 'ianding1/leetcode.vim'
 " let g:syntastic_python_python_exec = '/usr/local/Cellar/python@3.10/3.10.2/bin/python3'
 " "Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'.
 " let g:leetcode_solution_filetype='cpp'
@@ -905,7 +905,7 @@ endif
 let g:Lf_ShortcutF = '<c-p>'
 noremap <Leader>fv :LeaderfFunction!<cr>
 noremap <Leader>fb :LeaderfBuffer<cr>
-noremap <Leader>ft :LeaderfTag!<cr>
+noremap <Leader>ft :LeaderfTag<cr>
 noremap <Leader>fm :LeaderfMru<cr>
 noremap <Leader>fl :LeaderfLine<cr>
 noremap <Leader>ff :LeaderfFile<cr>
@@ -1686,3 +1686,4 @@ endif
 " let g:ale_c_clang_options="-I/path/to/your/project"
 " #let g:ale_cpp_clang_options = '-std=c++14 -Wall -nostdinc++ -isystem /usr/local/Cellar/llvm/12.0.0_1/include/c++/v1/ -I./'
 "
+let g:leetcode_browser='chrome'
