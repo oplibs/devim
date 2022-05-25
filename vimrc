@@ -99,11 +99,11 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
 
 " " Just fucking python, which vim is using IN MACOS
-" Plug 'ianding1/leetcode.vim'
-" let g:syntastic_python_python_exec = '/usr/local/Cellar/python@3.10/3.10.2/bin/python3'
-" "Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'.
-" let g:leetcode_solution_filetype='cpp'
-" let g:leetcode_browser='chrome'
+Plug 'ianding1/leetcode.vim'
+let g:syntastic_python_python_exec = '/usr/local/Cellar/python@3.10/3.10.2/bin/python3'
+"Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'.
+let g:leetcode_solution_filetype='cpp'
+let g:leetcode_browser='chrome'
 
 " Syntax check for most languages.
 if v:version > 800
