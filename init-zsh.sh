@@ -5,7 +5,7 @@
 
 
 export SHELL="zsh"   # added to .zshrc
-git clone git://github.com/wting/autojump.git ~/autojump
+git clone https://github.com/wting/autojump.git ~/autojump
 cd ~/autojump
 ./install.py #./uninstall.py
 cd -
