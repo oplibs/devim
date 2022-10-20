@@ -654,7 +654,7 @@ au FileType python syn keyword pythonDecorator True None False self
 "" endfunc
 " }}}
 " Python 文件的一般设置，比如不要 tab 等
-" autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""
 "" python-mode {{{
 """""""""""""""""""""""""""""""
