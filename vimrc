@@ -187,6 +187,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'vimwiki/vimwiki'
 " Plug 'itchyny/calendar.vim'
 
@@ -464,7 +465,7 @@ endif
 " "-----------------------------------------------------------------
 " " plugin - tagbar.vim 查看函数列表
 " "-----------------------------------------------------------------
-let g:tagbar_ctags_bin='/usr/local/Cellar/ctags/5.8_2/bin/ctags'
+let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=30
 let g:tagbar_autofocus=1
 " autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
