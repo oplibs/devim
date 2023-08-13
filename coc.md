@@ -2,7 +2,7 @@
 :CocInstall coc-json coc-sh coc-cmake coc-markdownlint coc-tsserver coc-html coc-css coc-pyright coc-yank coc-tabnine coc-snippets #coc-ultisnips
 :CocInstall https://github.com/andys8/vscode-jest-snippets
 * docker : npm install -g dockerfile-language-server-nodejs
-* c, c++, object-c: cquery
+* c, c++, object-c: cquery :CocConfig
 
 {
   "languageserver": {
