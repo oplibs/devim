@@ -476,15 +476,15 @@ endif
 " }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" "-----------------------------------------------------------------
-" " plugin - tagbar.vim 查看函数列表
-" "-----------------------------------------------------------------
+" " ----------------------------------------------------------------
+" " plugin - tagbar.vim
+" " ----------------------------------------------------------------
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 let g:tagbar_width=30
 let g:tagbar_autofocus=1
 " autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
 nmap <Leader>t :TagbarToggle<CR>
-" "-----------------------------------------------------------------
+" " ----------------------------------------------------------------
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gitgutter 配置{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -503,10 +503,10 @@ endif
 " "}}}AsyncRun
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"打开vimrc快捷键
-nnoremap <leader>ev  :e $MYVIMRC<cr>
-"运行当前vimrc脚本
-nnoremap<leader>sv  :source $MYVIMRC<cr>
+" " Shortcut on opening current vimrc
+" nnoremap <leader>ev  :e $MYVIMRC<cr>
+" " Refresh the vimrc
+" nnoremap<leader>sv  :source $MYVIMRC<cr>
 
 """"""""""""""""""""""""""""""
 " vim-bufferline {{{
@@ -520,12 +520,11 @@ let g:bufferline_active_buffer_right = ']'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-airline{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"加强版状态栏
 let g:airline_theme='molokai'
-"使用powerline打过补丁的字体
+" Using the fone with the powerline patched.
 let g:airline_powerline_fonts = 1
 
-"开启tabline
+" Enable the tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -534,22 +533,22 @@ let g:airline#extensions#tabline#formatter = 'default'
 "关闭状态显示空白符号计数,这个用处不大"
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
-"tabline中buffer显示编号
+" Display the buffers' order in the tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:airline#extensions#tagbar#enabled = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""}}}
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Buffers操作快捷方式{{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Cmd for switching buffers {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>. :bnext<CR>
 nnoremap <leader>m :bprevious<CR>
 nnoremap <leader><space> :b#<CR>
 nnoremap <Leader>o :BufOnly<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " Tab操作快捷方式!
+" " Shortcut for Tab actions
 " nnoremap <C-TAB> :tabnext<CR>
 " nnoremap <C-S-TAB> :tabprev<CR>
 " " map tn :tabnext<cr>
@@ -557,7 +556,6 @@ nnoremap <Leader>o :BufOnly<CR>
 " " map td :tabnew .<cr>
 " " map te :tabedit
 " " map tc :tabclose<cr>
-" "一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用）
 " nnoremap <leader>1 :set filetype=xhtml<CR>
 " nnoremap <leader>2 :set filetype=css<CR>
 " nnoremap <leader>3 :set filetype=javascript<CR>
@@ -598,9 +596,9 @@ if filereadable(".vimpath")
     " set path+=/home/admin/dev/sql/sql-parser/**
 endif
 
-""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 " JavaScript section {{{
-"""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""
 " " javascript file setting for javascript airbnb style guide
 " autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " open javascript folding
@@ -616,9 +614,8 @@ function! JavaScriptFold()
 endfunction
 "
 let b:javascript_fold=1
-" 打开javascript对dom、html和css的支持
+" enable the javascript builtin dom/html/css
 let javascript_enable_domhtmlcss=1
-" 设置字典 ~/.vim/dict/文件的路径
 
 " au FileType javascript call JavaScriptFold()
 " au FileType javascript setl fen
@@ -646,9 +643,9 @@ au FileType python syn keyword pythonDecorator True None False self
 " temp commnent for checking
 " au FileType python nmap <leader>gr :exec '!python' shellescape(@%, 1)<cr>
 
+" Shortcut to run the script.
 " let g:pymode_python = 'python3'
-" 一键运行
-"编译运行
+
 "" map <leader>gr :call CompileRunGcc()<CR>
 "" func! CompileRunGcc()
 ""     exec "w"
@@ -668,11 +665,11 @@ au FileType python syn keyword pythonDecorator True None False self
 ""     endif
 "" endfunc
 " }}}
-" Python 文件的一般设置，比如不要 tab 等
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 """""""""""""""""""""""""""""""
 "" python-mode {{{
 """""""""""""""""""""""""""""""
+" Python configurations: no tab, indent=4 etc.
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 " " Override go-to.definition key shortcut to Ctrl-]
 " let g:pymode_rope_goto_definition_bind = "<C-]>"
 " " Override run current python file key shortcut to Ctrl-Shift-e
