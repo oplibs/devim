@@ -51,8 +51,9 @@ endif
 
 if v:version >= 800
   Plug 'ludovicchabant/vim-gutentags'
+  Plug 'skywind3000/asyncrun.vim'
 endif
-" Plug 'junegunn/fzf'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -60,9 +61,6 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'vim-scripts/BufOnly.vim'
 
-if v:version > 800
-  Plug 'skywind3000/asyncrun.vim'
-endif
 " Plug 'thinca/vim-quickrun'
 Plug 'sillybun/vim-repl'
 
@@ -98,7 +96,7 @@ Plug 'scrooloose/nerdcommenter'
 " Language alignment by element
 Plug 'godlygeek/tabular'
 
-" " Just fucking python, which vim is using IN MACOS
+" Just fucking python, which vim is using IN MACOS
 Plug 'ianding1/leetcode.vim'
 let g:syntastic_python_python_exec = '/usr/local/Cellar/python@3.10/3.10.2/bin/python3'
 "Values: 'cpp', 'java', 'python', 'python3', 'csharp', 'javascript', 'ruby', 'swift', 'golang', 'scala', 'kotlin', 'rust'.
@@ -114,7 +112,7 @@ endif
 
 " Autoformat tools
 Plug 'Chiel92/vim-autoformat'
-"
+
 Plug 'artur-shaik/vim-javacomplete2'
 
 " For common language hint
@@ -169,13 +167,13 @@ Plug 'maksimr/vim-jsbeautify'
 " Plug 'mxw/vim-jsx'
 Plug 'ap/vim-css-color'
 
-" Nginx grammar support
 "Plug for markdown
 Plug 'plasticboy/vim-markdown'
+Plug 'mzlogin/vim-markdown-toc'
 "Plug for latex
 Plug 'vim-latex/vim-latex'
 
-"Plug 'goerz/jupytext.vim'
+" Plug 'goerz/jupytext.vim'
 " Plug 'jupyter-vim/jupyter-vim'
 
 " start screen
@@ -187,7 +185,6 @@ Plug 'morhetz/gruvbox'
 " Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
-Plug 'mzlogin/vim-markdown-toc'
 Plug 'vimwiki/vimwiki'
 " Plug 'itchyny/calendar.vim'
 
@@ -250,13 +247,16 @@ endfunction
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 set background=dark
-" colorscheme jellybeans
 " colorscheme molokai
 " let g:molokai_original = 1
 colorscheme gruvbox
 
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}color scheme & GUI setting
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " if has("gui_running")
 " else
@@ -270,61 +270,71 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
-" 根据从窗口右侧向左数的列数来自动换行"
-"set wrapmargin=2
-"要在文本行超过一定长度时自动换行:"
-"set textwidth=80
-" 插入括号时，短暂地跳转到匹配的对应括号
+" auto switch a line.
+" set wrapmargin=2
+" " Auto switching to a new line when hitting the maximum text number
+" set textwidth=80
+" " When insert a bracket, quick jump to the bracket quote in the file.
 set showmatch
-"光标放在窗口中间而不是第一行，以下选项使光标距窗口上下保留5行
+" Set the period on quick jumping.
+" set matchtime=2
+" 5 line to the previous scrolled buffer
 set scrolloff=5
-"Vim窗口底部显示一个永久状态栏，可以显示文件名、行号和列号等内容：
-set laststatus=2
 set cmdheight=1
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}color scheme & GUI setting
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" bottom buffer to show the filename and line number.
+" 1: No display (default),
+" 2: display it
+set laststatus=2
+" set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\
+" %c:%l/%L%)\
+" No backup on overwriting a file.
+set nobackup
 " we also want to get rid of accidental trailing whitespace on save
-set nobackup " 覆盖文件时不备份
 autocmd BufWritePre * :%s/\s\+$//e
-syntax on " 自动语法高亮
+syntax on
 syntax enable
-set nocompatible " 关闭 vi 兼容模式
-set number " 显示行号
-" set relativenumber " 显示行号
-set cursorline " 突出显示当前行
-set ruler " 打开状态栏标尺
+set nocompatible
+" show line number
+set number
+" set relativenumber
+" highlight the current line
+set cursorline
+" Open the ruler
+set ruler
 
 " To ignore plugin indent changes, instead use:
 set autoindent
-set cindent " 开启新行时使用智能自动缩进
-set smartindent " 开启新行时使用智能自动缩进
+" Using smart indent on a new line
+set cindent
+set smartindent
 
-"set autochdir " 自动切换当前目录为当前文件所在的目录
+" "Auto swith the pwd to the current file.
+" Set autochdir
 set helplang=cn
-" set backupcopy=yes " 设置备份时的行为为覆盖
+" " Using overwriting when backup
+" set backupcopy=yes
 
-" 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
-set ignorecase smartcase "
-set wrapscan " 禁止在搜索到文件两端时重新搜索
-set incsearch " 输入搜索内容时就显示搜索结果
-set hlsearch " 搜索时高亮显示被找到的文本
+" Case insensitive when search, only available on pure lower case inputting.
+set ignorecase smartcase
+" research on hitting the end of a file
+set wrapscan
+" Displaying the result dynamically when inputting the content.
+set incsearch
+" Highlighting the content in searching
+set hlsearch
 
-set noerrorbells " 关闭错误信息响铃
-" set novisualbell " 关闭使用可视响铃代替呼叫
-" set t_vb= " 置空错误铃声的终端代码
-" set matchtime=2 " 短暂跳转到匹配括号的时间
+set noerrorbells
+" Disable the visual error bell.
+" set novisualbell
+" Error code
+" set t_vb=
 set magic
 "set noautowrite
-set hidden " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
+" Enabling the buffer switch when the current buffer have unsaved content.
+set hidden
 
+" Easy backspace
 set backspace=indent,eol,start
-" 不设定在插入状态无法用退格键和 Delete 键删除回车符
-" " setting the status line
-" set cmdheight=1 " 设定命令行的行数为 1
-set laststatus=2 " 显示状态栏 (默认值为 1, 无法显示状态栏)
-" set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\
-" %c:%l/%L%)\
 
 " use ',' as the leader key
 let mapleader = ","
@@ -371,11 +381,15 @@ au! BufNewFile,BufRead *.cu,*.cuh set filetype=cpp
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " source folding setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set foldenable " 开始折叠
-set foldmethod=indent " 缺省用缩进折叠
-"set foldcolumn=0 " 设置折叠区域的宽度
-"set foldclose=all " 设置为自动关闭折叠
-set foldlevel=100 " 设置折叠层数为100,基本上等价于打开文件的时，缺省不折叠
+" Begin folding
+set foldenable
+" Indent for folding
+set foldmethod=indent
+" Folding buffer configuration
+" set foldcolumn=0
+" set foldclose=all
+" No folding on opening a new file (100 as a huge value)
+set foldlevel=100
 " use space to (un)fold the source fragment
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
