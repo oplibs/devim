@@ -1,7 +1,7 @@
 "=========================================================================
 " DesCRiption: devim for Vim
-" Last Change: 2019年01月30日 15时13分
-" Version: 0.10
+" Last Change: 2024.06.20 16:03
+" Version: 0.12
 "=========================================================================
 " Let vim-plug manage the vim plugins
 " Installation: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -167,21 +167,21 @@ Plug 'maksimr/vim-jsbeautify'
 " Plug 'mxw/vim-jsx'
 Plug 'ap/vim-css-color'
 
-"Plug for markdown
+" Plug for markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
-"Plug for latex
+" Plug for latex
 Plug 'vim-latex/vim-latex'
 
 " Plug 'goerz/jupytext.vim'
 " Plug 'jupyter-vim/jupyter-vim'
 
-" start screen
+" Startup screen
 Plug 'mhinz/vim-startify'
-"theme color
+" Theme color
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
-" Two color scheme for vim
+" " Two color scheme for vim
 " Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
@@ -226,14 +226,14 @@ function! CurSys()
     endif
 endfunction
 "
-" " 用户目录变量$VIMFILES
+" " Setting up the vimrc file
 " if CurSys() == "windows"
 " let $VIMFILES = $VIM.'/vimfiles'
 " elseif CurSys() == "linux"
 " let $VIMFILES = $HOME.'/.vim'
 " endif
 "
-" " 设置字体 以及中文支持
+" " Font (With Chinese)
 " if has("win32")
 " set guifont=Inconsolata:h12:cANSI
 " endif
@@ -243,11 +243,11 @@ endfunction
 " endif
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" color scheme & GUI setting{{{
+" Color scheme & GUI setting{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 set background=dark
-" colorscheme molokai
+" Colorscheme molokai
 " let g:molokai_original = 1
 colorscheme gruvbox
 
@@ -262,15 +262,17 @@ highlight Folded  guibg=#0A0A0A guifg=#9090D0
 " else
     " syntax enable
 " endif
-set guioptions-=T " 隐藏工具栏
-set guioptions-=m " 隐藏菜单栏
+" Hidding the toolbar
+set guioptions-=T
+" Hidding the menubar
+set guioptions-=m
 
 " Highlight current line and column
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
-" auto switch a line.
+" Auto switch a line.
 " set wrapmargin=2
 " " Auto switching to a new line when hitting the maximum text number
 " set textwidth=80
@@ -294,7 +296,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 syntax on
 syntax enable
 set nocompatible
-" show line number
+" Show line number
 set number
 " set relativenumber
 " highlight the current line
@@ -341,7 +343,7 @@ let mapleader = ","
 " let mapleader = "\<Space>"
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 选中状态下 Ctrl+c 复制 {{{
+" Ctrl+c as the copy on selecting mode {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap <C-c> "+y
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -395,11 +397,11 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}source folding setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set shiftwidth=2 " 设定 << 和 >> 命令移动时的宽度为 4
-set softtabstop=2 " 使得按退格键时可以一次删掉 4 个空格
-set tabstop=2 " 设定 tab 长度为 4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set expandtab
-filetype plugin indent on " 开启插件
+filetype plugin indent on
 
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " source file syntax{{{
@@ -413,10 +415,10 @@ endif
 " " }}} source file syntax
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 配置多语言环境{{{
+" Multi language configuration {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("multi_byte")
-    " UTF-8 编码
+    " UTF-8 Encode
     set encoding=utf-8
     set termencoding=utf-8
     set formatoptions+=mM
@@ -437,9 +439,7 @@ endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
-"光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
-"时候会变得非常方便.
+" " Switching the buffers on the screen.
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -452,15 +452,16 @@ nnoremap <C-l> <C-w>l
 "ctags -R --c++-kinds=+px --fields=+iaS --extras=+q
 set tags=./tags;,tags
 
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+" gutentags: stopping the recuring to the upper directory when hitting the
+" following directory
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
+" extension for the temporary file
 let g:gutentags_ctags_tagfile = '.tags'
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+" Caching all the generated tag files to the ~/.cache/tags
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
 
-" 配置 ctags 的参数
+" ctags parameters
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
@@ -468,7 +469,6 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 " let g:gutentags_trace = 1
 
-" 检测 ~/.cache/tags 不存在就新建
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
@@ -485,41 +485,41 @@ let g:tagbar_autofocus=1
 " autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
 nmap <Leader>t :TagbarToggle<CR>
 " " ----------------------------------------------------------------
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" gitgutter 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gitgutter {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>tg :GitGutterToggle<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} gitgutter配置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} gitgutter
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "AsyncRun{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if v:version > 800
   let g:asyncrun_open = 8
   nnoremap <Leader>as :AsyncRun<space>
 endif
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}AsyncRun
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " " Shortcut on opening current vimrc
 " nnoremap <leader>ev  :e $MYVIMRC<cr>
 " " Refresh the vimrc
 " nnoremap<leader>sv  :source $MYVIMRC<cr>
 
-""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 " vim-bufferline {{{
-"""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 let g:bufferline_echo = 1
 let g:bufferline_active_buffer_left = '['
 let g:bufferline_active_buffer_right = ']'
-""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 " }}} vim-bufferline
-"""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "vim-airline{{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " vim-airline {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme='molokai'
 " Using the fone with the powerline patched.
 let g:airline_powerline_fonts = 1
@@ -530,15 +530,15 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 
-"关闭状态显示空白符号计数,这个用处不大"
+" Disable the display of the order of blank symbol.
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 " Display the buffers' order in the tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:airline#extensions#tagbar#enabled = 0
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""}}}
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Cmd for switching buffers {{{
@@ -547,15 +547,14 @@ nnoremap <leader>. :bnext<CR>
 nnoremap <leader>m :bprevious<CR>
 nnoremap <leader><space> :b#<CR>
 nnoremap <Leader>o :BufOnly<CR>
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " Shortcut for Tab actions
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  }}}Cmd for switching buffers
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Shortcut for Tab actions {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nnoremap <C-TAB> :tabnext<CR>
 " nnoremap <C-S-TAB> :tabprev<CR>
-" " map tn :tabnext<cr>
-" " map tp :tabprevious<cr>
-" " map td :tabnew .<cr>
-" " map te :tabedit
-" " map tc :tabclose<cr>
 " nnoremap <leader>1 :set filetype=xhtml<CR>
 " nnoremap <leader>2 :set filetype=css<CR>
 " nnoremap <leader>3 :set filetype=javascript<CR>
@@ -570,10 +569,13 @@ nnoremap <Leader>o :BufOnly<CR>
 " " map <C-x>n <ESC>:cn<CR>
 " " map <C-x>p <ESC>:cp<CR>
 " " map <C-x>c <ESC>:cc<CR>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}}Shortcut for Tab actions
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " json file setting{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup json_autocmd
     autocmd!
     autocmd FileType json set autoindent
@@ -587,9 +589,9 @@ augroup END
 " autoformat the json file.
 " autocmd FileType json noremap <buffer> <leader>af :call JsBeautify()<cr>
 " autocmd filetype json noremap <buffer> <leader>af <Esc>:%!python -m json.tool<CR>
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if filereadable(".vimpath")
     source .vimpath
     " adding following cmd to enable more search path
@@ -598,7 +600,7 @@ endif
 
 " """"""""""""""""""""""""""""
 " JavaScript section {{{
-" """""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 " " javascript file setting for javascript airbnb style guide
 " autocmd FileType javascript set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " open javascript folding
@@ -612,16 +614,16 @@ function! JavaScriptFold()
     endfunction
     setl foldtext=FoldText()
 endfunction
-"
+
 let b:javascript_fold=1
 " enable the javascript builtin dom/html/css
 let javascript_enable_domhtmlcss=1
 
 " au FileType javascript call JavaScriptFold()
 " au FileType javascript setl fen
-" """""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 " => vim-jsbeautify{{{
-" """""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 autocmd FileType javascript noremap <buffer> <leader>af :call JsBeautify()<cr>
 " for html
 autocmd FileType html noremap <buffer> <leader>af :call HtmlBeautify()<cr>
@@ -632,12 +634,12 @@ autocmd FileType javascript vnoremap <buffer> <leader>af :call RangeJsBeautify()
 autocmd FileType html vnoremap <buffer> <leader>af :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <leader>af :call RangeCSSBeautify()<cr>
 " au FileType javascript nmap <leader>gr :exec '!node' shellescape(@%, 1)<cr>
-" """""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 " }}} JavaScript section
-" """""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 " => Python section
-""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 " temp commnent for checking
@@ -646,28 +648,28 @@ au FileType python syn keyword pythonDecorator True None False self
 " Shortcut to run the script.
 " let g:pymode_python = 'python3'
 
-"" map <leader>gr :call CompileRunGcc()<CR>
-"" func! CompileRunGcc()
-""     exec "w"
-""     if &filetype == 'c'
-""         exec "!g++ % -o %<"
-""         exec "! %<"
-""     elseif &filetype == 'cpp'
-""         exec "!g++ % -o %<"
-""         exec "! %<"
-""     elseif &filetype == 'java'
-""         exec "!javac %"
-""         exec "!java %<"
-""     elseif &filetype == 'py'
-""         exec "!python"
-""     elseif &filetype == 'sh'
-""         :!%
-""     endif
-"" endfunc
+"  map <leader>gr :call CompileRunGcc()<CR>
+" func! CompileRunGcc()
+"     exec "w"
+"     if &filetype == 'c'
+"         exec "!g++ % -o %<"
+"         exec "! %<"
+"     elseif &filetype == 'cpp'
+"         exec "!g++ % -o %<"
+"         exec "! %<"
+"     elseif &filetype == 'java'
+"         exec "!javac %"
+"         exec "!java %<"
+"     elseif &filetype == 'py'
+"         exec "!python"
+"     elseif &filetype == 'sh'
+"         :!%
+"     endif
+" endfunc
 " }}}
-"""""""""""""""""""""""""""""""
-"" python-mode {{{
-"""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
+" python-mode {{{
+" """"""""""""""""""""""""""""
 " Python configurations: no tab, indent=4 etc.
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 " " Override go-to.definition key shortcut to Ctrl-]
@@ -680,15 +682,16 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
 "
 " " fix hangon for [Pymode] Regenerate autoimport cache
 " let g:pymode_rope_lookup_project = 0
-"
-" let g:pymode_rope_complete_on_dot = 0  " 防止和youcompleteme冲突
+" " solving the conflicts with youcompleteme
+" let g:pymode_rope_complete_on_dot = 0
 autocmd FileType python noremap <buffer> <leader>cf :PymodeLintAuto<CR>
-"""""""""""""""""""""""""""""""
-""}}} python-mode
-"""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""
-"" => python autopep8{{{
-"""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
+" }}} python-mode
+" """"""""""""""""""""""""""""
+" """"""""""""""""""""""""""""
+"  => python autopep8{{{
+" """"""""""""""""""""""""""""
+
 " autocmd FileType python noremap <buffer> <leader>af :call Autopep8()<CR>
 " " let g:autopep8_ignore="E501,W293"
 " let g:autopep8_select="E501,W293"
@@ -710,22 +713,25 @@ let g:autopep8_indent_size=2
 "     let &errorformat = ef
 " endfunction
 """""""""""""""""""""""""""""""
-"" }}} python autopep8
+" }}} python autopep8
 """""""""""""""""""""""""""""""
-" "-----------------------------------------------------------------
-" " plugin - taglist.vim 查看函数列表，需要ctags程序
-" " F4 打开隐藏taglist窗口
-" "-----------------------------------------------------------------
-" " if CurSys() == "windows" " 设定windows系统中ctags程序的位置
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin - taglist.vim show function list, based on ctags {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " if CurSys() == "windows"
 " " let Tlist_Ctags_Cmd = '"'.$VIMRUNTIME.'/ctags.exe"'
-" " elseif CurSys() == "linux" " 设定windows系统中ctags程序的位置
+" " elseif CurSys() == "linux"
 " let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 " " endif
 " nnoremap <c-,> :TlistToggle<CR>
-" let Tlist_Show_One_File = 1 " 不同时显示多个文件的tag，只显示当前文件的
-" let Tlist_Exit_OnlyWindow = 1 " 如果taglist窗口是最后一个窗口，则退出vim
-" let Tlist_Use_Right_Window = 1 " 在右侧窗口中显示taglist窗口
-" let Tlist_File_Fold_Auto_Close=1 " 自动折叠当前非编辑文件的方法列表
+" " Only show one file tags, disable multiple files.
+" let Tlist_Show_One_File = 1
+" " Exit if quit the tag buffer as the last active buffer
+" let Tlist_Exit_OnlyWindow = 1
+" " Shot tags at right
+" let Tlist_Use_Right_Window = 1
+" " auto folding the list for the file whichi is not the current active buffer in editing
+" let Tlist_File_Fold_Auto_Close=1
 " let Tlist_Auto_Open = 0
 " let Tlist_Auto_Update = 1
 " let Tlist_Hightlight_Tag_On_BufEnter = 1
@@ -733,18 +739,21 @@ let g:autopep8_indent_size=2
 " let Tlist_Process_File_Always = 1
 " let Tlist_Display_Prototype = 0
 " let Tlist_Compact_Format = 1
-" -----------------------------------------------------------------
-" -----------------------------------------------------------------
-" " plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。
+" " plugin - mark.vim color the tags
 " " \m mark or unmark the word under (or before) the cursor
-" " \r manually input a regular expression. 用于搜索.
+" " \r manually input a regular expression: For searching
 " " \n clear this mark (i.e. the mark under the cursor), or clear all
 " highlighted marks .
-" " \* 当前MarkWord的下一个 \# 当前MarkWord的上一个
-" " \/ 所有MarkWords的下一个 \? 所有MarkWords的上一个
-" "-----------------------------------------------------------------
+" " \* go to the next of the current MarkWord
+" " \# go to previouse of the current Markword
+" " \/ go to the next of all the MarkWord(s)
+" " \? go to the previous of all the MarkWord(s)
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}} plugin - taglist.vim show function list, based on ctags
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-indentline config {{{
-" "-----------------------------------------------------------------
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
 let g:indentLine_concealcursor = 'inc'
@@ -756,33 +765,42 @@ let g:indentLine_enabled = 0
 "" Background (Vim, GVim)
 " let g:indentLine_bgcolor_term = 202
 " let g:indentLine_bgcolor_gui = '#FF5F00'"
-" -----------------------------------------------------------------
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vim-indentline config
-" -----------------------------------------------------------------
-" -----------------------------------------------------------------
-"NERDTree配置{{{
-" -----------------------------------------------------------------
-" " plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
-" " :NERDtree 打开NERD_tree :NERDtreeClose 关闭NERD_tree
-" " o 打开关闭文件或者目录 t 在标签页中打开
-" " T 在后台标签页中打开 ! 执行此文件
-" " p 到上层目录 P 到根目录
-" " K 到第一个节点 J 到最后一个节点
-" " u 打开上层目录 m 显示文件系统菜单（添加、删除、移动操作）
-" " r 递归刷新当前目录 R 递归刷新当前根目录
-" "-----------------------------------------------------------------
-" F3 NERDTree 切换
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree Config{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " plugin - NERD_tree.vim
+" " :NERDtree :Open NERD_tree :NERDtreeClose :Close NERD_tree
+" " o Open/Close a file/directory
+" " t Open on the tab
+" " T Open on the backend tab.
+" " ! Run the file
+" " p Go to the parent directory.
+" " P Go to the root
+" " K Go to the first node
+" " J Go to the last node.
+" " u Open the parent directory
+" " m Menu for operating a node (Add/Delete/Move)
+" " r Refresh the current directoy (recursive)
+" " R Refresh the current directoy's parent (recursive)
 map <leader>n :NERDTreeToggle<CR>
 "imap <F3> <ESC>:NERDTreeToggle<CR>
 map <C-i> :NERDTreeFind<CR>
 let NERDChristmasTree=1
-let NERDTreeChDirMode=2 "选中root即设置为当前目录
+let NERDTreeChDirMode=2
 let NERDTreeHighlightCursorline=0
-let NERDTreeShowBookmarks=1 "显示书签
-let NERDTreeMinimalUI=1 "不显示帮助面板
-let NERDTreeDirArrows=1 "目录箭头 1 显示箭头 0传统+-|号
+" Showing the bookmark
+let NERDTreeShowBookmarks=1
+" Hidding the help board.
+let NERDTreeMinimalUI=1
+" Logo disploay
+let NERDTreeDirArrows=1
+" Not show the hidden files.
 let NERDTreeShowHidden=0 "显示隐藏文件
-let NERDTreeQuitOnOpen=1 "打开文件时关闭树
+" Auto enabling on Open/Quit
+let NERDTreeQuitOnOpen=1
 " autocmd VimEnter * NERDTree
 
 " function! NERDTree_Start()
@@ -793,18 +811,17 @@ function! NERDTree_IsValid()
     return 1
 endfunction
 
-" NERDTree tabs配置
-" 显示行号
+" NERDTree tabs configurations
+" Show line number
 let NERDTreeShowLineNumbers=1
 let NERDTreeAutoCenter=1
-" 设置宽度
 let NERDTreeWinSize=40
-" 在终端启动vim时，共享NERDTree
+" Share the nerdtree when start a terminal.
 let g:nerdtree_tabs_open_on_console_startup=0
-" 忽略以下文件的显示
+" Skipping the following files.
 let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class']
 
-" NERDTree git 配置信息如下
+" NERDTree git configuration
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -816,48 +833,49 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
-"-----------------------------------------------------------------
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}} NERDTree
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDCommenter.vim configuration{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin - NERD_commenter.vim
+" [count],cc : Add comment in the per-line style
+" [count],cu : uncomment the lines
+" [count],cm : Auto comment on the lines as blocks (7,cm)
+" ,cA        : Insert/* */ on the end of a file
 "-----------------------------------------------------------------
-"-----------------------------------------------------------------
-"NERDCommenter.vim configuration{{{
-"-----------------------------------------------------------------
-" plugin - NERD_commenter.vim 注释代码用的，
-" [count],cc 光标以下count行逐行添加注释(7,cc)
-" [count],cu 光标以下count行逐行取消注释(7,cu)
-" [count],cm 光标以下count行尝试添加块注释(7,cm)
-" ,cA 在行尾插入 /* */,并且进入插入模式。 这个命令方便写注释。
-"-----------------------------------------------------------------
-let NERDSpaceDelims=1 " 让注释符与语句之间留一个空格
-let NERDCompactSexyComs=1 " 多行注释时样子更好看
-"-----------------------------------------------------------------
+" One black between the comment character and the content of thc comment.
+let NERDSpaceDelims=1
+" Better displaying on multiple lines comments
+let NERDCompactSexyComs=1
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}NERDCommenter.vim configuration
-" ----------------------------------------------------------------
-" ----------------------------------------------------------------
-" " plugin - matchit.vim 对%命令进行扩展使得能在嵌套标签和语句之间跳转
-" " % 正向匹配 g% 反向匹配
-" " [% 定位块首 ]% 定位块尾
-" "----------------------------------------------------------------
-" multi-cursor配置{{{
-" "----------------------------------------------------------------
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " plugin - matchit.vim
+" " % Match jump to next g% Reverse Matchi jump
+" " [% Go to the head of a block ]% Go to the end of a block.
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Multi-cursor{{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Default mapping for vim-multi-cursor
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}}multi-cursor配置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"fzf 配置{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}multi-cursor
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.fzf
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}fzf 配置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -----------------------------------------------------------
-" ctrlp config{{{  设置忽略目录和文件
-" -----------------------------------------------------------
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}fzf
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ctrlp config{{{ List for skipping as exceptions
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
 let g:ctrlp_map = '<leader><leader>p'
 " let g:ctrlp_map = '<c-p>'
@@ -865,9 +883,9 @@ let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$\|target$',
             \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc|swp|class)$',
             \ }
-" -----------------------------------------------------------
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} ctrlp config
-" -----------------------------------------------------------
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "cscope{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -911,9 +929,9 @@ endif
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LeaderF config{{{
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Lf_ShortcutF = '<c-p>'
 noremap <Leader>fv :LeaderfFunction!<cr>
 noremap <Leader>fb :LeaderfBuffer<cr>
@@ -957,12 +975,12 @@ let g:Lf_NormalMap = {
 " let g:Lf_HideHelp = 1
 " let g:Lf_StlColorscheme = 'powerline'
 " let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}LeaderF config
-" -----------------------------------------------------------
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ag config {{{
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('ag')
     " Use Ag over Grep
     set grepprg=ag\ --nogroup\ --nocolor
@@ -972,21 +990,22 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 map <leader>ag :Ag!<space>
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} ag config
-" -----------------------------------------------------------
-" -----------------------------------------------------------
-"xkbswitch 配置{{{
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"xkbswitch {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " if has('mac')
   " let g:XkbSwitchEnabled = 1
 " endif
 " -----------------------------------------------------------
-"}}}xkbswitch 配置
-" -----------------------------------------------------------
-" -----------------------------------------------------------
-"Easymotion 配置{{{
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"}}}xkbswitch
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Easymotion {{{
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:EasyMotion_leader_key = 'f'
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
@@ -994,7 +1013,7 @@ map <Leader><leader>h <Plug>(easymotion-linebackward)
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><leader>l <Plug>(easymotion-lineforward)
-" 重复上一次操作, 类似repeat插件, 很强大
+" Repeat the previous operaton. ******* Good tools ******
 map <Leader><leader>. <Plug>(easymotion-repeat)
 " <Leader>f{char} to move to {char}
 " map  <Leader>f <Plug>(easymotion-bd-f)
@@ -1010,12 +1029,12 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 " " Move to word
 " map  <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}Easymotion config
-" -----------------------------------------------------------
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if v:version > 800
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  "ale 配置{{{
+  "ale {{{
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "set statusline+=%#warningmsg#
   " set statusline+=%{ALEGetStatusLine()}
@@ -1118,7 +1137,7 @@ if v:version > 800
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 else
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  "syntastic 配置{{{
+  "syntastic {{{
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   let g:syntastic_error_symbol='✗'
   let g:syntastic_warning_symbol='!'
@@ -1149,7 +1168,7 @@ else
   " if syntastic go error, please open the following line to check the syntastic output
   " let g:syntastic_debug=3
 
-  "" 修改高亮的背景色, 适应主题
+  " " Background color on highlighting block
   highlight SyntasticErrorSign guifg=white guibg=yellow
   let g:syntastic_enable_highlighting=1
   " let g:syntastic_always_populate_loc_list = 1
@@ -1160,7 +1179,8 @@ else
   let g:syntastic_enable_highlighting=1
 
   let g:syntastic_php_checkers = ['php']
-  "let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+  " pyflakes, which may quicker than pylint.
+  "let g:syntastic_python_checkers=['pyflakes']
   let g:syntastic_python_checkers = ['pylint']
   let g:syntastic_javascript_checkers = ['eslint']
   "let g:syntastic_javascript_checkers = ['jsl', 'jshint']
@@ -1205,9 +1225,8 @@ else
   map <leader>ss :call SyntasticToggleMode()<CR>
 
   set statusline+=%*
-  "}}}
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  "}}}syntastic 配置
+  "}}}syntastic
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1221,8 +1240,8 @@ nnoremap <C-k> :lprevious<cr>
 " }}} loclist
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vim-autoformat config{{{
-"这里使用astyle格式化c,cpp,cc,java,需要用homebrew安装astyle
+" vim-autoformat config{{{
+" Formatting the c/cpp/cc/java faile with astyle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('astyle')
   let g:formatdef_baselint  = '"astyle --style=google"'
@@ -1249,36 +1268,43 @@ autocmd FileType python vnoremap <buffer> <leader>af :Autoformat<cr>
 " }}}vim-autoformat config
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " youcompleteme配置{{{
+" " youcompleteme {{{
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-" inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+" " Aligh the menu of the youcompleteme with other IDE(VimTip1228?)
+" set completeopt=longest,menu
+" "Auto close the preview buffer when quit the insert mode.
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" " CR as the default shortcut to select the current option.
+" inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"
 " inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
 " inoremap <expr> <Up>        pumvisible() ? "\<C-p>" : "\<Up>"
 " inoremap <expr> <PageDown>  pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
 " inoremap <expr> <PageUp>    pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
-" "youcompleteme  默认tab  s-tab 和自动补全冲突
+" " tab as the default short cut for conflicts?
 " let g:ycm_key_list_select_completion=['<C-n>']
 " " let g:ycm_key_list_select_completion = ['<Down>', '<space>']
 " let g:ycm_key_list_previous_completion=['<S-n>']
 " "let g:ycm_key_list_previous_completion = ['<Up>']
-" let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
-
-" let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
-" let g:ycm_min_num_of_chars_for_completion=2 " 从第2个键入字符就开始罗列匹配项
-" let g:ycm_cache_omnifunc=0  " 禁止缓存匹配项,每次都重新生成匹配项
-" let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
-" nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
+" " Close the hint for loading .ycm_extra_conf.py
+" let g:ycm_confirm_extra_conf=0
+" Open YCM based on the tag engine
+" let g:ycm_collect_identifiers_from_tags_files=1
+" " Show the hints from the second input character.
+" let g:ycm_min_num_of_chars_for_completion=2
+" " Disable the cached hints, Generating the new hints every time.
+" let g:ycm_cache_omnifunc=0
+" " Keyword hint based on the syntax
+" let g:ycm_seed_identifiers_with_syntax=1
+" "force recomile with syntastic
+" nnoremap <S-r> :YcmForceCompileAndDiagnostics<CR>
 " " nnoremap <leader>lo :lopen<CR> "open locationlist
 " " nnoremap <leader>lc :lclose<CR>   "close locationlist
 " inoremap <leader><leader> <C-x><C-o>
-" "在注释输入中也能补全
+" " Hint on the comments.
 " let g:ycm_complete_in_comments = 1
-" "在字符串输入中也能补全
 " let g:ycm_complete_in_strings = 1
-" "注释和字符串中的文字也会被收入补全
+" " Cache the symbol on the inputted comments.
 " let g:ycm_collect_identifiers_from_comments_and_strings = 0
 " " let g:ycm_semantic_triggers =  {
 " "   \   'c' : ['->', '.'],
@@ -1301,7 +1327,7 @@ let g:deoplete#enable_at_startup = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " neocomplete {{{
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Plugin key-mappings.
 " " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -1328,9 +1354,9 @@ let g:deoplete#enable_at_startup = 1
 " " Tell Neosnippet about the other snippets
 " let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 "
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " }}} neocomplete
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1426,34 +1452,34 @@ autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} UltiSnips
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " snipmate{{{
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:snipMate={}
 " let g:snipMate.scope_aliases={}
 " let g:snipMate.scope_aliases['php']='php,html,js,css,yii,yii-chtml'
 " let g:snipMate.scope_aliases['js']='js,css,javascript.node,javascript.es6,javascript.jquery'
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " }}} snipmate
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" listtoggle配置{{{
+" " }}} snipmate
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" listtoggle {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} listtoggle
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "grep{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let Grep_Skip_Files = '*.swp *~ *.class *.jar'
 let Grep_Skip_Dirs = 'node_modules dist .git vendor'
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" "}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"emmet.vim 配置{{{
+" "}}}
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"emmet.vim {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:user_emmet_settings = {
 " \ 'php' : {
@@ -1469,7 +1495,7 @@ let Grep_Skip_Dirs = 'node_modules dist .git vendor'
 " \}
 "let g:user_emmet_expandabbr_key = '<Tab>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}}}emmet.vim 配置
+"}}}emmet.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-cpp-enhanced-highlight {{{
@@ -1509,12 +1535,12 @@ function! s:align()
         call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
     endif
 endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}tabular settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-quickrun {{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:quickrun_no_default_key_mappings = 1
 " nmap <Leader>r <Plug>(quickrun)
 let g:repl_program = {
@@ -1543,19 +1569,19 @@ let g:repl_position = 3
 let g:sendtorepl_invoke_key = "<leader>w"
 let g:repl_position = 0
 let g:repl_stayatrepl_when_open = 0
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " " vim-easy-align settings {{{
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " vim-easy-align settings {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " Start interactive EasyAlign in visual mode (e.g. vipga)
 " xmap ga <Plug>(EasyAlign)
 " " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 " nmap ga <Plug>(EasyAlign)
-" " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " " }}}vim-easy-align settings
-" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clang-format {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1575,20 +1601,20 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} clang-format
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-markdown{{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vim_markdown_folding_disabled        = 1
 let g:vim_markdown_folding_style_pythonic  = 1
 let g:vim_markdown_no_default_key_mappings = 1
 let g:vim_markdown_math                    = 1
 let g:vim_markdown_frontmatter             = 1
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} vim-markdown
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "vim-go {{{
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('go')
   " use goimports for formatting
   let g:go_fmt_command = "goimports"
@@ -1619,16 +1645,16 @@ endif
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}} vim-go
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Calendar {{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map ca :Calendar<cr>
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}} Calendar
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwikilist 配置{{{
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimwikilist {{{
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Leader>vk <Plug>VimwikiIndex
 let g:vimwiki_list = [{'path'       : '~/projects/treki',
             \    'path_html'        : '~/projects/treki/vimwiki_html',
@@ -1638,9 +1664,9 @@ let g:vimwiki_list = [{'path'       : '~/projects/treki',
 let g:vimwiki_camel_case = 0
 let g:vimwiki_folding='list'
 let g:vimwiki_use_calendar = 1
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}vimwikilist
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 autocmd BufNewFile *.py,*.sh,*.cc,*.cpp,*.c,*.h, exec ":call SetTitle()"
 let $author_name = ""
