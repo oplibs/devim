@@ -25,7 +25,7 @@ rm -f install.sh
 
 echo "export NODE_PATH=/home/node_modules" >> ~/.bashrc
 echo "export NODE_PATH=/home/node_modules" >> ~/.zshrc
-export NODE_PATH=/home/node_modules && npm install -g yarn
+export NODE_PATH=/home/node_modules && npm install --prefix /home/node_modules -g yarn
 
 echo "Initing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
