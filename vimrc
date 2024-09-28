@@ -479,7 +479,7 @@ endif
 " " ----------------------------------------------------------------
 " " plugin - tagbar.vim
 " " ----------------------------------------------------------------
-let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_width=30
 let g:tagbar_autofocus=1
 " autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.js,*.jsx,*.go,*.java,*.py call tagbar#autoopen()
