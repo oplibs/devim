@@ -117,22 +117,6 @@ Plug 'Chiel92/vim-autoformat'
 
 Plug 'artur-shaik/vim-javacomplete2'
 
-" For common language hint
-" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
-if v:version > 800
-    " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-else
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
-endif
 
 Plug 'rhysd/vim-clang-format'
 " Plug 'MarcWeber/vim-addon-mw-utils'
@@ -227,6 +211,24 @@ function! CurSys()
         return "linux"
     endif
 endfunction
+" For common language hint
+" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
+if CurSys() == "linux"
+  if v:version > 800
+    " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  else
+    if has('nvim')
+      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+      Plug 'Shougo/deoplete.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+  endif
+endif
 "
 " " Setting up the vimrc file
 " if CurSys() == "windows"
