@@ -48,7 +48,6 @@ endif
 " if has('mac')
 "  Plug 'lyokha/vim-xkbswitch'
 " endif
-
 if v:version >= 800
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'skywind3000/asyncrun.vim'
@@ -453,6 +452,10 @@ nnoremap <C-l> <C-w>l
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gutentags {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !(has('win32') && $TERM == 'xterm')
+let g:gutentags_enabled = 0
+endif
+
 "ctags -R --c++-kinds=+px --fields=+iaS --extras=+q
 set tags=./tags;,tags
 
