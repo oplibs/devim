@@ -13,10 +13,15 @@ command -v pip3 > /dev/null 2>&1 && {
 echo "Initing vim-plug..."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo "Installing the nodejs and yarn ..."
-curl -sL install-node.now.sh/lts -o lts.sh
-/bin/bash ./lts.sh --yes
-rm -f lts.sh
+command -v node > /dev/null 2>&1 && {
+  echo "nodejs found !";
+} || {
+  echo "Installing the nodejs and yarn ..."
+  curl -sL install-node.now.sh/lts -o lts.sh
+  /bin/bash ./lts.sh --yes
+  rm -f lts.sh
+}
+
 # Optional install yarn if you want install extension by CocInstall command
 #curl --compressed -o- -L https://yarnpkg.com/install.sh -o install.sh
 wget https://yarnpkg.com/install.sh --no-check-certificate
@@ -30,7 +35,6 @@ export NODE_PATH=/home/node_modules && npm install --prefix /home/node_modules -
 echo "Initing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-
 
 echo "Installing the nodejs and yarn ..."
 if command -v pip >/dev/null 2>&1; then
