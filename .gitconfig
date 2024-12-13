@@ -1,8 +1,8 @@
 [push]
-	default = simple
+    default = simple
 [user]
-	name = oplibs
-	email = oplibs@gmail.com
+    name = oplibs
+    email = oplibs@gmail.com
 [core]
     editor = /usr/bin/vim
 
@@ -18,8 +18,8 @@
     cp = cherry-pick
     ca = commit -a
     b = branch
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
 [http]
-	sslverify = false
+    sslverify = false
 [color]
-	ui = auto
+    ui = auto
