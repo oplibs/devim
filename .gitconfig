@@ -5,6 +5,7 @@
     email = oplibs@gmail.com
 [core]
     editor = /usr/bin/vim
+    autocrlf = false
 
 [alias]
     wk = worktree
