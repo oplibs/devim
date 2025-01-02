@@ -15,7 +15,6 @@ Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'vim-scripts/L9'
 
 " Shell utils
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell.vim'
 
 " Common plugin to process text file save
@@ -213,6 +212,7 @@ endfunction
 " For common language hint
 " Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --java-completer --go-completer' }
 if CurSys() == "linux"
+  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   if v:version > 800
     " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
