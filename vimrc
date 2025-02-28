@@ -201,7 +201,7 @@ endfunction
 " return OS type, eg: windows, or linux, mac, et.st..{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! CurSys()
-    if has("win16") || has("win32") || has("win64") || has("win95")
+    if exists('$MSYSTEM') || has("win16") || has("win32") || has("win64") || has("win95")
         return "windows"
     elseif has('mac')
         return "osx"
