@@ -296,6 +296,8 @@ set laststatus=2
 set nobackup
 " we also want to get rid of accidental trailing whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\%u00A0/ /g
+
 syntax on
 syntax enable
 set nocompatible
