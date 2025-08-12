@@ -300,6 +300,8 @@ if CurSys() == "windows"
   autocmd BufWritePre * :%s/\%u00A0/ /g
 endif
 
+autocmd BufRead,BufNewFile * setlocal fileformat=unix
+
 syntax on
 syntax enable
 set nocompatible
