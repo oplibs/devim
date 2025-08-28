@@ -300,7 +300,7 @@ if CurSys() == "windows"
   autocmd BufWritePre * :%s/\%u00A0/ /g
 endif
 
-autocmd BufRead,BufNewFile * setlocal fileformat=unix
+autocmd BufRead,BufNewFile * if &buftype !=# 'quickfix' | setlocal fileformat=unix | endif
 
 syntax on
 syntax enable
