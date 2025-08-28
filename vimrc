@@ -170,7 +170,6 @@ Plug 'morhetz/gruvbox'
 " Plug 'altercation/vim-colors-solarized'
 
 Plug 'vimwiki/vimwiki'
-" Plug 'itchyny/calendar.vim'
 
 " All of your Plugs must be added before the following line
 call plug#end()
@@ -407,8 +406,8 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " }}}source folding setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set softtabstop=4
+set tabstop=4
 set expandtab
 filetype plugin indent on
 
@@ -1491,7 +1490,7 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "grep{{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Grep_Skip_Files = '*.swp *~ *.class *.jar'
+let Grep_Skip_Files = '*.swp *~ *.class *.jar *.o *.lib *.so'
 let Grep_Skip_Dirs = 'node_modules dist .git vendor'
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "}}}
