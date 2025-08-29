@@ -1,26 +1,26 @@
 [push]
-    default = simple
+  default = simple
 [user]
-    name = oplibs
-    email = oplibs@gmail.com
+  name = oplibs
+  email = oplibs@gmail.com
 [core]
-    editor = /usr/bin/vim
-    autocrlf = true
+  editor = /usr/bin/vim
+  autocrlf = true
 
 [alias]
-    wk = worktree
-    co = checkout
-    ci = commit
-    st = status
-    pl = pull
-    ps = push
-    dt = difftool
-    l = log --stat
-    cp = cherry-pick
-    ca = commit -a
-    b = branch
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  wk = worktree
+  co = checkout
+  ci = commit
+  st = status
+  pl = pull
+  ps = push
+  dt = difftool
+  l = log --stat
+  cp = cherry-pick
+  ca = commit -a
+  b = branch
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
 [http]
-    sslverify = false
+  sslverify = false
 [color]
-    ui = auto
+  ui = auto
