@@ -1378,7 +1378,8 @@ let g:deoplete#enable_at_startup = 1
 " coc {{{
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use <tab> for trigger completion and navigate to the next complete item
-if PlugLoaded('neoclide/coc.nvim')
+" if PlugLoaded('neoclide/coc.nvim')
+  set runtimepath^=~/.vim/plugged/coc.nvim
   function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
@@ -1446,7 +1447,7 @@ if PlugLoaded('neoclide/coc.nvim')
   " Apply AutoFix to problem on the current line.
   nmap <leader>qf  <Plug>(coc-fix-current)
   " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-endif
+" endif
 " }}} coc
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
