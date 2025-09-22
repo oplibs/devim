@@ -1067,9 +1067,9 @@ if v:version > 800
   nmap <Leader>sd :ALEDetail<CR>
 
   let g:ale_sign_column_always = 1
-  let g:ale_sign_error = '✗'
-  let g:ale_sign_warning = 'ï'
-  " '❌' '⁉️''⚠️''💩'
+  let g:ale_sign_error = '❌'
+  let g:ale_sign_warning = '⏰'
+  " '❌' '⁉️'⏰'⚠️''💩'
   let g:ale_statusline_format = ['⨉ %d error(s)', '⚠ %d warning(s)', '⬥ ok']
   " let g:ale_statusline_format = ['%d error(s)', '%d warning(s)', 'OK']
 
@@ -1610,8 +1610,8 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>af :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>af :ClangFormat<CR>
 " if you install vim-operator-user
 autocmd FileType c,cpp,objc,java  map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
