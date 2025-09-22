@@ -405,7 +405,7 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}source folding setting
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set shiftwidth=2
+set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set expandtab
