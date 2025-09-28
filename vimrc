@@ -1380,15 +1380,16 @@ let g:deoplete#enable_at_startup = 1
 " use <tab> for trigger completion and navigate to the next complete item
 " if PlugLoaded('neoclide/coc.nvim')
   set runtimepath^=~/.vim/plugged/coc.nvim
-  function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
+
+  function! CheckBackspace() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 
   inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
+              \ pumvisible() ? "\<C-n>" :
+              \ CheckBackspace() ? "\<Tab>" :
+              \ coc#refresh()
 
   " Make <CR> auto-select the first completion item and notify coc.nvim to
   " format on enter, <cr> could be remapped by other vim plugin
