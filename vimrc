@@ -34,7 +34,7 @@ if has ("python3") || has ("python")
   if v:version >= 800
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
   else
-    Plug 'ctrlpvim/ctrlp.vim'
+    " Plug 'ctrlpvim/ctrlp.vim'
   endif
 endif
 
@@ -890,19 +890,19 @@ set rtp+=~/.fzf
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}}}fzf
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ctrlp config{{{ List for skipping as exceptions
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
-let g:ctrlp_map = '<leader><leader>p'
-" let g:ctrlp_map = '<c-p>'
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$\|target$',
-            \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc|swp|class)$',
-            \ }
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" }}} ctrlp config
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " ctrlp config{{{ List for skipping as exceptions
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|dist)$',
+" let g:ctrlp_map = '<leader><leader>p'
+" " let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_custom_ignore = {
+            " \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.rvm$\|vendor$\|bower_components$\|node_modules$\|dist$\|node_modules$\|project_files$\|test$\|target$',
+            " \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc|swp|class)$',
+            " \ }
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " }}} ctrlp config
+" " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " "cscope{{{
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -976,6 +976,11 @@ let g:Lf_NormalMap = {
 	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
 	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
 	\ }
+
+let g:Lf_WildIgnore = {
+      \ 'dir': ['.git', 'node_modules', 'build', '.ccls-cache'],
+      \ 'file': ['*.log', '*.tmp']
+      \ }
 " let g:Lf_ShortcutF = '<c-p>'
 " let g:Lf_ShortcutB = '<m-n>'
 " noremap <c-n> :LeaderfMru<cr>
