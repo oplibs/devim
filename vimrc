@@ -213,8 +213,7 @@ endfunction
 if CurSys() == "linux"
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   if v:version > 800
-    " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   else
     if has('nvim')
       Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
